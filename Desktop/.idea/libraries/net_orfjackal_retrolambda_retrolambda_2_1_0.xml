@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="net.orfjackal.retrolambda:retrolambda:2.1.0" type="repository">
+    <properties maven-id="net.orfjackal.retrolambda:retrolambda:2.1.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/retrolambda-2.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
