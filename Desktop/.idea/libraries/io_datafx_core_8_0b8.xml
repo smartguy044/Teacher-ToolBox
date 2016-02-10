@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="io.datafx:core:8.0b8" type="repository">
+    <properties maven-id="io.datafx:core:8.0b8" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/core-8.0b8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
