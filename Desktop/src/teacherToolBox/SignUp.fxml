@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.layout.Pane?>
-<Pane maxHeight="-Infinity" maxWidth="400" minHeight="400" minWidth="-Infinity" prefHeight="317.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.collections.*?>
+
+<?import javafx.scene.control.Label?>
+<Pane maxHeight="-Infinity" maxWidth="375.0" minHeight="500.0" minWidth="-Infinity" prefHeight="317.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <JFXTextField labelFloat="true" layoutX="54.0" layoutY="43.0" promptText="Name" />
-      <JFXTextField labelFloat="true" layoutX="54.0" layoutY="91.0" promptText="Email" />
-      <JFXPasswordField labelFloat="true" layoutX="54.0" layoutY="143.0" promptText="Password" />
-      <JFXPasswordField labelFloat="true" layoutX="54.0" layoutY="190.0" promptText="Confirm Password" />
-      <JFXButton fx:id="signUpButton" alignment="CENTER" buttonType="RAISED" layoutX="160.0" layoutY="264.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Sign Up" />
+      <JFXTextField labelFloat="true" layoutX="39.0" layoutY="43.0" promptText="Name" />
+      <JFXTextField labelFloat="true" layoutX="39.0" layoutY="91.0" promptText="Email" />
+      <JFXPasswordField labelFloat="true" layoutX="39.0" layoutY="139.0" promptText="Password" />
+      <JFXPasswordField labelFloat="true" layoutX="39.0" layoutY="190.0" promptText="Confirm Password" />
+      <JFXComboBox layoutX="46.0" layoutY="237.0" prefHeight="31.0" prefWidth="280.0" promptText="Select Security Question...">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <Label>
+                      What was your first car?
+                  </Label>
+                  <Label>
+                      What is the last name of your favorite high school teacher?
+                  </Label>
+                  <Label>
+                      What was the name of your first job?
+                  </Label>
+                  <Label>
+                      When you were young, what did you want to be when you grew up?
+                  </Label>
+              </FXCollections>
+          </items>
+      </JFXComboBox>
+      <JFXTextField labelFloat="true" layoutX="39.0" layoutY="290.0" promptText="Security Answer" />
+      <JFXButton fx:id="signUpButton" alignment="CENTER" buttonType="RAISED" layoutX="147.0" layoutY="355.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Sign Up" />
+      <JFXButton fx:id="backButton" alignment="CENTER" buttonType="RAISED" layoutX="147.0" layoutY="407.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Back" />
     </children>
 </Pane>
