@@ -24,8 +24,56 @@ import javax.annotation.PostConstruct;
 
 @FXMLController("Login.fxml")
 
-public class LoginController {
+public class LoginController
+{
+    @FXMLViewFlowContext
+    private ViewFlowContext context;
 
+    @FXMLViewFlowContext
+    private ViewFlowContext flowContext;
 
+    @FXML
+    @ActionTrigger("loginAction")
+    private Button loginButton;
+
+    @FXML
+    @ActionTrigger("signUpAction")
+    private Button signUpButton;
+
+    @ActionMethod("loginAction")
+    public void loginButton_onAction() throws Exception
+    {
+        loginButton.setOnMouseClicked(event -> ((Node) (event.getSource())).getScene().getWindow().hide());
+
+        Stage primaryStage = new Stage();
+        Flow flow = new Flow(MainAddRosterController.class);
+        DefaultFlowContainer container = new DefaultFlowContainer();
+        flowContext = new ViewFlowContext();
+        flowContext.register("Stage", primaryStage);
+        flow.createHandler(flowContext).start(container);
+
+        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 750, 800);
+        scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    @ActionMethod("signUpAction")
+    public void signUpButton_onAction() throws Exception
+    {
+        loginButton.setOnMouseClicked(event -> ((Node) (event.getSource())).getScene().getWindow().hide());
+
+        Stage primaryStage = new Stage();
+        Flow flow = new Flow(MainSignUpController.class);
+        DefaultFlowContainer container = new DefaultFlowContainer();
+        flowContext = new ViewFlowContext();
+        flowContext.register("Stage", primaryStage);
+        flow.createHandler(flowContext).start(container);
+
+        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 400, 550);
+        scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 }
 
