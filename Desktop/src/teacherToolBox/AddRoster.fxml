@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="373.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <TextField fx:id="firstNameField" layoutX="28.0" layoutY="122.0" />
+        <TextField fx:id="lastNameField" layoutX="196.0" layoutY="122.0" />
+        <Label layoutX="74.0" layoutY="88.0" text="First Name" />
+        <Label layoutX="243.0" layoutY="88.0" text="Last Name" />
+        <Button layoutX="46.0" layoutY="166.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="56.0" text="Submit" />
+        <TableView fx:id="tableView" layoutX="93.0" layoutY="211.0" prefHeight="328.0" prefWidth="187.0">
+            <columns>
+                <TableColumn fx:id="firstNameColumn" prefWidth="95.0" text="First Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="firstName" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="90.0" text="Last Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="lastName" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </children>
+</Pane>
