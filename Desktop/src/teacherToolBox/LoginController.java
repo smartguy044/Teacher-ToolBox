@@ -26,6 +26,6 @@ import javax.annotation.PostConstruct;
 
 public class LoginController {
 
-    
+
 }
 
