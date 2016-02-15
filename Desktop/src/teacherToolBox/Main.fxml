@@ -36,6 +36,23 @@
                 </JFXToolbar>
             </VBox>
         </top>
+
+        <!-- Content Area -->
+        <center>
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="250" direction="LEFT">
+                <styleClass>
+                    <String fx:value="body" />
+                </styleClass>
+                <sidePane>
+                    <StackPane fx:id="sideContent">
+                    </StackPane>
+                </sidePane>
+                <content>
+                    <StackPane fx:id="content" >
+                    </StackPane>
+                </content>
+            </JFXDrawer>
+        </center>
     </BorderPane>
 
     <JFXPopup fx:id="toolbarPopup" styleClass="tool-bar-popup">

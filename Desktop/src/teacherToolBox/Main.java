@@ -23,7 +23,7 @@ public class Main extends Application {
         flowContext.register("Stage", primaryStage);
         flow.createHandler(flowContext).start(container);
 
-        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 400, 550);
+        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 375, 550);
         scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();

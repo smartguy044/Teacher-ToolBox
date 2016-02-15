@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="375.0" minHeight="317.0" minWidth="-Infinity" prefHeight="317.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <JFXTextField labelFloat="true" layoutX="40.0" layoutY="37.0" promptText="Username" />
+       <JFXPasswordField labelFloat="true" layoutX="42.0" layoutY="96.0" promptText="Password" />
+       <JFXButton fx:id="loginButton" alignment="CENTER" buttonType="RAISED" layoutX="151.0" layoutY="183.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Login" />
+       <JFXButton fx:id="signUpButton" alignment="CENTER" buttonType="RAISED" layoutX="151.0" layoutY="240.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Sign Up" />
+   </children>
+</Pane>

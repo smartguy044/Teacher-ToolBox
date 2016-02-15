@@ -1,8 +1,11 @@
 package teacherToolBox;
 
 import io.datafx.controller.FXMLController;
+import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.FlowException;
 import io.datafx.controller.flow.FlowHandler;
+import io.datafx.controller.flow.container.AnimatedFlowContainer;
+import io.datafx.controller.flow.container.ContainerAnimations;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
@@ -17,8 +20,9 @@ import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXPopup.PopupHPosition;
 import com.jfoenix.controls.JFXPopup.PopupVPosition;
 import com.jfoenix.controls.JFXRippler;
+import javafx.util.Duration;
 
-@FXMLController("main.fxml")
+@FXMLController("Main.fxml")
 public class MainController
 {
 
@@ -61,13 +65,12 @@ public class MainController
         context = new ViewFlowContext();
 
         // set the default controller
-        /*Flow innerFlow = new Flow(LoginController.class);
+        Flow innerFlow = new Flow(LoginController.class);
 
         flowHandler = innerFlow.createHandler(context);
         context.register("ContentFlowHandler", flowHandler);
         context.register("ContentFlow", innerFlow);
         context.register("ContentPane", content);
-        content.getChildren().add(flowHandler.start(new AnimatedFlowContainer(Duration.millis(320), ContainerAnimations.SWIPE_LEFT)));*/
-
+        content.getChildren().add(flowHandler.start(new AnimatedFlowContainer(Duration.millis(320), ContainerAnimations.SWIPE_LEFT)));
     }
 }
