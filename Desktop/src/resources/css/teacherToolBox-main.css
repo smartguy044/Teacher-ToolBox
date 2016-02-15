@@ -3,7 +3,7 @@
  */
 
 .root {
-	-fx-font-family: "Roboto";	
+	/*-fx-font-family: "Roboto";	*/
 }
 
 .side-menu{
@@ -188,6 +188,7 @@
 .option-list-view {
   	-fx-pref-width: 160.0px;
   	-fx-background-color: WHITE ;
+  	-fx-font-size: 14.0;
 }
 
 .option-jfx-list-view-icon {
