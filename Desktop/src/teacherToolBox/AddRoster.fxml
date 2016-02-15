@@ -1,32 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="373.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="700.0" maxWidth="650.0" minHeight="700.0" minWidth="700.0" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <TextField fx:id="firstNameField" layoutX="28.0" layoutY="122.0" />
-        <TextField fx:id="lastNameField" layoutX="196.0" layoutY="122.0" />
-        <Label layoutX="74.0" layoutY="88.0" text="First Name" />
-        <Label layoutX="243.0" layoutY="88.0" text="Last Name" />
-        <Button layoutX="46.0" layoutY="166.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="56.0" text="Submit" />
-        <TableView fx:id="tableView" layoutX="93.0" layoutY="211.0" prefHeight="328.0" prefWidth="187.0">
+        <JFXRadioButton layoutX="34.0" layoutY="31.0" prefHeight="21.0" prefWidth="139.0" text="Upload CSV" selected="true" styleClass="custom-jfx-radio-button" />
+        <JFXTextField layoutX="34.0" layoutY="70.0" maxWidth="399.0" minWidth="399.0" prefHeight="37.0" prefWidth="399.0" />
+        <JFXButton buttonType="RAISED" layoutX="471.0" layoutY="73.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Browse" textAlignment="CENTER" />
+        <JFXRadioButton layoutX="34.0" layoutY="144.0" text="Manual Entry" styleClass="custom-jfx-radio-button" />
+        <JFXTextField labelFloat="true" layoutX="34.0" layoutY="189.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="10" prefHeight="37.0" prefWidth="170.0" promptText="Student ID" disable="true" />
+        <JFXTextField labelFloat="true" layoutX="374.0" layoutY="189.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="13" prefHeight="37.0" prefWidth="170.0" promptText="First Name" disable="true" />
+        <JFXTextField labelFloat="true" layoutX="374.0" layoutY="245.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="13" prefHeight="37.0" prefWidth="170.0" promptText="Last Name" disable="true" />
+        <JFXTextField labelFloat="true" layoutX="34.0" layoutY="245.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="10" prefHeight="37.0" prefWidth="170.0" promptText="Gender" disable="true" />
+        <JFXButton buttonType="RAISED" layoutX="319.0" layoutY="302.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" textAlignment="CENTER" disable="true" />
+        <JFXTreeTableView layoutX="132.0" layoutY="358.0" prefHeight="328.0" prefWidth="437.0">
             <columns>
-                <TableColumn fx:id="firstNameColumn" prefWidth="95.0" text="First Name">
+                <JFXTreeTableColumn prefWidth="122.0" text="Student ID">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="studentID" />
+                    </cellValueFactory>
+                </JFXTreeTableColumn>
+                <JFXTreeTableColumn fx:id="firstNameColumn" prefWidth="122.0" text="First Name">
                     <cellValueFactory>
                         <PropertyValueFactory property="firstName" />
                     </cellValueFactory>
-                </TableColumn>
-                <TableColumn prefWidth="90.0" text="Last Name">
+                </JFXTreeTableColumn>
+                <JFXTreeTableColumn prefWidth="124.0" text="Last Name">
                     <cellValueFactory>
                         <PropertyValueFactory property="lastName" />
                     </cellValueFactory>
-                </TableColumn>
+                </JFXTreeTableColumn>
+                <JFXTreeTableColumn prefWidth="66.0" text="Gender">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="gender" />
+                    </cellValueFactory>
+                </JFXTreeTableColumn>
             </columns>
-        </TableView>
+        </JFXTreeTableView>
     </children>
 </Pane>
