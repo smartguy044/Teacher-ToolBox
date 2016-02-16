@@ -13,11 +13,14 @@ import io.datafx.controller.flow.container.DefaultFlowContainer;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.annotation.PostConstruct;
@@ -26,9 +29,6 @@ import javax.annotation.PostConstruct;
 
 public class LoginController
 {
-    @FXMLViewFlowContext
-    private ViewFlowContext context;
-
     @FXMLViewFlowContext
     private ViewFlowContext flowContext;
 
@@ -43,7 +43,8 @@ public class LoginController
     @ActionMethod("loginAction")
     public void loginButton_onAction() throws Exception
     {
-        loginButton.setOnMouseClicked(event -> ((Node) (event.getSource())).getScene().getWindow().hide());
+        Stage st = (Stage) loginButton.getScene().getWindow();
+        st.hide();
 
         Stage primaryStage = new Stage();
         Flow flow = new Flow(MainAddRosterController.class);
@@ -61,7 +62,8 @@ public class LoginController
     @ActionMethod("signUpAction")
     public void signUpButton_onAction() throws Exception
     {
-        loginButton.setOnMouseClicked(event -> ((Node) (event.getSource())).getScene().getWindow().hide());
+        Stage st = (Stage) signUpButton.getScene().getWindow();
+        st.hide();
 
         Stage primaryStage = new Stage();
         Flow flow = new Flow(MainSignUpController.class);
@@ -70,7 +72,7 @@ public class LoginController
         flowContext.register("Stage", primaryStage);
         flow.createHandler(flowContext).start(container);
 
-        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 375, 550);
+        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 375, 600);
         scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
