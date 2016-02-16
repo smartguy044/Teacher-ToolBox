@@ -43,9 +43,6 @@ public class LoginController
     @ActionMethod("loginAction")
     public void loginButton_onAction() throws Exception
     {
-        Stage st = (Stage) loginButton.getScene().getWindow();
-        st.hide();
-
         Stage primaryStage = new Stage();
         Flow flow = new Flow(MainAddRosterController.class);
         DefaultFlowContainer container = new DefaultFlowContainer();
@@ -53,18 +50,18 @@ public class LoginController
         flowContext.register("Stage", primaryStage);
         flow.createHandler(flowContext).start(container);
 
-        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 750, 800);
+        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 750, 850);
         scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        Stage st = (Stage) loginButton.getScene().getWindow();
+        st.hide();
     }
 
     @ActionMethod("signUpAction")
     public void signUpButton_onAction() throws Exception
     {
-        Stage st = (Stage) signUpButton.getScene().getWindow();
-        st.hide();
-
         Stage primaryStage = new Stage();
         Flow flow = new Flow(MainSignUpController.class);
         DefaultFlowContainer container = new DefaultFlowContainer();
@@ -76,6 +73,9 @@ public class LoginController
         scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        Stage st = (Stage) signUpButton.getScene().getWindow();
+        st.hide();
     }
 }
 

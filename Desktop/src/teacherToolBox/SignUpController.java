@@ -28,9 +28,6 @@ public class SignUpController
     @ActionMethod("backAction")
     public void backButton_onAction() throws Exception
     {
-        Stage st = (Stage) backButton.getScene().getWindow();
-        st.hide();
-
         Stage primaryStage = new Stage();
         Flow flow = new Flow(MainController.class);
         DefaultFlowContainer container = new DefaultFlowContainer();
@@ -42,5 +39,8 @@ public class SignUpController
         scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        Stage st = (Stage) backButton.getScene().getWindow();
+        st.hide();
     }
 }
