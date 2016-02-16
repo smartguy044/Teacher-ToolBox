@@ -4,17 +4,39 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.control.ToggleGroup?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
 <Pane maxHeight="700.0" maxWidth="650.0" minHeight="700.0" minWidth="700.0" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <JFXRadioButton layoutX="34.0" layoutY="31.0" prefHeight="21.0" prefWidth="139.0" text="Upload CSV" selected="true" styleClass="custom-jfx-radio-button" />
-        <JFXTextField layoutX="34.0" layoutY="70.0" maxWidth="399.0" minWidth="399.0" prefHeight="37.0" prefWidth="399.0" />
-        <JFXButton buttonType="RAISED" layoutX="471.0" layoutY="73.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Browse" textAlignment="CENTER" />
-        <JFXRadioButton layoutX="34.0" layoutY="144.0" text="Manual Entry" styleClass="custom-jfx-radio-button" />
-        <JFXTextField labelFloat="true" layoutX="34.0" layoutY="189.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="10" prefHeight="37.0" prefWidth="170.0" promptText="Student ID" disable="true" />
-        <JFXTextField labelFloat="true" layoutX="374.0" layoutY="189.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="13" prefHeight="37.0" prefWidth="170.0" promptText="First Name" disable="true" />
-        <JFXTextField labelFloat="true" layoutX="374.0" layoutY="245.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="13" prefHeight="37.0" prefWidth="170.0" promptText="Last Name" disable="true" />
-        <JFXTextField labelFloat="true" layoutX="34.0" layoutY="245.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="10" prefHeight="37.0" prefWidth="170.0" promptText="Gender" disable="true" />
-        <JFXButton buttonType="RAISED" layoutX="319.0" layoutY="302.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" textAlignment="CENTER" disable="true" />
+        <JFXRadioButton fx:id="radioButton1" layoutX="34.0" layoutY="31.0" prefHeight="21.0" prefWidth="139.0" text="Upload CSV" selected="true" styleClass="custom-jfx-radio-button">
+            <toggleGroup>
+                <ToggleGroup fx:id="toggleGroup" />
+            </toggleGroup>
+        </JFXRadioButton>
+        <JFXTextField fx:id="filePath" layoutX="34.0" layoutY="70.0" maxWidth="399.0" minWidth="399.0" prefHeight="37.0" prefWidth="399.0" />
+        <JFXButton fx:id="browseButton" buttonType="RAISED" layoutX="471.0" layoutY="73.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Browse" textAlignment="CENTER" />
+        <JFXRadioButton fx:id="radioButton2" layoutX="34.0" layoutY="144.0" text="Manual Entry" styleClass="custom-jfx-radio-button" toggleGroup="$toggleGroup" />
+        <JFXTextField fx:id="studentIdTF" labelFloat="true" layoutX="34.0" layoutY="189.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="10" prefHeight="37.0" prefWidth="170.0" promptText="Student ID" disable="true" >
+            <validators>
+                <RequiredFieldValidator message="Input Required!"/>
+            </validators>
+        </JFXTextField>
+        <JFXTextField fx:id="firstNameTF" labelFloat="true" layoutX="374.0" layoutY="189.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="13" prefHeight="37.0" prefWidth="170.0" promptText="First Name" disable="true" >
+            <validators>
+                <RequiredFieldValidator message="Input Required!"/>
+            </validators>
+        </JFXTextField>
+        <JFXTextField fx:id="lastNameTF" labelFloat="true" layoutX="374.0" layoutY="245.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="13" prefHeight="37.0" prefWidth="170.0" promptText="Last Name" disable="true" >
+            <validators>
+                <RequiredFieldValidator message="Input Required!"/>
+            </validators>
+        </JFXTextField>
+        <JFXTextField fx:id="genderTF" labelFloat="true" layoutX="34.0" layoutY="245.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="10" prefHeight="37.0" prefWidth="170.0" promptText="Gender" disable="true" >
+            <validators>
+                <RequiredFieldValidator message="Input Required!"/>
+            </validators>
+        </JFXTextField>
+        <JFXButton fx:id="submitButton" buttonType="RAISED" layoutX="319.0" layoutY="302.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" textAlignment="CENTER" disable="true" />
         <JFXTreeTableView layoutX="132.0" layoutY="358.0" prefHeight="328.0" prefWidth="437.0">
             <columns>
                 <JFXTreeTableColumn prefWidth="122.0" text="Student ID">
