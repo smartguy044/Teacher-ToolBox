@@ -32,7 +32,7 @@
           </items>
       </JFXComboBox>
       <JFXTextField fx:id="secAnsTF" labelFloat="true" layoutX="39.0" layoutY="310.0" promptText="Security Answer" />
-      <JFXButton fx:id="signUpButton" alignment="CENTER" buttonType="RAISED" layoutX="147.0" layoutY="405.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Sign Up" />
+      <JFXButton fx:id="signUpButton" alignment="CENTER" buttonType="RAISED" disable="true" layoutX="147.0" layoutY="405.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Sign Up" />
       <JFXButton fx:id="backButton" alignment="CENTER" buttonType="RAISED" layoutX="147.0" layoutY="460.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Back" />
     </children>
 </Pane>
