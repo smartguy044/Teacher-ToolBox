@@ -69,7 +69,7 @@ public class LoginController
         flowContext.register("Stage", primaryStage);
         flow.createHandler(flowContext).start(container);
 
-        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 375, 600);
+        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 375, 700);
         scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();

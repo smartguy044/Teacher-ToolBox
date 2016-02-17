@@ -29,12 +29,12 @@
                 <RequiredFieldValidator message="Input Required!"/>
             </validators>
         </JFXTextField>
-        <JFXTextField fx:id="lastNameTF" disable="true" labelFloat="true" layoutX="374.0" layoutY="255.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="13" prefHeight="37.0" prefWidth="170.0" promptText="Last Name">
+        <JFXTextField fx:id="lastNameTF" disable="true" labelFloat="true" layoutX="34.0" layoutY="255.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="13" prefHeight="37.0" prefWidth="170.0" promptText="Last Name">
             <validators>
                 <RequiredFieldValidator message="Input Required!"/>
             </validators>
         </JFXTextField>
-        <JFXTextField fx:id="genderTF" disable="true" labelFloat="true" layoutX="34.0" layoutY="255.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="10" prefHeight="37.0" prefWidth="170.0" promptText="Gender">
+        <JFXTextField fx:id="genderTF" disable="true" labelFloat="true" layoutX="374.0" layoutY="255.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="10" prefHeight="37.0" prefWidth="170.0" promptText="Gender">
             <validators>
                 <RequiredFieldValidator message="Input Required!"/>
             </validators>
