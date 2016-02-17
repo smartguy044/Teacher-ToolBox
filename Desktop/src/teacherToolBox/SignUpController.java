@@ -1,9 +1,6 @@
 package teacherToolBox;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDecorator;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import io.datafx.controller.FXMLController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.action.ActionMethod;
@@ -15,15 +12,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.annotation.PostConstruct;
-import javax.swing.*;
-import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 @FXMLController("SignUp.fxml")
 
@@ -38,6 +32,10 @@ public class SignUpController
     @FXML private JFXPasswordField confirmPassTF;
     @FXML private JFXTextField secAnsTF;
     @FXML private JFXComboBox<String> secCB;
+    @FXML private JFXDialog emailDialog;
+    @FXML private JFXButton acceptButton;
+    @FXML private JFXDialog passwordDialog;
+    @FXML private JFXButton acceptButtonPW;
 
     @FXML
     @ActionTrigger("signUpAction")
@@ -46,6 +44,21 @@ public class SignUpController
     @FXML
     @ActionTrigger("backAction")
     private Button backButton;
+
+    @ActionMethod("signUpAction")
+    public void signUpButton_onAction() throws Exception
+    {
+        if(!emailTF.getText().contains("@") || !emailTF.getText().contains("."))
+        {
+            emailDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
+            emailDialog.show((Pane) flowContext.getRegisteredObject("ContentPane"));
+        }
+        else if(!passwordTF.getText().equals(confirmPassTF.getText()))
+        {
+            passwordDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
+            passwordDialog.show((Pane) flowContext.getRegisteredObject("ContentPane"));
+        }
+    }
 
     @ActionMethod("backAction")
     public void backButton_onAction() throws Exception
@@ -164,6 +177,14 @@ public class SignUpController
                     updateButton();
                 }
             });
+        });
+
+        acceptButton.setOnMouseClicked((e)->{
+            emailDialog.close();
+        });
+
+        acceptButtonPW.setOnMouseClicked((e)->{
+            passwordDialog.close();
         });
     }
 

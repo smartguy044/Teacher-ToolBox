@@ -69,4 +69,32 @@
       <JFXButton fx:id="signUpButton" alignment="CENTER" buttonType="RAISED" disable="true" layoutX="147.0" layoutY="425.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Sign Up" />
       <JFXButton fx:id="backButton" alignment="CENTER" buttonType="RAISED" layoutX="147.0" layoutY="480.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Back" />
     </children>
+
+    <JFXDialog fx:id="emailDialog" maxWidth="300.0" maxHeight="140.0" >
+        <JFXDialogLayout>
+            <heading>
+                <Label>Warning</Label>
+            </heading>
+            <body>
+                <Label>Please enter a valid email address.</Label>
+            </body>
+            <actions>
+                <JFXButton fx:id="acceptButton" styleClass="dialog-accept" text="Accept" />
+            </actions>
+        </JFXDialogLayout>
+    </JFXDialog>
+
+    <JFXDialog fx:id="passwordDialog" maxWidth="300.0" maxHeight="140.0" >
+        <JFXDialogLayout>
+            <heading>
+                <Label>Warning</Label>
+            </heading>
+            <body>
+                <Label>Confirm password matches.</Label>
+            </body>
+            <actions>
+                <JFXButton fx:id="acceptButtonPW" styleClass="dialog-accept" text="Accept" />
+            </actions>
+        </JFXDialogLayout>
+    </JFXDialog>
 </Pane>
