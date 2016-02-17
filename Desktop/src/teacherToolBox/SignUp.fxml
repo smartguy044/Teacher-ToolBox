@@ -12,7 +12,7 @@
 <?import javafx.geometry.Insets?>
 <Pane maxHeight="-Infinity" maxWidth="375.0" minHeight="550.0" minWidth="-Infinity" prefHeight="550.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <JFXTextField fx:id="nameTF" labelFloat="true" layoutX="39.0" layoutY="35.0" promptText="Name" >
+      <JFXTextField fx:id="nameTF" labelFloat="true" layoutX="39.0" layoutY="25.0" promptText="Name" >
           <padding><Insets top="20"/></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
@@ -28,7 +28,7 @@
               </RequiredFieldValidator>
           </validators>
       </JFXTextField>
-      <JFXPasswordField fx:id="passwordTF" labelFloat="true" layoutX="39.0" layoutY="145.0" promptText="Password" >
+      <JFXPasswordField fx:id="passwordTF" labelFloat="true" layoutX="39.0" layoutY="155.0" promptText="Password" >
           <padding><Insets top="20"/></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
@@ -36,7 +36,7 @@
               </RequiredFieldValidator>
           </validators>
       </JFXPasswordField>
-      <JFXPasswordField fx:id="confirmPassTF" labelFloat="true" layoutX="39.0" layoutY="200.0" promptText="Confirm Password" >
+      <JFXPasswordField fx:id="confirmPassTF" labelFloat="true" layoutX="39.0" layoutY="220.0" promptText="Confirm Password" >
           <padding><Insets top="20"/></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
@@ -44,7 +44,7 @@
               </RequiredFieldValidator>
           </validators>
       </JFXPasswordField>
-      <JFXComboBox fx:id="secCB" layoutX="46.0" layoutY="255.0" prefHeight="31.0" prefWidth="280.0" promptText="Select Security Question..." >
+      <JFXComboBox fx:id="secCB" layoutX="39.0" layoutY="295.0" prefHeight="31.0" prefWidth="298.0" promptText="Select Security Question..." >
           <items>
               <FXCollections fx:factory="observableArrayList">
                   <Label>
@@ -62,7 +62,7 @@
               </FXCollections>
           </items>
       </JFXComboBox>
-      <JFXTextField fx:id="secAnsTF" labelFloat="true" layoutX="39.0" layoutY="310.0" promptText="Security Answer" >
+      <JFXTextField fx:id="secAnsTF" labelFloat="true" layoutX="39.0" layoutY="350.0" promptText="Security Answer" >
           <padding><Insets top="20"/></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
@@ -70,7 +70,7 @@
               </RequiredFieldValidator>
           </validators>
       </JFXTextField>
-      <JFXButton fx:id="signUpButton" alignment="CENTER" buttonType="RAISED" disable="true" layoutX="147.0" layoutY="405.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Sign Up" />
-      <JFXButton fx:id="backButton" alignment="CENTER" buttonType="RAISED" layoutX="147.0" layoutY="460.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Back" />
+      <JFXButton fx:id="signUpButton" alignment="CENTER" buttonType="RAISED" disable="true" layoutX="147.0" layoutY="425.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Sign Up" />
+      <JFXButton fx:id="backButton" alignment="CENTER" buttonType="RAISED" layoutX="147.0" layoutY="480.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Back" />
     </children>
 </Pane>
