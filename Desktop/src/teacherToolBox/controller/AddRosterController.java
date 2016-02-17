@@ -1,4 +1,4 @@
-package teacherToolBox;
+package teacherToolBox.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -16,7 +16,7 @@ import javafx.scene.layout.Pane;
 
 import javax.annotation.PostConstruct;
 
-@FXMLController("AddRoster.fxml")
+@FXMLController("../fxml/AddRoster.fxml")
 
 public class AddRosterController
 {

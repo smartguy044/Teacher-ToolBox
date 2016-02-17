@@ -1,5 +1,7 @@
-package teacherToolBox;
+package teacherToolBox.controller;
 
+import com.jfoenix.controls.JFXPopup;
+import com.jfoenix.controls.JFXRippler;
 import io.datafx.controller.FXMLController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.FlowException;
@@ -13,17 +15,13 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
 import javax.annotation.PostConstruct;
 
-import com.jfoenix.controls.JFXPopup;
-import com.jfoenix.controls.JFXPopup.PopupHPosition;
-import com.jfoenix.controls.JFXPopup.PopupVPosition;
-import com.jfoenix.controls.JFXRippler;
-import javafx.util.Duration;
+@FXMLController("../fxml/Main.fxml")
 
-@FXMLController("Main.fxml")
-public class MainController
+public class MainSignUpController
 {
     @FXMLViewFlowContext
     private ViewFlowContext context;
@@ -55,7 +53,7 @@ public class MainController
         toolbarPopup.setPopupContainer(root);
         toolbarPopup.setSource(optionsRippler);
 
-        optionsBurger.setOnMouseClicked((e) -> toolbarPopup.show(PopupVPosition.TOP, PopupHPosition.RIGHT, -12, 15));
+        optionsBurger.setOnMouseClicked((e) -> toolbarPopup.show(JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT, -12, 15));
 
         // close application
         exit.setOnMouseClicked((e) -> Platform.exit());
@@ -64,7 +62,7 @@ public class MainController
         context = new ViewFlowContext();
 
         // set the default controller
-        Flow innerFlow = new Flow(LoginController.class);
+        Flow innerFlow = new Flow(SignUpController.class);
 
         flowHandler = innerFlow.createHandler(context);
         context.register("ContentFlowHandler", flowHandler);

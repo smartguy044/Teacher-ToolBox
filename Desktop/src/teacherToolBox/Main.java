@@ -8,6 +8,7 @@ import io.datafx.controller.flow.context.ViewFlowContext;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import teacherToolBox.controller.MainController;
 
 public class Main extends Application {
 

@@ -1,4 +1,4 @@
-package teacherToolBox;
+package teacherToolBox.controller;
 
 import com.jfoenix.controls.*;
 import io.datafx.controller.FXMLController;
@@ -16,10 +16,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import teacherToolBox.Main;
 
 import javax.annotation.PostConstruct;
 
-@FXMLController("SignUp.fxml")
+@FXMLController("../fxml/SignUp.fxml")
 
 public class SignUpController
 {
