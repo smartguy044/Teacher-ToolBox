@@ -9,6 +9,8 @@
 
 <?import com.jfoenix.validation.RequiredFieldValidator?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <Pane maxHeight="750.0" maxWidth="650.0" minHeight="750.0" minWidth="700.0" prefHeight="750.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <JFXRadioButton fx:id="radioButton1" layoutX="34.0" layoutY="31.0" prefHeight="21.0" prefWidth="139.0" selected="true" styleClass="custom-jfx-radio-button" text="Upload CSV">
@@ -20,23 +22,35 @@
         <JFXButton fx:id="browseButton" buttonType="RAISED" layoutX="471.0" layoutY="73.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Browse" textAlignment="CENTER" />
         <JFXRadioButton fx:id="radioButton2" layoutX="34.0" layoutY="144.0" styleClass="custom-jfx-radio-button" text="Manual Entry" toggleGroup="$toggleGroup" />
         <JFXTextField fx:id="studentIdTF" disable="true" labelFloat="true" layoutX="34.0" layoutY="189.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="10" prefHeight="37.0" prefWidth="170.0" promptText="Student ID">
+            <padding><Insets top="20"/></padding>
             <validators>
-                <RequiredFieldValidator message="Input Required!"/>
+                <RequiredFieldValidator message="Input Required!" >
+                    <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
+                </RequiredFieldValidator>
             </validators>
         </JFXTextField>
         <JFXTextField fx:id="firstNameTF" disable="true" labelFloat="true" layoutX="374.0" layoutY="189.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="13" prefHeight="37.0" prefWidth="170.0" promptText="First Name">
+            <padding><Insets top="20"/></padding>
             <validators>
-                <RequiredFieldValidator message="Input Required!"/>
+                <RequiredFieldValidator message="Input Required!" >
+                    <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
+                </RequiredFieldValidator>
             </validators>
         </JFXTextField>
         <JFXTextField fx:id="lastNameTF" disable="true" labelFloat="true" layoutX="34.0" layoutY="255.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="13" prefHeight="37.0" prefWidth="170.0" promptText="Last Name">
+            <padding><Insets top="20"/></padding>
             <validators>
-                <RequiredFieldValidator message="Input Required!"/>
+                <RequiredFieldValidator message="Input Required!" >
+                    <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
+                </RequiredFieldValidator>
             </validators>
         </JFXTextField>
         <JFXTextField fx:id="genderTF" disable="true" labelFloat="true" layoutX="374.0" layoutY="255.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="10" prefHeight="37.0" prefWidth="170.0" promptText="Gender">
+            <padding><Insets top="20"/></padding>
             <validators>
-                <RequiredFieldValidator message="Input Required!"/>
+                <RequiredFieldValidator message="Input Required!" >
+                    <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
+                </RequiredFieldValidator>
             </validators>
         </JFXTextField>
         <JFXButton fx:id="submitButton" buttonType="RAISED" disable="true" layoutX="319.0" layoutY="331.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" textAlignment="CENTER" />
