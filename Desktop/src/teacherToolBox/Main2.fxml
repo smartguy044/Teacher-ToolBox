@@ -10,7 +10,7 @@
 <?import com.jfoenix.controls.JFXRippler?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXPopup?>
-<!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
 <StackPane fx:id="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
     <!-- Header -->
@@ -63,15 +63,15 @@
         <JFXListView styleClass="option-list-view">
             <Label>
                 Contact Us
-                <!--<graphic>
+                <graphic>
                     <FontAwesomeIconView glyphName="USER" size="1.5em" style=";" styleClass="option-jfx-list-view-icon"/>
-                </graphic>-->
+                </graphic>
             </Label>
             <Label fx:id="exit">
                 Exit
-                <!--<graphic>
+                <graphic>
                     <FontAwesomeIconView glyphName="REPLY" size="1.5em" style=";" styleClass="option-jfx-list-view-icon"/>
-                </graphic>-->
+                </graphic>
             </Label>
         </JFXListView>
     </JFXPopup>
