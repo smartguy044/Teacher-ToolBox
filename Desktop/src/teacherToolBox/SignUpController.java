@@ -1,5 +1,6 @@
 package teacherToolBox;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDecorator;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -10,13 +11,19 @@ import io.datafx.controller.flow.action.ActionTrigger;
 import io.datafx.controller.flow.container.DefaultFlowContainer;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import javax.annotation.PostConstruct;
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 @FXMLController("SignUp.fxml")
 
@@ -30,6 +37,11 @@ public class SignUpController
     @FXML private JFXPasswordField passwordTF;
     @FXML private JFXPasswordField confirmPassTF;
     @FXML private JFXTextField secAnsTF;
+    @FXML private JFXComboBox<String> secCB;
+
+    @FXML
+    @ActionTrigger("signUpAction")
+    private Button signUpButton;
 
     @FXML
     @ActionTrigger("backAction")
@@ -63,6 +75,15 @@ public class SignUpController
             {
                 nameTF.validate();
             }
+
+            nameTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    updateButton();
+                }
+            });
         });
 
         emailTF.focusedProperty().addListener((o, oldVal, newVal) ->
@@ -71,6 +92,15 @@ public class SignUpController
             {
                 emailTF.validate();
             }
+
+            emailTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    updateButton();
+                }
+            });
         });
 
         passwordTF.focusedProperty().addListener((o, oldVal, newVal) ->
@@ -79,6 +109,15 @@ public class SignUpController
             {
                 passwordTF.validate();
             }
+
+            passwordTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    updateButton();
+                }
+            });
         });
 
         confirmPassTF.focusedProperty().addListener((o, oldVal, newVal) ->
@@ -87,6 +126,27 @@ public class SignUpController
             {
                 confirmPassTF.validate();
             }
+
+            confirmPassTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    updateButton();
+                }
+            });
+        });
+
+        secCB.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            secCB.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()
+            {
+                @Override
+                public void handle(MouseEvent arg0)
+                {
+                    updateButton();
+                }
+            });
         });
 
         secAnsTF.focusedProperty().addListener((o, oldVal, newVal) ->
@@ -95,6 +155,28 @@ public class SignUpController
             {
                 secAnsTF.validate();
             }
+
+            secAnsTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    updateButton();
+                }
+            });
         });
+    }
+
+    public void updateButton()
+    {
+        if(!nameTF.getText().equals("") && !emailTF.getText().equals("") && !passwordTF.getText().equals("") && !confirmPassTF.getText().equals("")
+                && !secAnsTF.getText().equals("") && !secCB.getValue().equals("Select Security Question..."))
+        {
+            signUpButton.setDisable(false);
+        }
+        else
+        {
+            signUpButton.setDisable(true);
+        }
     }
 }

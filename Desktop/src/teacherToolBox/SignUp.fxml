@@ -10,6 +10,7 @@
 <?import com.jfoenix.validation.RequiredFieldValidator?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+
 <Pane maxHeight="-Infinity" maxWidth="375.0" minHeight="550.0" minWidth="-Infinity" prefHeight="550.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
       <JFXTextField fx:id="nameTF" labelFloat="true" layoutX="39.0" layoutY="25.0" promptText="Name" >
@@ -44,23 +45,18 @@
               </RequiredFieldValidator>
           </validators>
       </JFXPasswordField>
-      <JFXComboBox fx:id="secCB" layoutX="39.0" layoutY="295.0" prefHeight="31.0" prefWidth="298.0" promptText="Select Security Question..." >
+      <JFXComboBox fx:id="secCB" layoutX="39.0" layoutY="295.0" prefHeight="31.0" prefWidth="298.0" >
           <items>
               <FXCollections fx:factory="observableArrayList">
-                  <Label>
-                      What was your first car?
-                  </Label>
-                  <Label>
-                      What is the last name of your favorite high school teacher?
-                  </Label>
-                  <Label>
-                      What was the name of your first job?
-                  </Label>
-                  <Label>
-                      When you were young, what did you want to be when you grew up?
-                  </Label>
+                  <String fx:value="What was your first car?" />
+                  <String fx:value="What is the last name of your favorite high school teacher?" />
+                  <String fx:value="What was the name of your first job?" />
+                  <String fx:value="When you were young, what did you want to be when you grew up?" />
               </FXCollections>
           </items>
+          <value>
+              Select Security Question...
+          </value>
       </JFXComboBox>
       <JFXTextField fx:id="secAnsTF" labelFloat="true" layoutX="39.0" layoutY="350.0" promptText="Security Answer" >
           <padding><Insets top="20"/></padding>
