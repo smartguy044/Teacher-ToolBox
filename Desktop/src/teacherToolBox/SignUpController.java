@@ -1,6 +1,8 @@
 package teacherToolBox;
 
 import com.jfoenix.controls.JFXDecorator;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import io.datafx.controller.FXMLController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.action.ActionMethod;
@@ -14,12 +16,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import javax.annotation.PostConstruct;
+
 @FXMLController("SignUp.fxml")
 
 public class SignUpController
 {
     @FXMLViewFlowContext
     private ViewFlowContext flowContext;
+
+    @FXML private JFXTextField nameTF;
+    @FXML private JFXTextField emailTF;
+    @FXML private JFXPasswordField passwordTF;
+    @FXML private JFXPasswordField confirmPassTF;
+    @FXML private JFXTextField secAnsTF;
 
     @FXML
     @ActionTrigger("backAction")
@@ -42,5 +52,49 @@ public class SignUpController
 
         Stage st = (Stage) backButton.getScene().getWindow();
         st.hide();
+    }
+
+    @PostConstruct
+    public void init()
+    {
+        nameTF.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            if (!newVal)
+            {
+                nameTF.validate();
+            }
+        });
+
+        emailTF.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            if (!newVal)
+            {
+                emailTF.validate();
+            }
+        });
+
+        passwordTF.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            if (!newVal)
+            {
+                passwordTF.validate();
+            }
+        });
+
+        confirmPassTF.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            if (!newVal)
+            {
+                confirmPassTF.validate();
+            }
+        });
+
+        secAnsTF.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            if (!newVal)
+            {
+                secAnsTF.validate();
+            }
+        });
     }
 }
