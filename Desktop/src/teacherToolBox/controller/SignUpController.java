@@ -65,7 +65,7 @@ public class SignUpController
         }
         else
         {
-            String passwordToHash = "password";
+            String passwordToHash = passwordTF.getText();
             String generatedPassword = "";
 
             try
@@ -90,8 +90,6 @@ public class SignUpController
             {
                 e.printStackTrace();
             }
-
-            System.out.println(generatedPassword);
         }
     }
 
