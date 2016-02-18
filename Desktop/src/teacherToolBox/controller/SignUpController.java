@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -19,6 +20,8 @@ import javafx.stage.Stage;
 import teacherToolBox.Main;
 
 import javax.annotation.PostConstruct;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @FXMLController("../fxml/SignUp.fxml")
 
@@ -37,6 +40,7 @@ public class SignUpController
     @FXML private JFXButton acceptButton;
     @FXML private JFXDialog passwordDialog;
     @FXML private JFXButton acceptButtonPW;
+    @FXML private Tooltip toolTip;
 
     @FXML
     @ActionTrigger("signUpAction")
@@ -58,6 +62,36 @@ public class SignUpController
         {
             passwordDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
             passwordDialog.show((Pane) flowContext.getRegisteredObject("ContentPane"));
+        }
+        else
+        {
+            String passwordToHash = "password";
+            String generatedPassword = "";
+
+            try
+            {
+                // Create MessageDigest instance for MD5
+                MessageDigest md = MessageDigest.getInstance("SHA-512");
+                //Add password bytes to digest
+                md.update(passwordToHash.getBytes());
+                //Get the hash's bytes
+                byte[] bytes = md.digest();
+                //This bytes[] has bytes in decimal format;
+                //Convert it to hexadecimal format
+                StringBuilder sb = new StringBuilder();
+                for (byte aByte : bytes)
+                {
+                    sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
+                }
+                //Get complete hashed password in hex format
+                generatedPassword = sb.toString();
+            }
+            catch (NoSuchAlgorithmException e)
+            {
+                e.printStackTrace();
+            }
+
+            System.out.println(generatedPassword);
         }
     }
 
