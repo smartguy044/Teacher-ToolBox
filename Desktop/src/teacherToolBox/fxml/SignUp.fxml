@@ -1,51 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.*?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.collections.*?>
 
-<?import javafx.scene.control.Label?>
 <?import com.jfoenix.validation.RequiredFieldValidator?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.geometry.Insets?>
 
 <Pane maxHeight="-Infinity" maxWidth="375.0" minHeight="550.0" minWidth="-Infinity" prefHeight="550.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <JFXTextField fx:id="nameTF" labelFloat="true" layoutX="39.0" layoutY="25.0" promptText="Name" >
-          <padding><Insets top="20"/></padding>
+      <JFXTextField fx:id="nameTF" labelFloat="true" layoutX="39.0" layoutY="25.0" promptText="Name">
+          <padding><Insets top="20" /></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
                   <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
               </RequiredFieldValidator>
           </validators>
       </JFXTextField>
-      <JFXTextField fx:id="emailTF" labelFloat="true" layoutX="39.0" layoutY="90.0" promptText="Email" >
-          <padding><Insets top="20"/></padding>
+      <JFXTextField fx:id="emailTF" labelFloat="true" layoutX="39.0" layoutY="90.0" promptText="Email">
+          <padding><Insets top="20" /></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
                   <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
               </RequiredFieldValidator>
           </validators>
       </JFXTextField>
-      <JFXPasswordField fx:id="passwordTF" labelFloat="true" layoutX="39.0" layoutY="155.0" promptText="Password" >
-          <padding><Insets top="20"/></padding>
+      <JFXPasswordField fx:id="passwordTF" labelFloat="true" layoutX="39.0" layoutY="155.0" promptText="Password">
+          <padding><Insets top="20" /></padding>
+         <tooltip>
+            <Tooltip fx:id="toolTip" text="Password must be at least 8 characters and contain &#10;1 uppercase letter and 1 special character (!, @, #, $, %)" />
+         </tooltip>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
                   <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
               </RequiredFieldValidator>
           </validators>
       </JFXPasswordField>
-      <JFXPasswordField fx:id="confirmPassTF" labelFloat="true" layoutX="39.0" layoutY="220.0" promptText="Confirm Password" >
-          <padding><Insets top="20"/></padding>
+      <JFXPasswordField fx:id="confirmPassTF" labelFloat="true" layoutX="39.0" layoutY="220.0" promptText="Confirm Password">
+          <padding><Insets top="20" /></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
                   <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
               </RequiredFieldValidator>
           </validators>
       </JFXPasswordField>
-      <JFXComboBox fx:id="secCB" layoutX="39.0" layoutY="295.0" prefHeight="31.0" prefWidth="298.0" >
+      <JFXComboBox fx:id="secCB" layoutX="39.0" layoutY="295.0" prefHeight="31.0" prefWidth="298.0">
           <items>
               <FXCollections fx:factory="observableArrayList">
                   <String fx:value="What was your first car?" />
@@ -58,8 +60,8 @@
               Select Security Question...
           </value>
       </JFXComboBox>
-      <JFXTextField fx:id="secAnsTF" labelFloat="true" layoutX="39.0" layoutY="350.0" promptText="Security Answer" >
-          <padding><Insets top="20"/></padding>
+      <JFXTextField fx:id="secAnsTF" labelFloat="true" layoutX="39.0" layoutY="350.0" promptText="Security Answer">
+          <padding><Insets top="20" /></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
                   <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
