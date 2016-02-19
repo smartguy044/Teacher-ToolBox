@@ -55,7 +55,7 @@ public class SignUpController
     @ActionMethod("signUpAction")
     public void signUpButton_onAction() throws Exception
     {
-        if(!emailTF.getText().contains("@") || !emailTF.getText().contains("."))
+        if(!emailTF.getText().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"))
         {
             emailDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
             emailDialog.show((Pane) flowContext.getRegisteredObject("ContentPane"));
