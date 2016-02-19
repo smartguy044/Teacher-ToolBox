@@ -40,6 +40,8 @@ public class SignUpController
     @FXML private JFXButton acceptButton;
     @FXML private JFXDialog passwordDialog;
     @FXML private JFXButton acceptButtonPW;
+    @FXML private JFXDialog passwordDialog2;
+    @FXML private JFXButton acceptButtonPW2;
     @FXML private Tooltip toolTip;
 
     @FXML
@@ -62,6 +64,11 @@ public class SignUpController
         {
             passwordDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
             passwordDialog.show((Pane) flowContext.getRegisteredObject("ContentPane"));
+        }
+        else if(!passwordTF.getText().matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%]).{8,20})"))
+        {
+            passwordDialog2.setTransitionType(JFXDialog.DialogTransition.CENTER);
+            passwordDialog2.show((Pane) flowContext.getRegisteredObject("ContentPane"));
         }
         else
         {
@@ -218,6 +225,10 @@ public class SignUpController
 
         acceptButtonPW.setOnMouseClicked((e)->{
             passwordDialog.close();
+        });
+
+        acceptButtonPW2.setOnMouseClicked((e)->{
+            passwordDialog2.close();
         });
     }
 

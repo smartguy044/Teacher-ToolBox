@@ -92,10 +92,24 @@
                 <Label>Warning</Label>
             </heading>
             <body>
-                <Label>Confirm password matches.</Label>
+                <Label>Confirm passwords match.</Label>
             </body>
             <actions>
                 <JFXButton fx:id="acceptButtonPW" styleClass="dialog-accept" text="Accept" />
+            </actions>
+        </JFXDialogLayout>
+    </JFXDialog>
+
+    <JFXDialog fx:id="passwordDialog2" maxWidth="300.0" maxHeight="250.0" >
+        <JFXDialogLayout>
+            <heading>
+                <Label>Warning</Label>
+            </heading>
+            <body>
+                <Label text="Confirm password has a &#10;1) Special character (!, @, #, $, %)&#10;2) Contains a capital letter&#10;3) Contains a number&#10;4) Is between 8-20 characters long"/>
+            </body>
+            <actions>
+                <JFXButton fx:id="acceptButtonPW2" styleClass="dialog-accept" text="Accept" />
             </actions>
         </JFXDialogLayout>
     </JFXDialog>
