@@ -20,8 +20,12 @@ import javafx.stage.Stage;
 import teacherToolBox.Main;
 
 import javax.annotation.PostConstruct;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.*;
+import java.util.Properties;
 
 @FXMLController("../fxml/SignUp.fxml")
 
@@ -42,6 +46,8 @@ public class SignUpController
     @FXML private JFXButton acceptButtonPW;
     @FXML private JFXDialog passwordDialog2;
     @FXML private JFXButton acceptButtonPW2;
+    @FXML private JFXDialog signUpDialog;
+    @FXML private JFXButton acceptButtonSU;
     @FXML private Tooltip toolTip;
 
     @FXML
@@ -72,30 +78,80 @@ public class SignUpController
         }
         else
         {
-            String passwordToHash = passwordTF.getText();
+            Properties properties = new Properties();
+            Connection connection = null;
+            Statement statement = null;
+
+            String fName = nameTF.getText().substring(0, nameTF.getText().indexOf(' '));
+            String lName = nameTF.getText().substring(nameTF.getText().indexOf(' ') + 1, nameTF.getText().length());
             String generatedPassword = "";
 
-            try
-            {
-                // Create MessageDigest instance for MD5
-                MessageDigest md = MessageDigest.getInstance("SHA-512");
-                //Add password bytes to digest
-                md.update(passwordToHash.getBytes());
-                //Get the hash's bytes
-                byte[] bytes = md.digest();
-                //This bytes[] has bytes in decimal format;
-                //Convert it to hexadecimal format
-                StringBuilder sb = new StringBuilder();
-                for (byte aByte : bytes)
+            boolean match = false;
+
+            try {
+                properties.load(new FileInputStream(".//src//database.properties"));
+                String url = properties.getProperty("jdbc.url");
+                Class.forName(properties.getProperty("jdbc.driver"));
+                connection = DriverManager.getConnection(url, properties.getProperty("jdbc.username"), properties.getProperty("jdbc.password"));
+
+                statement = connection.createStatement();
+
+                ResultSet resultSet = statement.executeQuery("select uname from users");
+
+                while (resultSet.next())
                 {
-                    sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
+                    match = resultSet.getString(1).equals(emailTF.getText());
                 }
-                //Get complete hashed password in hex format
-                generatedPassword = sb.toString();
+
+                if(match)
+                {
+                    signUpDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
+                    signUpDialog.show((Pane) flowContext.getRegisteredObject("ContentPane"));
+                }
+                else
+                {
+                    try
+                    {
+                        // Create MessageDigest instance for SHA-512
+                        MessageDigest md = MessageDigest.getInstance("SHA-512");
+                        //Add password bytes to digest
+                        md.update(passwordTF.getText().getBytes());
+                        //Get the hash's bytes
+                        byte[] bytes = md.digest();
+                        //This bytes[] has bytes in decimal format;
+                        //Convert it to hexadecimal format
+                        StringBuilder sb = new StringBuilder();
+                        for (byte aByte : bytes)
+                        {
+                            sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
+                        }
+                        //Get complete hashed password in hex format
+                        generatedPassword = sb.toString();
+
+                        statement.executeUpdate("INSERT INTO users(fname, lname, uname, pword, secques, secans, logins) values('"
+                                + fName + "', '" + lName + "', '" + emailTF.getText() + "', '" + generatedPassword + "', '" + secCB.getValue()
+                                + "', '" + secAnsTF.getText() + "', " + 0 + ")");
+                    }
+                    catch (NoSuchAlgorithmException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
             }
-            catch (NoSuchAlgorithmException e)
+            catch (IOException ioException)
             {
-                e.printStackTrace();
+                String msg = ioException.getMessage();
+                System.err.printf("problem with properties file: %s\n", msg);
+            }
+            catch (SQLException sqlException)
+            {
+                String msg = sqlException.getMessage();
+                System.err.printf("problem with db connection: %s\n", msg);
+            }
+            catch (ClassNotFoundException e)
+            {
+                String msg = e.getMessage();
+                System.err.printf("problem with driver: %s\n", msg);
             }
         }
     }
@@ -229,6 +285,10 @@ public class SignUpController
 
         acceptButtonPW2.setOnMouseClicked((e)->{
             passwordDialog2.close();
+        });
+
+        acceptButtonSU.setOnMouseClicked((e)->{
+            signUpDialog.close();
         });
     }
 
