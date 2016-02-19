@@ -12,7 +12,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="375.0" minHeight="550.0" minWidth="-Infinity" prefHeight="550.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <JFXTextField fx:id="nameTF" labelFloat="true" layoutX="39.0" layoutY="25.0" promptText="Name">
+      <JFXTextField fx:id="nameTF" labelFloat="true" layoutX="39.0" layoutY="25.0" promptText="Full Name">
           <padding><Insets top="20" /></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
