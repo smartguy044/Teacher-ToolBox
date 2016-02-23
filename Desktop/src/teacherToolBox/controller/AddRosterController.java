@@ -10,8 +10,10 @@ import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import javax.annotation.PostConstruct;
@@ -34,6 +36,7 @@ public class AddRosterController
     @FXML private JFXTextField firstNameTF;
     @FXML private JFXTextField lastNameTF;
     @FXML private JFXTextField genderTF;
+    @FXML private JFXButton manualSubmitButton;
 
     @ActionMethod("rbAction1")
     public void radioButton1_onAction() throws Exception
@@ -44,6 +47,7 @@ public class AddRosterController
         firstNameTF.setDisable(true);
         lastNameTF.setDisable(true);
         genderTF.setDisable(true);
+        manualSubmitButton.setDisable(true);
     }
 
     @ActionMethod("rbAction2")
@@ -55,6 +59,7 @@ public class AddRosterController
         firstNameTF.setDisable(false);
         lastNameTF.setDisable(false);
         genderTF.setDisable(false);
+        updateButton();
     }
 
     @FXMLViewFlowContext
@@ -69,6 +74,15 @@ public class AddRosterController
             {
                 studentIdTF.validate();
             }
+
+            studentIdTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+            {
+                updateButton();
+            }
+            });
         });
 
         firstNameTF.focusedProperty().addListener((o, oldVal, newVal) ->
@@ -77,6 +91,15 @@ public class AddRosterController
             {
                 firstNameTF.validate();
             }
+
+            firstNameTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    updateButton();
+                }
+            });
         });
 
         lastNameTF.focusedProperty().addListener((o, oldVal, newVal) ->
@@ -85,6 +108,15 @@ public class AddRosterController
             {
                 lastNameTF.validate();
             }
+
+            lastNameTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    updateButton();
+                }
+            });
         });
 
         genderTF.focusedProperty().addListener((o, oldVal, newVal) ->
@@ -93,6 +125,27 @@ public class AddRosterController
             {
                 genderTF.validate();
             }
+
+            genderTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    updateButton();
+                }
+            });
         });
+    }
+
+    public void updateButton()
+    {
+        if(!studentIdTF.getText().equals("") && !firstNameTF.getText().equals("") && !lastNameTF.getText().equals("") && !genderTF.getText().equals(""))
+        {
+            manualSubmitButton.setDisable(false);
+        }
+        else
+        {
+            manualSubmitButton.setDisable(true);
+        }
     }
 }
