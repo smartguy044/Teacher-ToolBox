@@ -23,7 +23,7 @@
         </JFXRadioButton>
         <JFXTextField fx:id="filePath" layoutX="34.0" layoutY="70.0" maxWidth="399.0" minWidth="399.0" prefHeight="37.0" prefWidth="399.0" promptText="Enter Complete File Path" />
         <JFXButton fx:id="browseButton" buttonType="RAISED" layoutX="471.0" layoutY="73.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Browse" textAlignment="CENTER" />
-        <JFXButton fx:id="uploadSubmitButton" disable="true" buttonType="RAISED" layoutX="569.0" layoutY="73.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" textAlignment="CENTER" />
+        <JFXButton fx:id="uploadSubmitButton" buttonType="RAISED" disable="true" layoutX="569.0" layoutY="73.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" textAlignment="CENTER" />
         <JFXRadioButton fx:id="radioButton2" layoutX="34.0" layoutY="144.0" styleClass="custom-jfx-radio-button" text="Manual Entry" toggleGroup="$toggleGroup" />
         <JFXTextField fx:id="studentIdTF" disable="true" labelFloat="true" layoutX="34.0" layoutY="189.0" maxWidth="170.0" minWidth="170.0" prefColumnCount="10" prefHeight="37.0" prefWidth="170.0" promptText="Student ID">
             <padding><Insets top="20" /></padding>
@@ -58,29 +58,29 @@
             </validators>
         </JFXTextField>
         <JFXButton fx:id="manualSubmitButton" buttonType="RAISED" disable="true" layoutX="319.0" layoutY="331.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" textAlignment="CENTER" />
-        <JFXTreeTableView layoutX="132.0" layoutY="393.0" prefHeight="328.0" prefWidth="437.0">
+        <TableView fx:id="rosterView" layoutX="132.0" layoutY="393.0" prefHeight="328.0" prefWidth="437.0">
             <columns>
-                <JFXTreeTableColumn fx:id="idColumn" prefWidth="122.0" text="Student ID">
+                <TableColumn fx:id="idColumn" prefWidth="122.0" text="Student ID">
                     <cellValueFactory>
                         <PropertyValueFactory property="studentID" />
                     </cellValueFactory>
-                </JFXTreeTableColumn>
-                <JFXTreeTableColumn prefWidth="122.0" text="First Name">
+                </TableColumn>
+                <TableColumn prefWidth="122.0" text="First Name">
                     <cellValueFactory>
                         <PropertyValueFactory property="firstName" />
                     </cellValueFactory>
-                </JFXTreeTableColumn>
-                <JFXTreeTableColumn prefWidth="124.0" text="Last Name">
+                </TableColumn>
+                <TableColumn prefWidth="124.0" text="Last Name">
                     <cellValueFactory>
                         <PropertyValueFactory property="lastName" />
                     </cellValueFactory>
-                </JFXTreeTableColumn>
-                <JFXTreeTableColumn prefWidth="66.0" text="Gender">
+                </TableColumn>
+                <TableColumn prefWidth="68.0" text="Gender">
                     <cellValueFactory>
                         <PropertyValueFactory property="gender" />
                     </cellValueFactory>
-                </JFXTreeTableColumn>
+                </TableColumn>
             </columns>
-        </JFXTreeTableView>
+        </TableView>
     </children>
 </Pane>

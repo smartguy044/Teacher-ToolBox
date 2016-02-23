@@ -2,6 +2,7 @@ package teacherToolBox.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTreeTableView;
 import io.datafx.controller.FXMLController;
 import io.datafx.controller.flow.FlowException;
 import io.datafx.controller.flow.action.ActionMethod;
@@ -10,11 +11,14 @@ import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import teacherToolBox.components.Student;
 
 import javax.annotation.PostConstruct;
 
@@ -22,6 +26,9 @@ import javax.annotation.PostConstruct;
 
 public class AddRosterController
 {
+    @FXMLViewFlowContext
+    private ViewFlowContext context;
+
     @FXML
     @ActionTrigger("rbAction1")
     private RadioButton radioButton1;
@@ -30,6 +37,10 @@ public class AddRosterController
     @ActionTrigger("rbAction2")
     private RadioButton radioButton2;
 
+    @FXML
+    @ActionTrigger("manualAction")
+    private JFXButton manualSubmitButton;
+
     @FXML private JFXTextField filePath;
     @FXML private JFXButton browseButton;
     @FXML private JFXButton uploadSubmitButton;
@@ -37,7 +48,7 @@ public class AddRosterController
     @FXML private JFXTextField firstNameTF;
     @FXML private JFXTextField lastNameTF;
     @FXML private JFXTextField genderTF;
-    @FXML private JFXButton manualSubmitButton;
+    @FXML private TableView<Student> rosterView;
 
     @ActionMethod("rbAction1")
     public void radioButton1_onAction() throws Exception
@@ -64,9 +75,6 @@ public class AddRosterController
         uploadSubmitButton.setDisable(true);
         updateButton();
     }
-
-    @FXMLViewFlowContext
-    private ViewFlowContext context;
 
     @PostConstruct
     public void init()
@@ -177,5 +185,17 @@ public class AddRosterController
                 manualSubmitButton.setDisable(true);
             }
         }
+    }
+
+    @ActionMethod("manualAction")
+    public void manualSubmitButton_onAction() throws Exception
+    {
+        ObservableList<Student> data = rosterView.getItems();
+        data.add(new Student(Integer.valueOf(studentIdTF.getText()), firstNameTF.getText(), lastNameTF.getText(), genderTF.getText()));
+
+        studentIdTF.setText("");
+        firstNameTF.setText("");
+        lastNameTF.setText("");
+        genderTF.setText("");
     }
 }
