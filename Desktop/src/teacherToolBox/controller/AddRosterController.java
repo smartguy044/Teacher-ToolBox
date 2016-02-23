@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import teacherToolBox.components.Student;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
+import java.io.*;
 
 @FXMLController("../fxml/AddRoster.fxml")
 
@@ -40,11 +40,14 @@ public class AddRosterController
     private JFXButton browseButton;
 
     @FXML
+    @ActionTrigger("uploadSubmitAction")
+    private JFXButton uploadSubmitButton;
+
+    @FXML
     @ActionTrigger("manualAction")
     private JFXButton manualSubmitButton;
 
     @FXML private JFXTextField filePath;
-    @FXML private JFXButton uploadSubmitButton;
     @FXML private JFXTextField studentIdTF;
     @FXML private JFXTextField firstNameTF;
     @FXML private JFXTextField lastNameTF;
@@ -203,6 +206,47 @@ public class AddRosterController
         {
             filePath.setText(selectedFile.getAbsolutePath());
             updateButton();
+        }
+    }
+
+    @ActionMethod("uploadSubmitAction")
+    public void uploadSubmitButton_onAction() throws Exception
+    {
+        String csvFile = filePath.getText();
+        BufferedReader br = null;
+        String line = "";
+        String cvsSplitBy = ",";
+
+        try
+        {
+            br = new BufferedReader(new FileReader(csvFile));
+            
+            while ((line = br.readLine()) != null)
+            {
+                // use comma as separator
+                String[] student = line.split(cvsSplitBy);
+
+                ObservableList<Student> data = rosterView.getItems();
+                data.add(new Student(Integer.valueOf(student[0]), student[1], student[2], student[3]));
+            }
+
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if (br != null)
+            {
+                try
+                {
+                    br.close();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
