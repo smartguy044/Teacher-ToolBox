@@ -32,6 +32,7 @@ public class AddRosterController
 
     @FXML private JFXTextField filePath;
     @FXML private JFXButton browseButton;
+    @FXML private JFXButton uploadSubmitButton;
     @FXML private JFXTextField studentIdTF;
     @FXML private JFXTextField firstNameTF;
     @FXML private JFXTextField lastNameTF;
@@ -48,6 +49,7 @@ public class AddRosterController
         lastNameTF.setDisable(true);
         genderTF.setDisable(true);
         manualSubmitButton.setDisable(true);
+        updateButton();
     }
 
     @ActionMethod("rbAction2")
@@ -59,6 +61,7 @@ public class AddRosterController
         firstNameTF.setDisable(false);
         lastNameTF.setDisable(false);
         genderTF.setDisable(false);
+        uploadSubmitButton.setDisable(true);
         updateButton();
     }
 
@@ -68,7 +71,19 @@ public class AddRosterController
     @PostConstruct
     public void init()
     {
-       studentIdTF.focusedProperty().addListener((o, oldVal, newVal) ->
+        filePath.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            filePath.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    updateButton();
+                }
+            });
+        });
+
+        studentIdTF.focusedProperty().addListener((o, oldVal, newVal) ->
         {
             if (!newVal)
             {
@@ -139,13 +154,28 @@ public class AddRosterController
 
     public void updateButton()
     {
-        if(!studentIdTF.getText().equals("") && !firstNameTF.getText().equals("") && !lastNameTF.getText().equals("") && !genderTF.getText().equals(""))
+        if(radioButton1.isSelected())
         {
-            manualSubmitButton.setDisable(false);
+            if(!filePath.getText().equals(""))
+            {
+                uploadSubmitButton.setDisable(false);
+            }
+            else
+            {
+                uploadSubmitButton.setDisable(true);
+            }
         }
-        else
+        else if(radioButton2.isSelected())
         {
-            manualSubmitButton.setDisable(true);
+            if (!studentIdTF.getText().equals("") && !firstNameTF.getText().equals("") && !lastNameTF.getText().equals("") && !genderTF.getText().equals(""))
+
+            {
+                manualSubmitButton.setDisable(false);
+            }
+            else
+            {
+                manualSubmitButton.setDisable(true);
+            }
         }
     }
 }
