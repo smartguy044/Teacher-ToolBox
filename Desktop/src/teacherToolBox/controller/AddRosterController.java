@@ -2,25 +2,23 @@ package teacherToolBox.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableView;
 import io.datafx.controller.FXMLController;
-import io.datafx.controller.flow.FlowException;
 import io.datafx.controller.flow.action.ActionMethod;
 import io.datafx.controller.flow.action.ActionTrigger;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
-import io.datafx.controller.util.VetoException;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import teacherToolBox.components.Student;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 
 @FXMLController("../fxml/AddRoster.fxml")
 
@@ -38,11 +36,14 @@ public class AddRosterController
     private RadioButton radioButton2;
 
     @FXML
+    @ActionTrigger("browseAction")
+    private JFXButton browseButton;
+
+    @FXML
     @ActionTrigger("manualAction")
     private JFXButton manualSubmitButton;
 
     @FXML private JFXTextField filePath;
-    @FXML private JFXButton browseButton;
     @FXML private JFXButton uploadSubmitButton;
     @FXML private JFXTextField studentIdTF;
     @FXML private JFXTextField firstNameTF;
@@ -184,6 +185,24 @@ public class AddRosterController
             {
                 manualSubmitButton.setDisable(true);
             }
+        }
+    }
+
+    @ActionMethod("browseAction")
+    public void browseButton_onAction() throws Exception
+    {
+        Stage st = (Stage) browseButton.getScene().getWindow();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Roster File");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Excel Documents", "*.xlsx", "*.csv"));
+
+        File selectedFile = fileChooser.showOpenDialog(st);
+
+        if(selectedFile != null)
+        {
+            filePath.setText(selectedFile.getAbsolutePath());
+            updateButton();
         }
     }
 
