@@ -21,7 +21,7 @@
                 <ToggleGroup fx:id="toggleGroup" />
             </toggleGroup>
         </JFXRadioButton>
-        <JFXTextField fx:id="filePath" layoutX="34.0" layoutY="70.0" maxWidth="399.0" minWidth="399.0" prefHeight="37.0" prefWidth="399.0" />
+        <JFXTextField fx:id="filePath" layoutX="34.0" layoutY="70.0" maxWidth="399.0" minWidth="399.0" prefHeight="37.0" prefWidth="399.0" promptText="Enter Complete File Path" />
         <JFXButton fx:id="browseButton" buttonType="RAISED" layoutX="471.0" layoutY="73.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Browse" textAlignment="CENTER" />
         <JFXButton fx:id="uploadSubmitButton" disable="true" buttonType="RAISED" layoutX="569.0" layoutY="73.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" textAlignment="CENTER" />
         <JFXRadioButton fx:id="radioButton2" layoutX="34.0" layoutY="144.0" styleClass="custom-jfx-radio-button" text="Manual Entry" toggleGroup="$toggleGroup" />
