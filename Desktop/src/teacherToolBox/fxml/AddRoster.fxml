@@ -8,10 +8,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.ToggleGroup?>
 
-<!--<?import com.jfoenix.validation.RequiredFieldValidator?>
-
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
-
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 
 <Pane maxHeight="750.0" maxWidth="650.0" minHeight="750.0" minWidth="700.0" prefHeight="750.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
