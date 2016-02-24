@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import teacherToolBox.CheckBoxCellFactory?>
+
+<Pane maxHeight="-Infinity" maxWidth="684.0" minHeight="317.0" minWidth="-Infinity" prefHeight="350.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <TableView fx:id="rosterView" layoutX="46.0" layoutY="37.0" prefHeight="349.0" prefWidth="498.0" editable="true">
+           <columns>
+               <TableColumn fx:id="nameColumn" prefWidth="122.0" text="Name">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="firstName" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn fx:id="checkBoxTableColumn" prefWidth="75.0" resizable="false" text="Monday" editable="true" >
+                   <cellValueFactory>
+                       <PropertyValueFactory property="mondayChecked" />
+                   </cellValueFactory>
+                   <cellFactory>
+                      <CheckBoxCellFactory />
+                   </cellFactory>
+               </TableColumn>
+               <TableColumn prefWidth="75.0" resizable="false" text="Tuesday" editable="true">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="tuesdayChecked" />
+                   </cellValueFactory>
+                   <cellFactory>
+                       <CheckBoxCellFactory />
+                   </cellFactory>
+               </TableColumn>
+               <TableColumn prefWidth="75.0" resizable="false" text="Wednesday" editable="true">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="wednesdayChecked" />
+                   </cellValueFactory>
+                   <cellFactory>
+                       <CheckBoxCellFactory />
+                   </cellFactory>
+               </TableColumn>
+               <TableColumn prefWidth="75.0" resizable="false" text="Thursday" editable="true">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="thursdayChecked" />
+                   </cellValueFactory>
+                   <cellFactory>
+                       <CheckBoxCellFactory />
+                   </cellFactory>
+               </TableColumn>
+               <TableColumn prefWidth="75.0" resizable="false" text="Friday" editable="true">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="fridayChecked" />
+                   </cellValueFactory>
+                   <cellFactory>
+                       <CheckBoxCellFactory />
+                   </cellFactory>
+               </TableColumn>
+           </columns>
+       </TableView>
+   </children>
+</Pane>
