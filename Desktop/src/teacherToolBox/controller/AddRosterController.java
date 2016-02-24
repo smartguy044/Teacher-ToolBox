@@ -270,8 +270,10 @@ public class AddRosterController
                         }
                     }
 
-                    for(int r = 0; r < rows; r++) {
+                    for(int r = 0; r < rows; r++)
+                    {
                         row = sheet.getRow(r);
+
                         if(row != null)
                         {
                             for(int i = 0; i < cols; i++)
