@@ -15,6 +15,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import teacherToolBox.components.Student;
 
 import javax.annotation.PostConstruct;
@@ -215,21 +219,97 @@ public class AddRosterController
         String csvFile = filePath.getText();
         BufferedReader br = null;
         String line = "";
-        String cvsSplitBy = ",";
+        String csvSplitBy = ",";
+        String extension = csvFile.substring(csvFile.lastIndexOf('.'), csvFile.length());
 
         try
         {
-            br = new BufferedReader(new FileReader(csvFile));
-            
-            while ((line = br.readLine()) != null)
+            if(extension.equals(".csv"))
             {
-                // use comma as separator
-                String[] student = line.split(cvsSplitBy);
+                br = new BufferedReader(new FileReader(csvFile));
 
-                ObservableList<Student> data = rosterView.getItems();
-                data.add(new Student(Integer.valueOf(student[0]), student[1], student[2], student[3]));
+                while ((line = br.readLine()) != null)
+                {
+                    // use comma as separator
+                    String[] student = line.split(csvSplitBy);
+
+                    ObservableList<Student> data = rosterView.getItems();
+                    data.add(new Student(Integer.valueOf(student[0]), student[1], student[2], student[3]));
+                }
             }
+            else if(extension.equals(".xlsx"))
+            {
+                try {
+                    FileInputStream fs = new FileInputStream(csvFile);
+                    XSSFWorkbook wb = new XSSFWorkbook(fs);
+                    XSSFSheet sheet = wb.getSheetAt(0);
+                    XSSFRow row;
+                    XSSFCell cell;
 
+                    Student student = new Student();
+
+                    int rows;
+                    rows = sheet.getPhysicalNumberOfRows();
+
+                    int cols = 0;
+                    int temp = 0;
+
+                    // This trick ensures that we get the data properly even if it doesn't start from first few rows
+                    for(int i = 0; i < 10 || i < rows; i++)
+                    {
+                        row = sheet.getRow(i);
+
+                        if(row != null)
+                        {
+                            temp = sheet.getRow(i).getPhysicalNumberOfCells();
+
+                            if(temp > cols)
+                            {
+                                cols = temp;
+                            }
+                        }
+                    }
+
+                    for(int r = 0; r < rows; r++) {
+                        row = sheet.getRow(r);
+                        if(row != null)
+                        {
+                            for(int i = 0; i < cols; i++)
+                            {
+                                cell = row.getCell((short)i);
+
+                                if(cell != null)
+                                {
+                                    if (cell.getColumnIndex() == 0)
+                                    {
+                                        student.setStudentID((int) cell.getNumericCellValue());
+                                    }
+                                    else if (cell.getColumnIndex() == 1)
+                                    {
+                                        student.setFirstName(String.valueOf(cell.getStringCellValue()));
+                                    }
+                                    else if (cell.getColumnIndex() == 2)
+                                    {
+                                        student.setLastName(String.valueOf(cell.getStringCellValue()));
+                                    }
+                                    else if (cell.getColumnIndex() == 3)
+                                    {
+                                        student.setGender(String.valueOf(cell.getStringCellValue()));
+                                    }
+                                    if(i % 3 == 0 && i != 0)
+                                    {
+                                        ObservableList<Student> data = rosterView.getItems();
+                                        data.add(new Student(student.getStudentID(), student.getFirstName(), student.getLastName(), student.getGender()));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } catch(Exception ioe)
+                {
+                    ioe.printStackTrace();
+                }
+            }
         } catch (FileNotFoundException e)
         {
             e.printStackTrace();
