@@ -106,5 +106,10 @@ public class MainAddRosterController
         context.register("ContentFlow", innerFlow);
         context.register("ContentPane", content);
         content.getChildren().add(flowHandler.start(new AnimatedFlowContainer(Duration.millis(320), ContainerAnimations.SWIPE_LEFT)));
+
+        // side controller will add links to the content flow
+        Flow sideMenuFlow = new Flow(SideMenuController.class);
+        sideMenuFlowHandler = sideMenuFlow.createHandler(context);
+        sideContent.getChildren().add(sideMenuFlowHandler.start(new AnimatedFlowContainer(Duration.millis(320), ContainerAnimations.SWIPE_LEFT)));
     }
 }
