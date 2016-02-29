@@ -231,7 +231,7 @@ public class SignUpController
 
         confirmPassTF.focusedProperty().addListener((o, oldVal, newVal) ->
         {
-            if (!newVal)
+            if (!newVal || !passwordTF.getText().equals(confirmPassTF.getText()))
             {
                 confirmPassTF.validate();
             }

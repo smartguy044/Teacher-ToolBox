@@ -51,6 +51,15 @@ public class AddRosterController
     @ActionTrigger("manualAction")
     private JFXButton manualSubmitButton;
 
+    @FXML
+    @ActionTrigger("finishAction")
+    private JFXButton finishButton;
+
+    @FXML
+    @ActionTrigger("addRosterAction")
+    private JFXButton addRosterButton;
+
+    @FXML private JFXTextField className;
     @FXML private JFXTextField filePath;
     @FXML private JFXTextField studentIdTF;
     @FXML private JFXTextField firstNameTF;
@@ -87,13 +96,45 @@ public class AddRosterController
     @PostConstruct
     public void init()
     {
+        className.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            if (!newVal)
+            {
+                className.validate();
+            }
+
+            className.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    if (!newVal)
+                    {
+                        className.validate();
+                    }
+
+                    updateButton();
+                }
+            });
+        });
+
         filePath.focusedProperty().addListener((o, oldVal, newVal) ->
         {
+            if (!newVal)
+            {
+                filePath.validate();
+            }
+
             filePath.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
             {
                 @Override
                 public void handle(KeyEvent arg0)
                 {
+                    if (!newVal)
+                    {
+                        filePath.validate();
+                    }
+
                     updateButton();
                 }
             });
@@ -110,9 +151,14 @@ public class AddRosterController
             {
                 @Override
                 public void handle(KeyEvent arg0)
-            {
-                updateButton();
-            }
+                {
+                    if (!newVal)
+                    {
+                        studentIdTF.validate();
+                    }
+
+                    updateButton();
+                }
             });
         });
 
@@ -128,6 +174,11 @@ public class AddRosterController
                 @Override
                 public void handle(KeyEvent arg0)
                 {
+                    if (!newVal)
+                    {
+                        firstNameTF.validate();
+                    }
+
                     updateButton();
                 }
             });
@@ -145,6 +196,11 @@ public class AddRosterController
                 @Override
                 public void handle(KeyEvent arg0)
                 {
+                    if (!newVal)
+                    {
+                        lastNameTF.validate();
+                    }
+
                     updateButton();
                 }
             });
@@ -162,6 +218,11 @@ public class AddRosterController
                 @Override
                 public void handle(KeyEvent arg0)
                 {
+                    if (!newVal)
+                    {
+                        genderTF.validate();
+                    }
+
                     updateButton();
                 }
             });
@@ -172,7 +233,7 @@ public class AddRosterController
     {
         if(radioButton1.isSelected())
         {
-            if(!filePath.getText().equals(""))
+            if(!filePath.getText().equals("") && !className.getText().equals(""))
             {
                 uploadSubmitButton.setDisable(false);
             }
@@ -183,7 +244,7 @@ public class AddRosterController
         }
         else if(radioButton2.isSelected())
         {
-            if (!studentIdTF.getText().equals("") && !firstNameTF.getText().equals("") && !lastNameTF.getText().equals("") && !genderTF.getText().equals(""))
+            if (!className.getText().equals("") && !studentIdTF.getText().equals("") && !firstNameTF.getText().equals("") && !lastNameTF.getText().equals("") && !genderTF.getText().equals(""))
 
             {
                 manualSubmitButton.setDisable(false);
@@ -307,12 +368,17 @@ public class AddRosterController
                             }
                         }
                     }
-                } catch(Exception ioe)
+                }
+                catch(Exception ioe)
                 {
                     ioe.printStackTrace();
                 }
             }
-        } catch (FileNotFoundException e)
+
+            finishButton.setDisable(false);
+            addRosterButton.setDisable(false);
+        }
+        catch (FileNotFoundException e)
         {
             e.printStackTrace();
         }
@@ -342,5 +408,46 @@ public class AddRosterController
         firstNameTF.setText("");
         lastNameTF.setText("");
         genderTF.setText("");
+
+        finishButton.setDisable(false);
+        addRosterButton.setDisable(false);
+    }
+
+    @ActionMethod("finishAction")
+    public void finishButton_onAction() throws Exception
+    {
+
+    }
+
+    @ActionMethod("addRosterAction")
+    public void addRosterButton_onAction() throws Exception
+    {
+        className.setText("");
+
+            filePath.setText("");
+            uploadSubmitButton.setDisable(true);
+
+            studentIdTF.setText("");
+            firstNameTF.setText("");
+            lastNameTF.setText("");
+            genderTF.setText("");
+
+            filePath.setDisable(false);
+            browseButton.setDisable(false);
+            studentIdTF.setDisable(true);
+            firstNameTF.setDisable(true);
+            lastNameTF.setDisable(true);
+            genderTF.setDisable(true);
+            manualSubmitButton.setDisable(true);
+            updateButton();
+
+            radioButton1.setSelected(true);
+
+
+        ObservableList<Student> data = rosterView.getItems();
+        data.clear();
+
+        finishButton.setDisable(true);
+        addRosterButton.setDisable(true);
     }
 }
