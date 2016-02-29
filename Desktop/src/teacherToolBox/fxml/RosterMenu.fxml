@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="375.0" minHeight="317.0" minWidth="-Infinity" prefHeight="317.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <JFXButton fx:id="deleteButton" alignment="CENTER" buttonType="RAISED" layoutX="148.0" layoutY="231.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Delete" />
-        <JFXButton fx:id="addButton" alignment="CENTER" buttonType="RAISED" layoutX="69.0" layoutY="174.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Add" />
-      <JFXButton fx:id="editButton1" alignment="CENTER" buttonType="RAISED" layoutX="227.0" layoutY="174.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Edit" />
+        <JFXButton fx:id="deleteButton" alignment="CENTER" buttonType="RAISED" layoutX="148.0" layoutY="172.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Delete" />
+        <JFXButton fx:id="addButton" alignment="CENTER" buttonType="RAISED" layoutX="69.0" layoutY="115.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Add" />
+      <JFXButton fx:id="editButton1" alignment="CENTER" buttonType="RAISED" layoutX="227.0" layoutY="115.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Edit" />
     </children>
 </Pane>

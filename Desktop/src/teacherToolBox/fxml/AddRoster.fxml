@@ -14,7 +14,7 @@
 
 <Pane maxHeight="850.0" maxWidth="700.0" minHeight="750.0" minWidth="700.0" prefHeight="850.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <JFXTextField fx:id="className" labelFloat="true" layoutX="34.0" layoutY="32.0" maxWidth="399.0" minWidth="399.0" prefHeight="31.0" prefWidth="399.0" promptText="Enter Class Name" >
+        <JFXTextField fx:id="className" labelFloat="true" layoutX="34.0" layoutY="20.0" maxWidth="399.0" minWidth="399.0" prefHeight="31.0" prefWidth="399.0" promptText="Enter Class Name" >
             <padding><Insets top="20" /></padding>
             <validators>
                 <RequiredFieldValidator message="Input Required!" >
