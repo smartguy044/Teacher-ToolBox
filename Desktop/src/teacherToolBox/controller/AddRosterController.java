@@ -424,25 +424,23 @@ public class AddRosterController
     {
         className.setText("");
 
-            filePath.setText("");
-            uploadSubmitButton.setDisable(true);
+        filePath.setText("");
+        uploadSubmitButton.setDisable(true);
 
-            studentIdTF.setText("");
-            firstNameTF.setText("");
-            lastNameTF.setText("");
-            genderTF.setText("");
+        studentIdTF.setText("");
+        firstNameTF.setText("");
+        lastNameTF.setText("");
+        genderTF.setText("");
 
-            filePath.setDisable(false);
-            browseButton.setDisable(false);
-            studentIdTF.setDisable(true);
-            firstNameTF.setDisable(true);
-            lastNameTF.setDisable(true);
-            genderTF.setDisable(true);
-            manualSubmitButton.setDisable(true);
-            updateButton();
+        filePath.setDisable(false);
+        browseButton.setDisable(false);
+        studentIdTF.setDisable(true);
+        firstNameTF.setDisable(true);
+        lastNameTF.setDisable(true);
+        genderTF.setDisable(true);
+        manualSubmitButton.setDisable(true);
 
-            radioButton1.setSelected(true);
-
+        radioButton1.setSelected(true);
 
         ObservableList<Student> data = rosterView.getItems();
         data.clear();
