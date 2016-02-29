@@ -44,25 +44,43 @@ public class SideMenuController
 	private JFXListView<?> sideList;
 
 	@PostConstruct
-	public void init() throws FlowException, VetoException
+	public void init() throws FlowException, VetoException, Exception
 	{
-		//sideList.propagateMouseEventsToParent();
+		sideList.propagateMouseEventsToParent();
 		FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
 		Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
-		bindNodeToController(addRoster, AddRosterController.class, contentFlow, contentFlowHandler);
-		bindNodeToController(attendance, AttendanceController.class, contentFlow, contentFlowHandler);
-		bindNodeToController(rosterMenu, RosterMenuController.class, contentFlow, contentFlowHandler);
+		bindNodeToController(addRoster, MainAddRosterController.class, contentFlow, contentFlowHandler);
+		bindNodeToController(attendance, MainAttendanceController.class, contentFlow, contentFlowHandler);
+		bindNodeToController(rosterMenu, MainRosterMenuController.class, contentFlow, contentFlowHandler);
 	}
 
-	private void bindNodeToController(Node node, Class<?> controllerClass, Flow flow, FlowHandler flowHandler)
+	private void bindNodeToController(Node node, Class<?> controllerClass, Flow flow, FlowHandler flowHandler) throws Exception
 	{
+
 		flow.withGlobalLink(node.getId(), controllerClass);
 
 		node.setOnMouseClicked((e) ->
 		{
 			try
 			{
-				flowHandler.handle(node.getId());				
+				Stage st = (Stage) node.getScene().getWindow();
+
+				Stage primaryStage = new Stage();
+				Flow flow1 = new Flow(controllerClass);
+				DefaultFlowContainer container = new DefaultFlowContainer();
+				context = new ViewFlowContext();
+				context.register("Stage", primaryStage);
+				flow1.createHandler(context).start(container);
+
+				Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 350, 425);
+				scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
+				primaryStage.setScene(scene);
+				primaryStage.setFullScreen(st.isFullScreen());
+				primaryStage.setMaximized(st.isMaximized());
+				primaryStage.show();
+
+				st.close();
+
 			}
 			catch (Exception e1)
 			{
