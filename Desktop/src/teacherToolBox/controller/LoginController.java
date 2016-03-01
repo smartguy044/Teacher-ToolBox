@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import teacherToolBox.Main;
+import teacherToolBox.maincontroller.MainAddRosterController;
+import teacherToolBox.maincontroller.MainSignUpController;
 
 @FXMLController("../fxml/Login.fxml")
 

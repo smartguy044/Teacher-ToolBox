@@ -1,4 +1,4 @@
-package teacherToolBox.controller;//
+package teacherToolBox.maincontroller;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
@@ -18,12 +18,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import teacherToolBox.controller.AddRosterController;
+import teacherToolBox.controller.SideMenuController;
 
 import javax.annotation.PostConstruct;
 
 @FXMLController("../fxml/Main2.fxml")
 
-public class MainRosterMenuController
+public class MainAddRosterController
 {
     @FXMLViewFlowContext
     private ViewFlowContext context;
@@ -99,7 +101,7 @@ public class MainRosterMenuController
         context = new ViewFlowContext();
 
         // set the default controller
-        Flow innerFlow = new Flow(RosterMenuController.class);
+        Flow innerFlow = new Flow(AddRosterController.class);
 
         flowHandler = innerFlow.createHandler(context);
         context.register("ContentFlowHandler", flowHandler);

@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import teacherToolBox.Main;
+import teacherToolBox.maincontroller.MainController;
 
 import javax.annotation.PostConstruct;
 import java.io.FileInputStream;

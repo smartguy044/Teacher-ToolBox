@@ -1,4 +1,4 @@
-package teacherToolBox.controller;
+package teacherToolBox.maincontroller;
 
 import io.datafx.controller.FXMLController;
 import io.datafx.controller.flow.Flow;
@@ -21,6 +21,7 @@ import com.jfoenix.controls.JFXPopup.PopupHPosition;
 import com.jfoenix.controls.JFXPopup.PopupVPosition;
 import com.jfoenix.controls.JFXRippler;
 import javafx.util.Duration;
+import teacherToolBox.controller.LoginController;
 
 @FXMLController("../fxml/Main.fxml")
 public class MainController
