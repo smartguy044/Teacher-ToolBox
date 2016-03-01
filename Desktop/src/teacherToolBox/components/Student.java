@@ -62,4 +62,10 @@ public class Student
     {
         gender.set(gen);
     }
+
+    @Override
+    public String toString()
+    {
+        return studentID + " " + firstName + " " + lastName + " " + gender;
+    }
 }
