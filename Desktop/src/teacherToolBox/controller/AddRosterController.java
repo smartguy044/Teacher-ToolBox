@@ -1,6 +1,7 @@
 package teacherToolBox.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
 import io.datafx.controller.FXMLController;
 import io.datafx.controller.flow.action.ActionMethod;
@@ -13,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -23,6 +25,10 @@ import teacherToolBox.components.Student;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.*;
+import java.util.Properties;
 
 @FXMLController("../fxml/AddRoster.fxml")
 
@@ -416,7 +422,56 @@ public class AddRosterController
     @ActionMethod("finishAction")
     public void finishButton_onAction() throws Exception
     {
+        ObservableList<Student> data = rosterView.getItems();
+        Properties properties = new Properties();
+        Connection connection = null;
+        Statement statement = null;
 
+        int courseID = 0;
+        int studentID = 0;
+
+        try {
+            properties.load(new FileInputStream(".//src//database.properties"));
+            String url = properties.getProperty("jdbc.url");
+            Class.forName(properties.getProperty("jdbc.driver"));
+            connection = DriverManager.getConnection(url, properties.getProperty("jdbc.username"), properties.getProperty("jdbc.password"));
+
+            statement = connection.createStatement();
+
+            statement.executeUpdate("INSERT INTO courses(courseName, userID) values ('" + className.getText() + "', " + 1001 + ")");
+
+            ResultSet resultSet = statement.executeQuery("select courseID from courses where courseName = '" + className.getText() + "'");
+
+            while (resultSet.next())
+            {
+                courseID = resultSet.getInt(1);
+            }
+
+            for (Student aData : data)
+            {
+                statement.executeUpdate("INSERT INTO students(studentID, studentFN, StudentLN, studentGen) values("
+                        + aData.getStudentID() + ", '" + aData.getFirstName() + "', '" + aData.getLastName() + "', '"
+                        + aData.getGender() + "')");
+
+                statement.executeUpdate("INSERT INTO rosters(courseID, studentID) values (" + courseID + ", " + aData.getStudentID() + ")");
+            }
+        }
+
+        catch (IOException ioException)
+        {
+            String msg = ioException.getMessage();
+            System.err.printf("problem with properties file: %s\n", msg);
+        }
+        catch (SQLException sqlException)
+        {
+            String msg = sqlException.getMessage();
+            System.err.printf("problem with db connection: %s\n", msg);
+        }
+        catch (ClassNotFoundException e)
+        {
+            String msg = e.getMessage();
+            System.err.printf("problem with driver: %s\n", msg);
+        }
     }
 
     @ActionMethod("addRosterAction")
