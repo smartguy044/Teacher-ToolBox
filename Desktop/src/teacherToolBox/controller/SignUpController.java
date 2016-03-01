@@ -155,6 +155,21 @@ public class SignUpController
                 System.err.printf("problem with driver: %s\n", msg);
             }
         }
+
+        Stage primaryStage = new Stage();
+        Flow flow = new Flow(MainController.class);
+        DefaultFlowContainer container = new DefaultFlowContainer();
+        flowContext = new ViewFlowContext();
+        flowContext.register("Stage", primaryStage);
+        flow.createHandler(flowContext).start(container);
+
+        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 375, 550);
+        scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        Stage st = (Stage) backButton.getScene().getWindow();
+        st.hide();
     }
 
     @ActionMethod("backAction")
