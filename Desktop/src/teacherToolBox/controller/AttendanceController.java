@@ -79,6 +79,7 @@ public class AttendanceController
     public void selectionButton_onAction() throws Exception
     {
         ObservableList<Student> data = rosterView.getItems();
+        data.clear();
         Properties properties = new Properties();
         Connection connection = null;
         Statement statement = null;
