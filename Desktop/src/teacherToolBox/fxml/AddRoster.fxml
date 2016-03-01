@@ -71,9 +71,9 @@
             </validators>
         </JFXTextField>
         <JFXButton fx:id="manualSubmitButton" buttonType="RAISED" disable="true" layoutX="319.0" layoutY="380.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" textAlignment="CENTER" />
-        <TableView fx:id="rosterView" layoutX="132.0" layoutY="442.0" prefHeight="328.0" prefWidth="437.0">
+        <TableView fx:id="rosterView" layoutX="132.0" layoutY="442.0" prefHeight="328.0" prefWidth="438.0" >
             <columns>
-                <TableColumn fx:id="idColumn" prefWidth="122.0" text="Student ID">
+                <TableColumn fx:id="idColumn" prefWidth="120.0" text="Student ID" resizable="false" editable="false">
                     <cellValueFactory>
                         <PropertyValueFactory property="studentID" />
                     </cellValueFactory>
@@ -88,7 +88,7 @@
                         <PropertyValueFactory property="lastName" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="68.0" text="Gender">
+                <TableColumn prefWidth="70.0" text="Gender">
                     <cellValueFactory>
                         <PropertyValueFactory property="gender" />
                     </cellValueFactory>

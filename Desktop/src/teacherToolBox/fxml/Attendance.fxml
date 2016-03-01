@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import teacherToolBox.CheckBoxCellFactory?>
 
-<Pane maxHeight="-Infinity" maxWidth="684.0" minHeight="317.0" minWidth="-Infinity" prefHeight="350.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-       <TableView fx:id="rosterView" layoutX="46.0" layoutY="37.0" prefHeight="349.0" prefWidth="498.0" editable="true">
+       <JFXComboBox layoutX="25.0" layoutY="51.0" />
+       <TableView fx:id="rosterView" editable="true" layoutX="25.0" layoutY="110.0" prefHeight="350.0" prefWidth="500.0">
            <columns>
                <TableColumn fx:id="nameColumn" prefWidth="122.0" text="Name">
                    <cellValueFactory>
@@ -18,7 +22,7 @@
                        <PropertyValueFactory property="mondayChecked" />
                    </cellValueFactory>
                    <cellFactory>
-                      <CheckBoxCellFactory />
+                       <CheckBoxCellFactory />
                    </cellFactory>
                </TableColumn>
                <TableColumn prefWidth="75.0" resizable="false" text="Tuesday" editable="true">
