@@ -9,6 +9,7 @@ public class Student
     private SimpleStringProperty firstName = new SimpleStringProperty("");
     private SimpleStringProperty lastName = new SimpleStringProperty("");
     private SimpleStringProperty gender = new SimpleStringProperty("");
+    private SimpleStringProperty fullName = new SimpleStringProperty("");
 
     public Student()
     {
@@ -21,6 +22,12 @@ public class Student
         setFirstName(firstName);
         setLastName(lastName);
         setGender(gender);
+        setFullName(firstName + " " + lastName);
+    }
+
+    public Student(String name)
+    {
+        setFullName(name);
     }
 
     public int getStudentID()
@@ -61,6 +68,16 @@ public class Student
     public void setGender(String gen)
     {
         gender.set(gen);
+    }
+
+    public String getFullName()
+    {
+        return fullName.get();
+    }
+
+    public void setFullName(String name)
+    {
+        fullName.set(name);
     }
 
     @Override

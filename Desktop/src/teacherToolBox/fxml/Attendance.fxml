@@ -5,16 +5,17 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import teacherToolBox.CheckBoxCellFactory?>
+<?import teacherToolBox.components.CheckBoxCellFactory?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-       <JFXComboBox layoutX="25.0" layoutY="51.0" />
-       <TableView fx:id="rosterView" editable="true" layoutX="25.0" layoutY="110.0" prefHeight="350.0" prefWidth="500.0">
+       <JFXComboBox fx:id="classCB" layoutX="25.0" layoutY="51.0" />
+      <JFXButton fx:id="selectionButton" layoutX="104.0" layoutY="51.0" text="Select" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" buttonType="RAISED" textAlignment="CENTER" />
+      <TableView fx:id="rosterView" editable="true" layoutX="25.0" layoutY="110.0" prefHeight="350.0" prefWidth="500.0">
            <columns>
                <TableColumn fx:id="nameColumn" prefWidth="122.0" text="Name">
                    <cellValueFactory>
-                       <PropertyValueFactory property="firstName" />
+                       <PropertyValueFactory property="fullName" />
                    </cellValueFactory>
                </TableColumn>
                <TableColumn fx:id="checkBoxTableColumn" prefWidth="75.0" resizable="false" text="Monday" editable="true" >
