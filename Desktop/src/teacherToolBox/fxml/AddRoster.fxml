@@ -73,22 +73,22 @@
         <JFXButton fx:id="manualSubmitButton" buttonType="RAISED" disable="true" layoutX="319.0" layoutY="380.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" textAlignment="CENTER" />
         <TableView fx:id="rosterView" layoutX="132.0" layoutY="442.0" prefHeight="328.0" prefWidth="438.0" >
             <columns>
-                <TableColumn fx:id="idColumn" prefWidth="120.0" text="Student ID" resizable="false" editable="false">
+                <TableColumn fx:id="idColumn" prefWidth="120.0" text="Student ID" resizable="false" >
                     <cellValueFactory>
                         <PropertyValueFactory property="studentID" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="122.0" text="First Name">
+                <TableColumn prefWidth="122.0" text="First Name" resizable="false" >
                     <cellValueFactory>
                         <PropertyValueFactory property="firstName" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="124.0" text="Last Name">
+                <TableColumn prefWidth="124.0" text="Last Name" resizable="false" >
                     <cellValueFactory>
                         <PropertyValueFactory property="lastName" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="70.0" text="Gender">
+                <TableColumn prefWidth="70.0" text="Gender" resizable="false" >
                     <cellValueFactory>
                         <PropertyValueFactory property="gender" />
                     </cellValueFactory>
