@@ -63,6 +63,8 @@ public class SideMenuController
 		{
 			try
 			{
+				int height = 0, width = 0;
+
 				Stage st = (Stage) node.getScene().getWindow();
 
 				Stage primaryStage = new Stage();
@@ -72,7 +74,26 @@ public class SideMenuController
 				context.register("Stage", primaryStage);
 				flow1.createHandler(context).start(container);
 
-				Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 350, 425);
+				switch(node.toString().substring(node.toString().indexOf('\'') + 1, node.toString().lastIndexOf('\'')))
+				{
+					case "Add Roster" :
+						height = 1000;
+						width = 750;
+						break;
+					case "Attendance" :
+						height = 660;
+						width = 650;
+						break;
+					case "Roster Menu" :
+						height = 425;
+						width = 350;
+						break;
+					default :
+						height = 1000;
+						width = 750;
+				}
+
+				Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), width, height);
 				scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
 				primaryStage.setScene(scene);
 				primaryStage.setFullScreen(st.isFullScreen());
