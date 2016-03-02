@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="764.0" prefWidth="1081.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="59.0" layoutY="161.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="567.0" prefWidth="965.0" tableMenuButtonVisible="true">
+        <columns>
+            <TableColumn prefWidth="87.0" text="Student ID" />
+            <TableColumn prefWidth="131.0" text="Student Name" />
+            <TableColumn minWidth="6.0" prefWidth="100.0" text="Final Grade" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="addAssignment" buttonType="RAISED" layoutX="59.0" layoutY="96.0" style="-fx-background-color: #5264AE; -fx-font-size: 14px; -fx-text-fill: WHITE;" text="Add Assignment" />
+      <JFXButton buttonType="RAISED" layoutX="202.0" layoutY="96.0" style="-fx-background-color: #5264AE; -fx-font-size: 14px; -fx-text-fill: WHITE;" text="Print Report" />
+      <JFXComboBox layoutX="59.0" layoutY="35.0" prefHeight="25.0" prefWidth="122.0" promptText="Class Section" />
+   </children>
+</Pane>

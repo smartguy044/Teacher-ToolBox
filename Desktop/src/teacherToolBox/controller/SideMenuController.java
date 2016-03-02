@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import teacherToolBox.Main;
 import teacherToolBox.maincontroller.MainAddRosterController;
 import teacherToolBox.maincontroller.MainAttendanceController;
+import teacherToolBox.maincontroller.MainGradesController;
 import teacherToolBox.maincontroller.MainRosterMenuController;
 
 import javax.annotation.PostConstruct;
@@ -43,6 +44,10 @@ public class SideMenuController
 	private Label rosterMenu;
 
 	@FXML
+	@ActionTrigger("grades")
+	private Label grades;
+
+	@FXML
 	private JFXListView<?> sideList;
 
 	@PostConstruct
@@ -52,8 +57,9 @@ public class SideMenuController
 		FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
 		Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
 		bindNodeToController(addRoster, MainAddRosterController.class, contentFlow, contentFlowHandler);
-		bindNodeToController(attendance, MainAttendanceController.class, contentFlow, contentFlowHandler);
 		bindNodeToController(rosterMenu, MainRosterMenuController.class, contentFlow, contentFlowHandler);
+		bindNodeToController(attendance, MainAttendanceController.class, contentFlow, contentFlowHandler);
+		bindNodeToController(grades, MainGradesController.class, contentFlow, contentFlowHandler);
 	}
 
 	private void bindNodeToController(Node node, Class<?> controllerClass, Flow flow, FlowHandler flowHandler) throws Exception
@@ -82,13 +88,17 @@ public class SideMenuController
 						height = 1000;
 						width = 750;
 						break;
+					case "Roster Menu" :
+						height = 425;
+						width = 350;
+						break;
 					case "Attendance" :
 						height = 660;
 						width = 650;
 						break;
-					case "Roster Menu" :
-						height = 425;
-						width = 350;
+					case "Grades" :
+						height = 864;
+						width = 1120;
 						break;
 					default :
 						height = 1000;
