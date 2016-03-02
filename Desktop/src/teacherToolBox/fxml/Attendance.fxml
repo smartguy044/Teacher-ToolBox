@@ -18,7 +18,7 @@
                        <PropertyValueFactory property="fullName" />
                    </cellValueFactory>
                </TableColumn>
-               <TableColumn fx:id="checkBoxTableColumn" prefWidth="75.0" resizable="false" text="Monday" editable="true" >
+               <TableColumn fx:id="monday" prefWidth="75.0" resizable="false" text="Monday" editable="true" >
                    <cellValueFactory>
                        <PropertyValueFactory property="mondayChecked" />
                    </cellValueFactory>
@@ -26,7 +26,7 @@
                        <CheckBoxCellFactory />
                    </cellFactory>
                </TableColumn>
-               <TableColumn prefWidth="75.0" resizable="false" text="Tuesday" editable="true">
+               <TableColumn fx:id="tuesday" prefWidth="75.0" resizable="false" text="Tuesday" editable="true">
                    <cellValueFactory>
                        <PropertyValueFactory property="tuesdayChecked" />
                    </cellValueFactory>
@@ -34,7 +34,7 @@
                        <CheckBoxCellFactory />
                    </cellFactory>
                </TableColumn>
-               <TableColumn prefWidth="75.0" resizable="false" text="Wednesday" editable="true">
+               <TableColumn fx:id="wednesday" prefWidth="75.0" resizable="false" text="Wednesday" editable="true">
                    <cellValueFactory>
                        <PropertyValueFactory property="wednesdayChecked" />
                    </cellValueFactory>
@@ -42,7 +42,7 @@
                        <CheckBoxCellFactory />
                    </cellFactory>
                </TableColumn>
-               <TableColumn prefWidth="75.0" resizable="false" text="Thursday" editable="true">
+               <TableColumn fx:id="thursday" prefWidth="75.0" resizable="false" text="Thursday" editable="true">
                    <cellValueFactory>
                        <PropertyValueFactory property="thursdayChecked" />
                    </cellValueFactory>
@@ -50,7 +50,7 @@
                        <CheckBoxCellFactory />
                    </cellFactory>
                </TableColumn>
-               <TableColumn prefWidth="75.0" resizable="false" text="Friday" editable="true">
+               <TableColumn fx:id="friday" prefWidth="75.0" resizable="false" text="Friday" editable="true">
                    <cellValueFactory>
                        <PropertyValueFactory property="fridayChecked" />
                    </cellValueFactory>
