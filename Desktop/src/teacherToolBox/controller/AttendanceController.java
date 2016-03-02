@@ -7,6 +7,7 @@ import io.datafx.controller.flow.action.ActionMethod;
 import io.datafx.controller.flow.action.ActionTrigger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import teacherToolBox.components.Student;
 
@@ -15,8 +16,9 @@ import javax.swing.text.TabableView;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Properties;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.Date;
 
 @FXMLController("../fxml/Attendance.fxml")
 
@@ -27,6 +29,9 @@ public class AttendanceController
 
     @FXML
     private TableView<Student> rosterView;
+
+    @FXML
+    private TableColumn monday, tuesday, wednesday, thursday, friday;
 
     @FXML
     @ActionTrigger("selectionAction")
@@ -57,6 +62,78 @@ public class AttendanceController
             }
 
             classCB.getItems().addAll(classes);
+        }
+        catch (IOException ioException)
+        {
+            String msg = ioException.getMessage();
+            System.err.printf("problem with properties file: %s\n", msg);
+        }
+        catch (SQLException sqlException)
+        {
+            String msg = sqlException.getMessage();
+            System.err.printf("problem with db connection: %s\n", msg);
+        }
+        catch (ClassNotFoundException e)
+        {
+            String msg = e.getMessage();
+            System.err.printf("problem with driver: %s\n", msg);
+        }
+
+        try {
+            int logins = 0;
+
+            properties.load(new FileInputStream(".//src//database.properties"));
+            String url = properties.getProperty("jdbc.url");
+            Class.forName(properties.getProperty("jdbc.driver"));
+            connection = DriverManager.getConnection(url, properties.getProperty("jdbc.username"), properties.getProperty("jdbc.password"));
+
+            statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select logins from users where userID = " + 1001);
+
+            while (resultSet.next())
+            {
+                logins = resultSet.getInt(1);
+            }
+
+            Calendar now = Calendar.getInstance();
+
+            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+
+            String[] days = new String[5];
+            int delta = -now.get(GregorianCalendar.DAY_OF_WEEK) + 2; //add 2 if your week start on monday
+            now.add(Calendar.DAY_OF_MONTH, delta);
+
+            for (int i = 0; i < 5; i++)
+            {
+                days[i] = format.format(now.getTime());
+                now.add(Calendar.DAY_OF_MONTH, 1);
+            }
+
+            for(int i = 0; i < days.length; i++)
+            {
+                if(i == 0)
+                {
+                    monday.setText(days[i]);
+                }
+                else if(i == 1)
+                {
+                    tuesday.setText(days[i]);
+                }
+                else if(i == 2)
+                {
+                    wednesday.setText(days[i]);
+                }
+                else if(i == 3)
+                {
+                    thursday.setText(days[i]);
+                }
+                else if(i == 4)
+                {
+                    friday.setText(days[i]);
+                }
+            }
+
         }
         catch (IOException ioException)
         {

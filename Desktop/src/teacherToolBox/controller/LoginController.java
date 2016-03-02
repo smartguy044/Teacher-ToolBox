@@ -9,12 +9,16 @@ import io.datafx.controller.flow.container.DefaultFlowContainer;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import teacherToolBox.Main;
 import teacherToolBox.maincontroller.MainAddRosterController;
 import teacherToolBox.maincontroller.MainSignUpController;
+
+import java.awt.*;
 
 @FXMLController("../fxml/Login.fxml")
 
@@ -41,7 +45,10 @@ public class LoginController
         flowContext.register("Stage", primaryStage);
         flow.createHandler(flowContext).start(container);
 
-        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 750, 1000);
+        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+
+        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), ((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2), ((primScreenBounds.getHeight() - primaryStage.getHeight()) / 4));
+
         scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
