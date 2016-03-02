@@ -11,9 +11,9 @@
 <!--<?import com.jfoenix.validation.RequiredFieldValidator?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
 
-<Pane maxHeight="-Infinity" maxWidth="877.0" minHeight="317.0" minWidth="-Infinity" prefHeight="752.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <JFXTextField fx:id="studentIdTF" disable="false" labelFloat="true" layoutX="48.0" layoutY="73.0" maxWidth="170.0" minWidth="170.0" prefHeight="37.0" prefWidth="170.0" promptText="Student ID">
+        <JFXTextField fx:id="studentIdTF" disable="false" labelFloat="true" layoutX="14.0" layoutY="75.0" maxWidth="170.0" minWidth="170.0" prefHeight="37.0" prefWidth="170.0" promptText="Student ID">
             <!--<validators>
                 <RequiredFieldValidator message="Input Required!" >
                     <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
@@ -23,7 +23,7 @@
             <Insets top="20.0" />
          </padding>
         </JFXTextField>
-        <JFXTextField fx:id="firstNameTF" disable="false" labelFloat="true" layoutX="388.0" layoutY="73.0" maxWidth="170.0" minWidth="170.0" prefHeight="37.0" prefWidth="170.0" promptText="First Name">
+        <JFXTextField fx:id="firstNameTF" disable="false" labelFloat="true" layoutX="354.0" layoutY="75.0" maxWidth="170.0" minWidth="170.0" prefHeight="37.0" prefWidth="170.0" promptText="First Name">
             <padding>
                 <Insets top="20" />
             </padding>
@@ -33,7 +33,7 @@
                 </RequiredFieldValidator>
             </validators>-->
         </JFXTextField>
-        <JFXTextField fx:id="lastNameTF" disable="false" labelFloat="true" layoutX="48.0" layoutY="139.0" maxWidth="170.0" minWidth="170.0" prefHeight="37.0" prefWidth="170.0" promptText="Last Name">
+        <JFXTextField fx:id="lastNameTF" disable="false" labelFloat="true" layoutX="14.0" layoutY="141.0" maxWidth="170.0" minWidth="170.0" prefHeight="37.0" prefWidth="170.0" promptText="Last Name">
             <padding>
                 <Insets top="20" />
             </padding>
@@ -43,7 +43,7 @@
                 </RequiredFieldValidator>
             </validators>-->
         </JFXTextField>
-        <JFXTextField fx:id="genderTF" disable="false" labelFloat="true" layoutX="388.0" layoutY="139.0" maxWidth="170.0" minWidth="170.0" prefHeight="37.0" prefWidth="170.0" promptText="Gender">
+        <JFXTextField fx:id="genderTF" disable="false" labelFloat="true" layoutX="354.0" layoutY="141.0" maxWidth="170.0" minWidth="170.0" prefHeight="37.0" prefWidth="170.0" promptText="Gender">
             <padding><Insets top="20" /></padding>
             <!--<validators>
                 <RequiredFieldValidator message="Input Required!" >
@@ -51,7 +51,7 @@
                 </RequiredFieldValidator>
             </validators>-->
         </JFXTextField>
-        <TableView fx:id="rosterView" layoutX="128.0" layoutY="231.0" prefHeight="403.0" prefWidth="497.0">
+        <TableView fx:id="rosterView" layoutX="83.0" layoutY="330.0" prefHeight="325.0" prefWidth="497.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="125.0" resizable="false" text="Student ID">
                     <cellValueFactory>
@@ -75,7 +75,10 @@
                 </TableColumn>
             </columns>
         </TableView>
-      <JFXButton layoutX="137.0" layoutY="672.0" prefHeight="39.0" prefWidth="128.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Add Another" />
-      <JFXButton layoutX="487.0" layoutY="672.0" prefHeight="39.0" prefWidth="128.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Finish" />
+        <JFXButton layoutX="142.0" layoutY="677.0" prefHeight="39.0" prefWidth="100.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Add Another" />
+        <JFXButton layoutX="287.0" layoutY="677.0" prefHeight="39.0" prefWidth="91.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Finish" />
+        <JFXButton layoutX="286.0" layoutY="243.0" prefHeight="39.0" prefWidth="91.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" />
+        <JFXComboBox layoutX="246.0" layoutY="14.0" prefHeight="39.0" prefWidth="170.0" promptText="Select Roster" />
+      <JFXButton layoutX="424.0" layoutY="677.0" prefHeight="39.0" prefWidth="100.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Cancel" />
     </children>
 </Pane>
