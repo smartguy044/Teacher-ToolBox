@@ -17,10 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import teacherToolBox.Main;
-import teacherToolBox.maincontroller.MainAddRosterController;
-import teacherToolBox.maincontroller.MainAttendanceController;
-import teacherToolBox.maincontroller.MainGradesController;
-import teacherToolBox.maincontroller.MainRosterMenuController;
+import teacherToolBox.maincontroller.*;
 
 import javax.annotation.PostConstruct;
 
@@ -48,6 +45,10 @@ public class SideMenuController
 	private Label grades;
 
 	@FXML
+	@ActionTrigger("reports")
+	private Label reports;
+
+	@FXML
 	private JFXListView<?> sideList;
 
 	@PostConstruct
@@ -60,6 +61,7 @@ public class SideMenuController
 		bindNodeToController(rosterMenu, MainRosterMenuController.class, contentFlow, contentFlowHandler);
 		bindNodeToController(attendance, MainAttendanceController.class, contentFlow, contentFlowHandler);
 		bindNodeToController(grades, MainGradesController.class, contentFlow, contentFlowHandler);
+		bindNodeToController(reports, MainReportsController.class, contentFlow, contentFlowHandler);
 	}
 
 	private void bindNodeToController(Node node, Class<?> controllerClass, Flow flow, FlowHandler flowHandler) throws Exception
@@ -99,6 +101,10 @@ public class SideMenuController
 					case "Grades" :
 						height = 864;
 						width = 1120;
+						break;
+					case "Reports" :
+						height = 729;
+						width = 700;
 						break;
 					default :
 						height = 1000;
