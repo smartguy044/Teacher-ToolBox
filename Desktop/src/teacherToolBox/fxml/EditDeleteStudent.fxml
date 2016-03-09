@@ -9,9 +9,6 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<!--<?import com.jfoenix.validation.RequiredFieldValidator?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <TableView fx:id="rosterView" layoutX="84.0" layoutY="218.0" prefHeight="420.0" prefWidth="497.0">
