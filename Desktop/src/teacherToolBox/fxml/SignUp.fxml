@@ -12,7 +12,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="375.0" minHeight="550.0" minWidth="-Infinity" prefHeight="550.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <JFXTextField fx:id="nameTF" labelFloat="true" layoutX="39.0" layoutY="25.0" promptText="Full Name">
+      <JFXTextField fx:id="nameTF" labelFloat="true" layoutX="39.0" layoutY="25.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Full Name">
           <padding><Insets top="20" /></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
@@ -20,7 +20,7 @@
               </RequiredFieldValidator>
           </validators>
       </JFXTextField>
-      <JFXTextField fx:id="emailTF" labelFloat="true" layoutX="39.0" layoutY="90.0" promptText="Email">
+      <JFXTextField fx:id="emailTF" labelFloat="true" layoutX="39.0" layoutY="90.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Email">
           <padding><Insets top="20" /></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
@@ -28,7 +28,7 @@
               </RequiredFieldValidator>
           </validators>
       </JFXTextField>
-      <JFXPasswordField fx:id="passwordTF" labelFloat="true" layoutX="39.0" layoutY="155.0" promptText="Password">
+      <JFXPasswordField fx:id="passwordTF" labelFloat="true" layoutX="39.0" layoutY="155.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Password">
           <padding><Insets top="20" /></padding>
          <tooltip>
             <Tooltip fx:id="toolTip" text="Password must be at least 8 characters and contain &#10;1 uppercase letter and 1 special character (!, @, #, $, %)" />
@@ -39,7 +39,7 @@
               </RequiredFieldValidator>
           </validators>
       </JFXPasswordField>
-      <JFXPasswordField fx:id="confirmPassTF" labelFloat="true" layoutX="39.0" layoutY="220.0" promptText="Confirm Password">
+      <JFXPasswordField fx:id="confirmPassTF" labelFloat="true" layoutX="39.0" layoutY="220.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Confirm Password">
           <padding><Insets top="20" /></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
@@ -60,7 +60,7 @@
               Select Security Question...
           </value>
       </JFXComboBox>
-      <JFXTextField fx:id="secAnsTF" labelFloat="true" layoutX="39.0" layoutY="350.0" promptText="Security Answer">
+      <JFXTextField fx:id="secAnsTF" labelFloat="true" layoutX="39.0" layoutY="350.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Security Answer">
           <padding><Insets top="20" /></padding>
           <validators>
               <RequiredFieldValidator message="Input Required!" >
