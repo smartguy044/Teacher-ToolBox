@@ -16,5 +16,6 @@
 		<Label fx:id="rosterMenu"> Roster Menu </Label>
 		<Label fx:id="attendance"> Attendance </Label>
 		<Label fx:id="grades"> Grades </Label>
+		<Label fx:id="reports"> Reports </Label>
 	</JFXListView>
 </StackPane>
