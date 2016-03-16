@@ -455,8 +455,32 @@ public class AddRosterController
 
                 statement.executeUpdate("INSERT INTO rosters(courseID, studentID) values (" + courseID + ", " + aData.getStudentID() + ")");
             }
-        }
 
+            className.setText("");
+
+            filePath.setText("");
+            uploadSubmitButton.setDisable(true);
+
+            studentIdTF.setText("");
+            firstNameTF.setText("");
+            lastNameTF.setText("");
+            genderTF.setText("");
+
+            filePath.setDisable(false);
+            browseButton.setDisable(false);
+            studentIdTF.setDisable(true);
+            firstNameTF.setDisable(true);
+            lastNameTF.setDisable(true);
+            genderTF.setDisable(true);
+            manualSubmitButton.setDisable(true);
+
+            radioButton1.setSelected(true);
+
+            data.clear();
+
+            finishButton.setDisable(true);
+            addRosterButton.setDisable(true);
+        }
         catch (IOException ioException)
         {
             String msg = ioException.getMessage();
