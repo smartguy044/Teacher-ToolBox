@@ -5,60 +5,69 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <?import teacherToolBox.components.CheckBoxCellFactory?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-       <JFXComboBox fx:id="classCB" layoutX="25.0" layoutY="51.0" />
-      <JFXButton fx:id="selectionButton" layoutX="120.0" layoutY="51.0" text="Select" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" buttonType="RAISED" textAlignment="CENTER" />
-      <TableView fx:id="rosterView" editable="true" layoutX="25.0" layoutY="110.0" prefHeight="350.0" prefWidth="500.0">
-           <columns>
-               <TableColumn fx:id="nameColumn" prefWidth="122.0" text="Name">
-                   <cellValueFactory>
-                       <PropertyValueFactory property="fullName" />
-                   </cellValueFactory>
-               </TableColumn>
-               <TableColumn fx:id="monday" prefWidth="75.0" resizable="false" text="Monday" editable="true" >
-                   <cellValueFactory>
-                       <PropertyValueFactory property="mondayChecked" />
-                   </cellValueFactory>
-                   <cellFactory>
-                       <CheckBoxCellFactory />
-                   </cellFactory>
-               </TableColumn>
-               <TableColumn fx:id="tuesday" prefWidth="75.0" resizable="false" text="Tuesday" editable="true">
-                   <cellValueFactory>
-                       <PropertyValueFactory property="tuesdayChecked" />
-                   </cellValueFactory>
-                   <cellFactory>
-                       <CheckBoxCellFactory />
-                   </cellFactory>
-               </TableColumn>
-               <TableColumn fx:id="wednesday" prefWidth="75.0" resizable="false" text="Wednesday" editable="true">
-                   <cellValueFactory>
-                       <PropertyValueFactory property="wednesdayChecked" />
-                   </cellValueFactory>
-                   <cellFactory>
-                       <CheckBoxCellFactory />
-                   </cellFactory>
-               </TableColumn>
-               <TableColumn fx:id="thursday" prefWidth="75.0" resizable="false" text="Thursday" editable="true">
-                   <cellValueFactory>
-                       <PropertyValueFactory property="thursdayChecked" />
-                   </cellValueFactory>
-                   <cellFactory>
-                       <CheckBoxCellFactory />
-                   </cellFactory>
-               </TableColumn>
-               <TableColumn fx:id="friday" prefWidth="75.0" resizable="false" text="Friday" editable="true">
-                   <cellValueFactory>
-                       <PropertyValueFactory property="fridayChecked" />
-                   </cellValueFactory>
-                   <cellFactory>
-                       <CheckBoxCellFactory />
-                   </cellFactory>
-               </TableColumn>
-           </columns>
-       </TableView>
-   </children>
+<?import teacherToolBox.components.CheckBoxCellFactory?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0"
+      prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <JFXComboBox fx:id="classCB" layoutX="25.0" layoutY="21.0"/>
+        <JFXButton fx:id="selectionButton" buttonType="RAISED" layoutX="120.0" layoutY="21.0"
+                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Select"
+                   textAlignment="CENTER"/>
+        <TableView fx:id="rosterView" editable="true" layoutX="25.0" layoutY="80.0" prefHeight="350.0"
+                   prefWidth="500.0">
+            <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="123.0" text="Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="fullName"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="monday" editable="true" prefWidth="75.0" resizable="false" text="Monday">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="mondayChecked"/>
+                    </cellValueFactory>
+                    <cellFactory>
+                        <CheckBoxCellFactory/>
+                    </cellFactory>
+                </TableColumn>
+                <TableColumn fx:id="tuesday" editable="true" prefWidth="75.0" resizable="false" text="Tuesday">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="tuesdayChecked"/>
+                    </cellValueFactory>
+                    <cellFactory>
+                        <CheckBoxCellFactory/>
+                    </cellFactory>
+                </TableColumn>
+                <TableColumn fx:id="wednesday" editable="true" prefWidth="75.0" resizable="false" text="Wednesday">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="wednesdayChecked"/>
+                    </cellValueFactory>
+                    <cellFactory>
+                        <CheckBoxCellFactory/>
+                    </cellFactory>
+                </TableColumn>
+                <TableColumn fx:id="thursday" editable="true" prefWidth="75.0" resizable="false" text="Thursday">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="thursdayChecked"/>
+                    </cellValueFactory>
+                    <cellFactory>
+                        <CheckBoxCellFactory/>
+                    </cellFactory>
+                </TableColumn>
+                <TableColumn fx:id="friday" editable="true" prefWidth="75.0" resizable="false" text="Friday">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="fridayChecked"/>
+                    </cellValueFactory>
+                    <cellFactory>
+                        <CheckBoxCellFactory/>
+                    </cellFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <JFXButton fx:id="submitButton" buttonType="RAISED" layoutX="247.0" layoutY="456.0"
+                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit"
+                   textAlignment="CENTER"/>
+    </children>
 </Pane>

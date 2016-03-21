@@ -9,6 +9,6 @@
     <children>
         <JFXButton fx:id="deleteButton" alignment="CENTER" buttonType="RAISED" layoutX="136.0" layoutY="172.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Delete" />
         <JFXButton fx:id="addButton" alignment="CENTER" buttonType="RAISED" layoutX="57.0" layoutY="115.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Add" />
-      <JFXButton fx:id="editButton1" alignment="CENTER" buttonType="RAISED" layoutX="215.0" layoutY="115.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Edit" />
+      <JFXButton fx:id="editButton" alignment="CENTER" buttonType="RAISED" layoutX="215.0" layoutY="115.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Edit" />
     </children>
 </Pane>
