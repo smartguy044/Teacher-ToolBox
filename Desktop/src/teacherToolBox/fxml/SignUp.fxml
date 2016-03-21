@@ -10,69 +10,90 @@
 <?import com.jfoenix.validation.RequiredFieldValidator?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
-<Pane maxHeight="-Infinity" maxWidth="375.0" minHeight="550.0" minWidth="-Infinity" prefHeight="550.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="375.0" minHeight="550.0" minWidth="-Infinity" prefHeight="550.0" prefWidth="375.0"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <JFXTextField fx:id="nameTF" labelFloat="true" layoutX="39.0" layoutY="25.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Full Name">
-          <padding><Insets top="20" /></padding>
-          <validators>
-              <RequiredFieldValidator message="Input Required!" >
-                  <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
-              </RequiredFieldValidator>
-          </validators>
-      </JFXTextField>
-      <JFXTextField fx:id="emailTF" labelFloat="true" layoutX="39.0" layoutY="90.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Email">
-          <padding><Insets top="20" /></padding>
-          <validators>
-              <RequiredFieldValidator message="Input Required!" >
-                  <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
-              </RequiredFieldValidator>
-          </validators>
-      </JFXTextField>
-      <JFXPasswordField fx:id="passwordTF" labelFloat="true" layoutX="39.0" layoutY="155.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Password">
-          <padding><Insets top="20" /></padding>
-         <tooltip>
-            <Tooltip fx:id="toolTip" text="Password must be at least 8 characters and contain &#10;1 uppercase letter and 1 special character (!, @, #, $, %)" />
-         </tooltip>
-          <validators>
-              <RequiredFieldValidator message="Input Required!" >
-                  <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
-              </RequiredFieldValidator>
-          </validators>
-      </JFXPasswordField>
-      <JFXPasswordField fx:id="confirmPassTF" labelFloat="true" layoutX="39.0" layoutY="220.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Confirm Password">
-          <padding><Insets top="20" /></padding>
-          <validators>
-              <RequiredFieldValidator message="Input Required!" >
-                  <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
-              </RequiredFieldValidator>
-          </validators>
-      </JFXPasswordField>
-      <JFXComboBox fx:id="secCB" layoutX="39.0" layoutY="295.0" prefHeight="31.0" prefWidth="298.0">
-          <items>
-              <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="What was your first car?" />
-                  <String fx:value="What is the last name of your favorite high school teacher?" />
-                  <String fx:value="What was the name of your first job?" />
-                  <String fx:value="When you were young, what did you want to be when you grew up?" />
-              </FXCollections>
-          </items>
-          <value>
-              Select Security Question...
-          </value>
-      </JFXComboBox>
-      <JFXTextField fx:id="secAnsTF" labelFloat="true" layoutX="39.0" layoutY="350.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Security Answer">
-          <padding><Insets top="20" /></padding>
-          <validators>
-              <RequiredFieldValidator message="Input Required!" >
-                  <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;" />
-              </RequiredFieldValidator>
-          </validators>
-      </JFXTextField>
-      <JFXButton fx:id="signUpButton" alignment="CENTER" buttonType="RAISED" disable="true" layoutX="147.0" layoutY="425.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Sign Up" />
-      <JFXButton fx:id="backButton" alignment="CENTER" buttonType="RAISED" layoutX="147.0" layoutY="480.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Back" />
+        <JFXTextField fx:id="nameTF" labelFloat="true" layoutX="39.0" layoutY="25.0" maxWidth="300.0" minWidth="300.0"
+                      prefWidth="300.0" promptText="Full Name">
+            <padding>
+                <Insets top="20"/>
+            </padding>
+            <validators>
+                <RequiredFieldValidator message="Input Required!">
+                    <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;"/>
+                </RequiredFieldValidator>
+            </validators>
+        </JFXTextField>
+        <JFXTextField fx:id="emailTF" labelFloat="true" layoutX="39.0" layoutY="90.0" maxWidth="300.0" minWidth="300.0"
+                      prefWidth="300.0" promptText="Email">
+            <padding>
+                <Insets top="20"/>
+            </padding>
+            <validators>
+                <RequiredFieldValidator message="Input Required!">
+                    <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;"/>
+                </RequiredFieldValidator>
+            </validators>
+        </JFXTextField>
+        <JFXPasswordField fx:id="passwordTF" labelFloat="true" layoutX="39.0" layoutY="155.0" maxWidth="300.0"
+                          minWidth="300.0" prefWidth="300.0" promptText="Password">
+            <padding>
+                <Insets top="20"/>
+            </padding>
+            <tooltip>
+                <Tooltip fx:id="toolTip"
+                         text="Password must be at least 8 characters and contain &#10;1 uppercase letter and 1 special character (!, @, #, $, %)"/>
+            </tooltip>
+            <validators>
+                <RequiredFieldValidator message="Input Required!">
+                    <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;"/>
+                </RequiredFieldValidator>
+            </validators>
+        </JFXPasswordField>
+        <JFXPasswordField fx:id="confirmPassTF" labelFloat="true" layoutX="39.0" layoutY="220.0" maxWidth="300.0"
+                          minWidth="300.0" prefWidth="300.0" promptText="Confirm Password">
+            <padding>
+                <Insets top="20"/>
+            </padding>
+            <validators>
+                <RequiredFieldValidator message="Input Required!">
+                    <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;"/>
+                </RequiredFieldValidator>
+            </validators>
+        </JFXPasswordField>
+        <JFXComboBox fx:id="secCB" layoutX="39.0" layoutY="295.0" prefHeight="31.0" prefWidth="298.0">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="What was your first car?"/>
+                    <String fx:value="What is the last name of your favorite high school teacher?"/>
+                    <String fx:value="What was the name of your first job?"/>
+                    <String fx:value="When you were young, what did you want to be when you grew up?"/>
+                </FXCollections>
+            </items>
+            <value>
+                Select Security Question...
+            </value>
+        </JFXComboBox>
+        <JFXTextField fx:id="secAnsTF" labelFloat="true" layoutX="39.0" layoutY="350.0" maxWidth="300.0"
+                      minWidth="300.0" prefWidth="300.0" promptText="Security Answer">
+            <padding>
+                <Insets top="20"/>
+            </padding>
+            <validators>
+                <RequiredFieldValidator message="Input Required!">
+                    <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;"/>
+                </RequiredFieldValidator>
+            </validators>
+        </JFXTextField>
+        <JFXButton fx:id="signUpButton" alignment="CENTER" buttonType="RAISED" disable="true" layoutX="147.0"
+                   layoutY="425.0" prefHeight="31.0" prefWidth="79.0"
+                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Sign Up"/>
+        <JFXButton fx:id="backButton" alignment="CENTER" buttonType="RAISED" layoutX="147.0" layoutY="480.0"
+                   prefHeight="31.0" prefWidth="79.0"
+                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Back"/>
     </children>
 
-    <JFXDialog fx:id="emailDialog" maxWidth="300.0" maxHeight="140.0" >
+    <JFXDialog fx:id="emailDialog" maxWidth="300.0" maxHeight="140.0">
         <JFXDialogLayout>
             <heading>
                 <Label>Warning</Label>
@@ -81,12 +102,12 @@
                 <Label>Please enter a valid email address.</Label>
             </body>
             <actions>
-                <JFXButton fx:id="acceptButton" styleClass="dialog-accept" text="Accept" />
+                <JFXButton fx:id="acceptButton" styleClass="dialog-accept" text="Accept"/>
             </actions>
         </JFXDialogLayout>
     </JFXDialog>
 
-    <JFXDialog fx:id="passwordDialog" maxWidth="300.0" maxHeight="140.0" >
+    <JFXDialog fx:id="passwordDialog" maxWidth="300.0" maxHeight="140.0">
         <JFXDialogLayout>
             <heading>
                 <Label>Warning</Label>
@@ -95,12 +116,12 @@
                 <Label>Confirm passwords match.</Label>
             </body>
             <actions>
-                <JFXButton fx:id="acceptButtonPW" styleClass="dialog-accept" text="Accept" />
+                <JFXButton fx:id="acceptButtonPW" styleClass="dialog-accept" text="Accept"/>
             </actions>
         </JFXDialogLayout>
     </JFXDialog>
 
-    <JFXDialog fx:id="passwordDialog2" maxWidth="300.0" maxHeight="250.0" >
+    <JFXDialog fx:id="passwordDialog2" maxWidth="300.0" maxHeight="250.0">
         <JFXDialogLayout>
             <heading>
                 <Label>Warning</Label>
@@ -109,21 +130,21 @@
                 <Label text="Confirm password has a &#10;1) Special character (!, @, #, $, %)&#10;2) Contains a capital letter&#10;3) Contains a number&#10;4) Is between 8-20 characters long"/>
             </body>
             <actions>
-                <JFXButton fx:id="acceptButtonPW2" styleClass="dialog-accept" text="Accept" />
+                <JFXButton fx:id="acceptButtonPW2" styleClass="dialog-accept" text="Accept"/>
             </actions>
         </JFXDialogLayout>
     </JFXDialog>
 
-    <JFXDialog fx:id="signUpDialog" maxWidth="300.0" maxHeight="250.0" >
+    <JFXDialog fx:id="signUpDialog" maxWidth="300.0" maxHeight="250.0">
         <JFXDialogLayout>
             <heading>
                 <Label>Warning</Label>
             </heading>
             <body>
-                <Label text="User already exist" />
+                <Label text="User already exist"/>
             </body>
             <actions>
-                <JFXButton fx:id="acceptButtonSU" styleClass="dialog-accept" text="Accept" />
+                <JFXButton fx:id="acceptButtonSU" styleClass="dialog-accept" text="Accept"/>
             </actions>
         </JFXDialogLayout>
     </JFXDialog>

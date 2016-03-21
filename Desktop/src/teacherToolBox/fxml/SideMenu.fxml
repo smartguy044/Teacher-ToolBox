@@ -3,19 +3,17 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Label?>
-<?import java.lang.String?>
 <?import com.jfoenix.controls.JFXListView?>
 
 <StackPane fx:id="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
-	<styleClass>	
-		<String fx:value="side-menu" />
-	</styleClass>
-	<JFXListView  fx:id="sideList">
-		<Label fx:id="addRoster" > Add Roster </Label>
-		<Label fx:id="rosterMenu"> Roster Menu </Label>
-		<Label fx:id="attendance"> Attendance </Label>
-		<Label fx:id="grades"> Grades </Label>
-		<Label fx:id="reports"> Reports </Label>
-	</JFXListView>
+    <styleClass>
+        <String fx:value="side-menu"/>
+    </styleClass>
+    <JFXListView fx:id="sideList">
+        <Label fx:id="addRoster">Add Roster</Label>
+        <Label fx:id="rosterMenu">Roster Menu</Label>
+        <Label fx:id="attendance">Attendance</Label>
+        <Label fx:id="grades">Grades</Label>
+        <Label fx:id="reports">Reports</Label>
+    </JFXListView>
 </StackPane>

@@ -22,7 +22,7 @@
                         <JFXRippler maskType="CIRCLE" style="-fx-ripple-color:WHITE;">
                             <StackPane fx:id="titleBurgerContainer">
                                 <JFXHamburger fx:id="titleBurger">
-                                    <HamburgerBackArrowBasicTransition />
+                                    <HamburgerBackArrowBasicTransition/>
                                 </JFXHamburger>
                             </StackPane>
                         </JFXRippler>
@@ -45,14 +45,14 @@
         <center>
             <JFXDrawer fx:id="drawer" defaultDrawerSize="250" direction="LEFT">
                 <styleClass>
-                    <String fx:value="body" />
+                    <String fx:value="body"/>
                 </styleClass>
                 <sidePane>
                     <StackPane fx:id="sideContent">
                     </StackPane>
                 </sidePane>
                 <content>
-                    <StackPane fx:id="content" >
+                    <StackPane fx:id="content">
                     </StackPane>
                 </content>
             </JFXDrawer>
@@ -64,13 +64,15 @@
             <Label>
                 Contact Us
                 <graphic>
-                    <FontAwesomeIconView glyphName="USER" size="1.5em" style=";" styleClass="option-jfx-list-view-icon"/>
+                    <FontAwesomeIconView glyphName="USER" size="1.5em" style=";"
+                                         styleClass="option-jfx-list-view-icon"/>
                 </graphic>
             </Label>
             <Label fx:id="exit">
                 Exit
                 <graphic>
-                    <FontAwesomeIconView glyphName="REPLY" size="1.5em" style=";" styleClass="option-jfx-list-view-icon"/>
+                    <FontAwesomeIconView glyphName="REPLY" size="1.5em" style=";"
+                                         styleClass="option-jfx-list-view-icon"/>
                 </graphic>
             </Label>
         </JFXListView>
