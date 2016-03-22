@@ -2,12 +2,15 @@ package teacherToolBox.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import io.datafx.controller.FXMLController;
 import io.datafx.controller.flow.action.ActionMethod;
 import io.datafx.controller.flow.action.ActionTrigger;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+import javafx.scene.input.KeyEvent;
 import teacherToolBox.components.Student;
 
 import javax.annotation.PostConstruct;
@@ -23,10 +26,18 @@ public class AddStudentController
 {
     @FXML private JFXComboBox<String> classCB;
     @FXML private TableView<Student> rosterView;
+    @FXML private JFXTextField studentIdTF;
+    @FXML private JFXTextField firstNameTF;
+    @FXML private JFXTextField lastNameTF;
+    @FXML private JFXTextField genderTF;
 
     @FXML
     @ActionTrigger("selectionAction")
     private JFXButton selectionButton;
+
+    @FXML
+    @ActionTrigger("submitAction")
+    private JFXButton submitButton;
 
     private ObservableList<Student> data;
     private Connection connection;
@@ -71,11 +82,112 @@ public class AddStudentController
             String msg = e.getMessage();
             System.err.printf("problem with driver: %s\n", msg);
         }
+
+        classCB.setOnAction((event) ->
+        {
+            if(!classCB.getValue().equals("Select Roster"))
+            {
+                selectionButton.setDisable(false);
+            }
+        });
+
+        studentIdTF.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            if (!newVal)
+            {
+                studentIdTF.validate();
+            }
+
+            studentIdTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    if (!newVal)
+                    {
+                        studentIdTF.validate();
+                    }
+
+                    updateButton();
+                }
+            });
+        });
+
+        firstNameTF.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            if (!newVal)
+            {
+                firstNameTF.validate();
+            }
+
+            firstNameTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    if (!newVal)
+                    {
+                        firstNameTF.validate();
+                    }
+
+                    updateButton();
+                }
+            });
+        });
+
+        lastNameTF.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            if (!newVal)
+            {
+                lastNameTF.validate();
+            }
+
+            lastNameTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    if (!newVal)
+                    {
+                        lastNameTF.validate();
+                    }
+
+                    updateButton();
+                }
+            });
+        });
+
+        genderTF.focusedProperty().addListener((o, oldVal, newVal) ->
+        {
+            if (!newVal)
+            {
+                genderTF.validate();
+            }
+
+            genderTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent arg0)
+                {
+                    if (!newVal)
+                    {
+                        genderTF.validate();
+                    }
+
+                    updateButton();
+                }
+            });
+        });
     }
 
     @ActionMethod("selectionAction")
     public void selectionButton_onAction() throws Exception
     {
+        studentIdTF.setDisable(false);
+        firstNameTF.setDisable(false);
+        lastNameTF.setDisable(false);
+        genderTF.setDisable(false);
+
         data = rosterView.getItems();
         data.clear();
 
@@ -107,6 +219,16 @@ public class AddStudentController
         {
             String msg = sqlException.getMessage();
             System.err.printf("problem with db connection: %s\n", msg);
+        }
+    }
+
+    private void updateButton()
+    {
+        if (!studentIdTF.getText().equals("") && !firstNameTF.getText().equals("")
+                && !lastNameTF.getText().equals("") && !genderTF.getText().equals(""))
+
+        {
+            submitButton.setDisable(false);
         }
     }
 }
