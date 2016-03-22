@@ -10,8 +10,8 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <JFXComboBox fx:id="classCB" layoutX="207.0" layoutY="46.0" prefHeight="39.0" prefWidth="169.0" promptText="Select Roster" />
-        <JFXButton fx:id="selectionButton" layoutX="411.0" layoutY="53.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" buttonType="RAISED" text="Select" />
-        <TableView fx:id="rosterView" layoutX="84.0" layoutY="218.0" prefHeight="420.0" prefWidth="497.0">
+        <JFXButton fx:id="selectionButton" buttonType="RAISED" layoutX="411.0" layoutY="53.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Select" />
+        <TableView fx:id="rosterView" layoutX="83.0" layoutY="195.0" prefHeight="420.0" prefWidth="497.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="125.0" resizable="false" text="Student ID">
                     <cellValueFactory>
@@ -35,8 +35,8 @@
                 </TableColumn>
             </columns>
         </TableView>
-        <JFXButton layoutX="205.0" layoutY="666.0" prefHeight="39.0" prefWidth="86.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" buttonType="RAISED" text="Finish" />
-        <Label alignment="CENTER" layoutX="173.0" layoutY="161.0" prefHeight="40.0" prefWidth="319.0" style="-fx-text-fill:#5264AE;-fx-font-size:20px;" text="Select a student to edit or delete" />
-        <JFXButton layoutX="374.0" layoutY="666.0" prefHeight="39.0" prefWidth="86.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" buttonType="RAISED" text="Cancel" />
+        <JFXButton buttonType="RAISED" layoutX="205.0" layoutY="666.0" prefHeight="39.0" prefWidth="86.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Finish" />
+        <Label alignment="CENTER" layoutX="172.0" layoutY="138.0" prefHeight="40.0" prefWidth="319.0" style="-fx-text-fill:#5264AE;-fx-font-size:20px;" text="Select a student to edit or delete" />
+        <JFXButton buttonType="RAISED" layoutX="374.0" layoutY="666.0" prefHeight="39.0" prefWidth="86.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Cancel" />
     </children>
 </Pane>
