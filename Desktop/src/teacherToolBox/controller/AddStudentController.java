@@ -2,15 +2,19 @@ package teacherToolBox.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXTextField;
 import io.datafx.controller.FXMLController;
 import io.datafx.controller.flow.action.ActionMethod;
 import io.datafx.controller.flow.action.ActionTrigger;
+import io.datafx.controller.flow.context.FXMLViewFlowContext;
+import io.datafx.controller.flow.context.ViewFlowContext;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import teacherToolBox.components.Student;
 
 import javax.annotation.PostConstruct;
@@ -24,12 +28,19 @@ import java.util.Properties;
 
 public class AddStudentController
 {
+    @FXMLViewFlowContext
+    private ViewFlowContext flowContext;
+
     @FXML private JFXComboBox<String> classCB;
     @FXML private TableView<Student> rosterView;
     @FXML private JFXTextField studentIdTF;
     @FXML private JFXTextField firstNameTF;
     @FXML private JFXTextField lastNameTF;
     @FXML private JFXTextField genderTF;
+    @FXML private JFXDialog studentExistsDialog;
+    @FXML private JFXButton acceptButtonSE;
+    @FXML private JFXDialog studentIDExistsDialog;
+    @FXML private JFXButton acceptButtonID;
 
     @FXML
     @ActionTrigger("selectionAction")
@@ -82,6 +93,14 @@ public class AddStudentController
             String msg = e.getMessage();
             System.err.printf("problem with driver: %s\n", msg);
         }
+
+        acceptButtonSE.setOnMouseClicked((e)->{
+            studentExistsDialog.close();
+        });
+
+        acceptButtonID.setOnMouseClicked((e)->{
+            studentIDExistsDialog.close();
+        });
 
         classCB.setOnAction((event) ->
         {
@@ -219,6 +238,46 @@ public class AddStudentController
         {
             String msg = sqlException.getMessage();
             System.err.printf("problem with db connection: %s\n", msg);
+        }
+    }
+
+    @ActionMethod("submitAction")
+    public void submitButton_onAction() throws Exception
+    {
+        boolean exists = true;
+
+        for (Student aData : data)
+        {
+            if (aData.getStudentID() == Integer.valueOf(studentIdTF.getText()))
+            {
+                if(aData.getFirstName().equals(firstNameTF.getText()) && aData.getLastName().equals(lastNameTF.getText()))
+                {
+                    studentExistsDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
+                    studentExistsDialog.show((Pane) flowContext.getRegisteredObject("ContentPane"));
+                }
+                else
+                {
+                    studentIDExistsDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
+                    studentIDExistsDialog.show((Pane) flowContext.getRegisteredObject("ContentPane"));
+                }
+
+                break;
+            }
+            else
+            {
+                exists = false;
+            }
+        }
+
+        if(!exists)
+        {
+            data.add(new Student(Integer.valueOf(studentIdTF.getText()), firstNameTF.getText(), lastNameTF.getText(), genderTF.getText()));
+
+            studentIdTF.setText("");
+            firstNameTF.setText("");
+            lastNameTF.setText("");
+            genderTF.setText("");
+            updateButton();
         }
     }
 
