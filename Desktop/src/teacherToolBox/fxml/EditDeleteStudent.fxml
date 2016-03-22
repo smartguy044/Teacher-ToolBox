@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0"
-      prefWidth="662.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
+        <JFXComboBox layoutX="207.0" layoutY="46.0" prefHeight="39.0" prefWidth="169.0" promptText="Select Roster" />
+        <JFXButton layoutX="411.0" layoutY="53.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" buttonType="RAISED" text="Select" />
         <TableView fx:id="rosterView" layoutX="84.0" layoutY="218.0" prefHeight="420.0" prefWidth="497.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="125.0" resizable="false" text="Student ID">
                     <cellValueFactory>
-                        <PropertyValueFactory property="studentID"/>
+                        <PropertyValueFactory property="studentID" />
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn prefWidth="125.0" resizable="false" text="First Name">
                     <cellValueFactory>
-                        <PropertyValueFactory property="firstName"/>
+                        <PropertyValueFactory property="firstName" />
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn prefWidth="125.0" resizable="false" text="Last Name">
                     <cellValueFactory>
-                        <PropertyValueFactory property="lastName"/>
+                        <PropertyValueFactory property="lastName" />
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn prefWidth="125.0" resizable="false" text="Gender">
                     <cellValueFactory>
-                        <PropertyValueFactory property="gender"/>
+                        <PropertyValueFactory property="gender" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>
         </TableView>
-        <JFXButton layoutX="205.0" layoutY="666.0" prefHeight="39.0" prefWidth="86.0"
-                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Finish"/>
-        <JFXComboBox layoutX="248.0" layoutY="46.0" prefHeight="39.0" prefWidth="169.0" promptText="Select Roster"/>
-        <Label alignment="CENTER" layoutX="173.0" layoutY="161.0" prefHeight="40.0" prefWidth="319.0"
-               style="-fx-text-fill:#5264AE;-fx-font-size:20px;" text="Select a student to edit or delete"/>
-        <JFXButton layoutX="374.0" layoutY="666.0" prefHeight="39.0" prefWidth="86.0"
-                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Cancel"/>
+        <JFXButton layoutX="205.0" layoutY="666.0" prefHeight="39.0" prefWidth="86.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" buttonType="RAISED" text="Finish" />
+        <Label alignment="CENTER" layoutX="173.0" layoutY="161.0" prefHeight="40.0" prefWidth="319.0" style="-fx-text-fill:#5264AE;-fx-font-size:20px;" text="Select a student to edit or delete" />
+        <JFXButton layoutX="374.0" layoutY="666.0" prefHeight="39.0" prefWidth="86.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" buttonType="RAISED" text="Cancel" />
     </children>
 </Pane>
