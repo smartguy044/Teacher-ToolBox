@@ -11,7 +11,7 @@
     <children>
         <JFXComboBox fx:id="classCB" layoutX="207.0" layoutY="46.0" prefHeight="39.0" prefWidth="169.0" promptText="Select Roster" />
         <JFXButton fx:id="selectionButton" buttonType="RAISED" layoutX="411.0" layoutY="53.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Select" />
-        <TableView fx:id="rosterView" layoutX="83.0" layoutY="195.0" prefHeight="420.0" prefWidth="497.0">
+        <TableView fx:id="rosterView" layoutX="83.0" layoutY="195.0" prefHeight="420.0" prefWidth="502.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="125.0" resizable="false" text="Student ID">
                     <cellValueFactory>

@@ -81,31 +81,25 @@ public class EditDeleteStudentController
         ArrayList<Integer> ids = new ArrayList<>();
         String selection = classCB.getSelectionModel().getSelectedItem();
 
-        try
-        {
-            statement = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("select studentID from rosters where courseID in (select courseID from courses where courseName = '" + selection + "')");
+        ResultSet resultSet = statement.executeQuery("select studentID from rosters where courseID in (select " +
+                "courseID from courses where courseName = '" + selection + "')");
+
+        while (resultSet.next())
+        {
+            ids.add(resultSet.getInt(1));
+        }
+
+        for (Integer id : ids)
+        {
+            resultSet = statement.executeQuery("select studentID, studentFN, studentLN, studentGen from students " +
+                    "where studentID = " + id);
 
             while (resultSet.next())
             {
-                ids.add(resultSet.getInt(1));
+                data.add(new Student(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet
+                        .getString(4)));
             }
-
-            for (Integer id : ids)
-            {
-                resultSet = statement.executeQuery("select studentID, studentFN, studentLN, studentGen from students where studentID = " + id);
-
-                while (resultSet.next())
-                {
-                    data.add(new Student(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)));
-                }
-            }
-        }
-        catch (SQLException sqlException)
-        {
-            String msg = sqlException.getMessage();
-            System.err.printf("problem with db connection: %s\n", msg);
         }
     }
 }
