@@ -53,6 +53,8 @@ public class AddStudentController
     private ObservableList<Student> data;
     private Connection connection;
     private Statement statement;
+    private String selection;
+    private int courseID;
 
     @PostConstruct
     public void init()
@@ -211,7 +213,7 @@ public class AddStudentController
         data.clear();
 
         ArrayList<Integer> ids = new ArrayList<>();
-        String selection = classCB.getSelectionModel().getSelectedItem();
+        selection = classCB.getSelectionModel().getSelectedItem();
 
         try
         {
@@ -273,6 +275,19 @@ public class AddStudentController
         {
             data.add(new Student(Integer.valueOf(studentIdTF.getText()), firstNameTF.getText(), lastNameTF.getText(), genderTF.getText()));
 
+            ResultSet resultSet = statement.executeQuery("select courseID from courses where courseName = '" + selection + "'");
+
+            while (resultSet.next())
+            {
+                courseID = resultSet.getInt(1);
+            }
+
+            statement.executeUpdate("INSERT INTO students(studentID, studentFN, StudentLN, studentGen) values("
+                    + Integer.valueOf(studentIdTF.getText()) + ", '" + firstNameTF.getText() + "', '" + lastNameTF.getText() + "', '"
+                    + genderTF.getText() + "')");
+
+            statement.executeUpdate("INSERT INTO rosters(courseID, studentID) values (" + courseID + ", " + Integer.valueOf(studentIdTF.getText()) + ")");
+
             studentIdTF.setText("");
             firstNameTF.setText("");
             lastNameTF.setText("");
@@ -288,6 +303,10 @@ public class AddStudentController
 
         {
             submitButton.setDisable(false);
+        }
+        else
+        {
+            submitButton.setDisable(true);
         }
     }
 }
