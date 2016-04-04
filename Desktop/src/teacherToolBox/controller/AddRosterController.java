@@ -11,6 +11,7 @@ import io.datafx.controller.flow.context.ViewFlowContext;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
@@ -66,6 +67,8 @@ public class AddRosterController
     private JFXButton addRosterButton;
 
     @FXML private JFXTextField className;
+    @FXML private DatePicker startDate;
+    @FXML private DatePicker endDate;
     @FXML private JFXTextField filePath;
     @FXML private JFXTextField studentIdTF;
     @FXML private JFXTextField firstNameTF;
@@ -235,7 +238,7 @@ public class AddRosterController
         });
     }
 
-    public void updateButton()
+    private void updateButton()
     {
         if(radioButton1.isSelected())
         {
@@ -415,6 +418,7 @@ public class AddRosterController
         lastNameTF.setText("");
         genderTF.setText("");
 
+        updateButton();
         finishButton.setDisable(false);
         addRosterButton.setDisable(false);
     }
