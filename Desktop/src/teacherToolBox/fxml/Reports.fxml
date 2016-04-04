@@ -1,35 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXButton layoutX="128.0" layoutY="289.0" />
-      <JFXHamburger layoutX="8.0" layoutY="14.0" />
-      <JFXDialog />
-      <JFXTextField layoutX="61.0" layoutY="41.0" text="Class Selection: " />
-      <JFXTextField layoutX="61.0" layoutY="84.0" maxWidth="512.0" minWidth="383.0" prefHeight="37.0" prefWidth="512.0" promptText="Report Name: " />
-      <JFXTextField layoutX="61.0" layoutY="131.0" text="Date Range: " />
-      <JFXTextField layoutX="66.0" layoutY="200.0" maxWidth="186.0" minWidth="73.0" prefHeight="37.0" prefWidth="186.0" text="Row: " />
-      <JFXTextField layoutX="66.0" layoutY="259.0" text="Column 1:" />
-      <JFXTextField layoutX="66.0" layoutY="299.0" text="Column 2:" />
-      <JFXTextField layoutX="66.0" layoutY="344.0" text="Column 3:" />
-      <JFXButton buttonType="RAISED" layoutX="80.0" layoutY="400.0" text="Add New Column" />
-      <JFXTextField layoutX="66.0" layoutY="445.0" maxWidth="186.0" minWidth="176.0" prefHeight="37.0" prefWidth="186.0" text="Output Type:" />
-      <JFXRadioButton layoutX="274.0" layoutY="453.0" text="Excel" />
-      <JFXRadioButton layoutX="404.0" layoutY="453.0" text="PNG/JPEG" />
-      <JFXButton buttonType="RAISED" layoutX="78.0" layoutY="539.0" prefHeight="31.0" prefWidth="126.0" text="Submit" />
-      <JFXButton buttonType="RAISED" layoutX="254.0" layoutY="539.0" prefHeight="31.0" prefWidth="126.0" text="Reset" />
-      <JFXButton buttonType="RAISED" cancelButton="true" layoutX="430.0" layoutY="539.0" prefHeight="31.0" prefWidth="126.0" text="Cancel" />
-      <JFXComboBox layoutX="274.0" layoutY="44.0" prefHeight="31.0" prefWidth="289.0" />
-      <JFXComboBox layoutX="274.0" layoutY="131.0" prefHeight="37.0" prefWidth="126.0" promptText="Start Date" />
-      <JFXComboBox layoutX="430.0" layoutY="131.0" prefHeight="37.0" prefWidth="126.0" promptText="End Date" />
-      <JFXComboBox layoutX="272.0" layoutY="200.0" prefHeight="37.0" prefWidth="158.0" promptText="Students" />
-      <JFXComboBox layoutX="272.0" layoutY="252.0" prefHeight="37.0" prefWidth="158.0" promptText="Attendance" />
-      <JFXComboBox layoutX="272.0" layoutY="296.0" prefHeight="37.0" prefWidth="158.0" promptText="Attendance" />
-      <JFXComboBox layoutX="272.0" layoutY="344.0" prefHeight="37.0" prefWidth="158.0" promptText="Attendance" />
+      <TableView fx:id="rosterView" layoutX="83.0" layoutY="182.0" prefHeight="420.0" prefWidth="497.0">
+         <columns>
+            <TableColumn fx:id="idColumn" prefWidth="125.0" resizable="false" text="Student ID">
+               <cellValueFactory>
+                  <PropertyValueFactory property="studentID" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="125.0" resizable="false" text="First Name">
+               <cellValueFactory>
+                  <PropertyValueFactory property="firstName" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="125.0" resizable="false" text="Last Name">
+               <cellValueFactory>
+                  <PropertyValueFactory property="lastName" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="125.0" resizable="false" text="Gender">
+               <cellValueFactory>
+                  <PropertyValueFactory property="gender" />
+               </cellValueFactory>
+            </TableColumn>
+         </columns>
+      </TableView>
+      <JFXButton fx:id="deleteButton" alignment="CENTER" buttonType="RAISED" layoutX="284.0" layoutY="745.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" />
+      <JFXButton fx:id="addButton" alignment="CENTER" buttonType="RAISED" layoutX="83.0" layoutY="745.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Reset" />
+      <JFXButton fx:id="editButton" alignment="CENTER" buttonType="RAISED" layoutX="501.0" layoutY="745.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Cancel" />
+      <JFXComboBox layoutX="464.0" layoutY="71.0" prefHeight="31.0" prefWidth="116.0" promptText="Activity" />
+      <JFXComboBox layoutX="266.0" layoutY="71.0" prefHeight="31.0" prefWidth="116.0" promptText="Roster" />
+      <DatePicker layoutX="265.0" layoutY="131.0" prefHeight="31.0" prefWidth="133.0" promptText="Start Date" />
+      <DatePicker layoutX="447.0" layoutY="131.0" prefHeight="31.0" prefWidth="133.0" promptText="End Date" />
+      <Label alignment="CENTER" layoutX="281.0" layoutY="21.0" prefHeight="27.0" prefWidth="85.0" text="INPUT" underline="true" style="-fx-font-weight: bold;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="281.0" layoutY="613.0" prefHeight="27.0" prefWidth="85.0" text="OUTPUT" underline="true" style="-fx-font-weight: bold;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXComboBox layoutX="83.0" layoutY="71.0" prefHeight="31.0" prefWidth="116.0" promptText="Class" />
+      <Label alignment="CENTER" layoutX="80.0" layoutY="136.0" prefHeight="21.0" prefWidth="85.0" text="Date Range" />
+      <JFXRadioButton layoutX="222.0" layoutY="692.0" text="Excel" />
+      <JFXRadioButton layoutX="343.0" layoutY="692.0" text="CSV" />
+      <Label alignment="CENTER" layoutX="281.0" layoutY="658.0" prefHeight="21.0" prefWidth="85.0" text="File Format" />
    </children>
 </Pane>
