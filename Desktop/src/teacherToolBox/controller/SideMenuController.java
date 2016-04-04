@@ -103,8 +103,8 @@ public class SideMenuController
 						width = 1120;
 						break;
 					case "Reports" :
-						height = 729;
-						width = 700;
+						height = 1012;
+						width = 665;
 						break;
 					default :
 						height = 1000;
