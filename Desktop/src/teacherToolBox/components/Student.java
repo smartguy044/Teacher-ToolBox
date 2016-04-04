@@ -4,6 +4,9 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Student
 {
     private SimpleIntegerProperty studentID = new SimpleIntegerProperty();
@@ -17,8 +20,6 @@ public class Student
     private SimpleBooleanProperty wednesdayChecked = new SimpleBooleanProperty(false);
     private SimpleBooleanProperty thursdayChecked = new SimpleBooleanProperty(false);
     private SimpleBooleanProperty fridayChecked = new SimpleBooleanProperty(false);
-
-    private SimpleBooleanProperty checked = new SimpleBooleanProperty(false);
 
     public Student()
     {
@@ -90,7 +91,7 @@ public class Student
         return fullName.get();
     }
 
-    public void setFullName(String name)
+    private void setFullName(String name)
     {
         fullName.set(name);
     }
@@ -105,9 +106,69 @@ public class Student
         return mondayChecked.get();
     }
 
-    public void setChecked(final Boolean checked)
+    public void setMondayChecked(final Boolean checked)
     {
         mondayChecked.set(checked);
+    }
+
+    public SimpleBooleanProperty tuesdayCheckedProperty()
+    {
+        return tuesdayChecked;
+    }
+
+    public Boolean getTueChecked()
+    {
+        return tuesdayChecked.get();
+    }
+
+    public void setTuesdayChecked(final Boolean checked)
+    {
+        tuesdayChecked.set(checked);
+    }
+
+    public SimpleBooleanProperty wednesdayCheckedProperty()
+    {
+        return wednesdayChecked;
+    }
+
+    public Boolean getWedChecked()
+    {
+        return wednesdayChecked.get();
+    }
+
+    public void setWednesdayChecked(final Boolean checked)
+    {
+        wednesdayChecked.set(checked);
+    }
+
+    public SimpleBooleanProperty thursdayCheckedProperty()
+    {
+        return thursdayChecked;
+    }
+
+    public Boolean getThurChecked()
+    {
+        return thursdayChecked.get();
+    }
+
+    public void setThursdayChecked(final Boolean checked)
+    {
+        thursdayChecked.set(checked);
+    }
+
+    public SimpleBooleanProperty fridayCheckedProperty()
+    {
+        return fridayChecked;
+    }
+
+    public Boolean getFriChecked()
+    {
+        return fridayChecked.get();
+    }
+
+    public void setFridayChecked(final Boolean checked)
+    {
+        fridayChecked.set(checked);
     }
 
     @Override
