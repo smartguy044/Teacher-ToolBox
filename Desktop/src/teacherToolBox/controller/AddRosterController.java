@@ -29,7 +29,9 @@ import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-import java.util.Properties;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @FXMLController("../fxml/AddRoster.fxml")
 
@@ -75,6 +77,11 @@ public class AddRosterController
     @FXML private JFXTextField lastNameTF;
     @FXML private JFXTextField genderTF;
     @FXML private TableView<Student> rosterView;
+
+    @FXML private JFXDialog dateDialog;
+    @FXML private JFXButton acceptButton;
+
+    ObservableList<Student> data;
 
     @ActionMethod("rbAction1")
     public void radioButton1_onAction() throws Exception
@@ -236,6 +243,10 @@ public class AddRosterController
                 }
             });
         });
+
+        acceptButton.setOnMouseClicked((e)->{
+            dateDialog.close();
+        });
     }
 
     private void updateButton()
@@ -303,7 +314,7 @@ public class AddRosterController
                     // use comma as separator
                     String[] student = line.split(csvSplitBy);
 
-                    ObservableList<Student> data = rosterView.getItems();
+                    data = rosterView.getItems();
                     data.add(new Student(Integer.valueOf(student[0]), student[1], student[2], student[3]));
                 }
             }
@@ -370,7 +381,7 @@ public class AddRosterController
                                     }
                                     if(i % 3 == 0 && i != 0)
                                     {
-                                        ObservableList<Student> data = rosterView.getItems();
+                                        data = rosterView.getItems();
                                         data.add(new Student(student.getStudentID(), student.getFirstName(), student.getLastName(), student.getGender()));
                                     }
                                 }
@@ -410,7 +421,7 @@ public class AddRosterController
     @ActionMethod("manualAction")
     public void manualSubmitButton_onAction() throws Exception
     {
-        ObservableList<Student> data = rosterView.getItems();
+        data = rosterView.getItems();
         data.add(new Student(Integer.valueOf(studentIdTF.getText()), firstNameTF.getText(), lastNameTF.getText(), genderTF.getText()));
 
         studentIdTF.setText("");
@@ -419,6 +430,7 @@ public class AddRosterController
         genderTF.setText("");
 
         updateButton();
+
         finishButton.setDisable(false);
         addRosterButton.setDisable(false);
     }
@@ -426,85 +438,109 @@ public class AddRosterController
     @ActionMethod("finishAction")
     public void finishButton_onAction() throws Exception
     {
-        ObservableList<Student> data = rosterView.getItems();
-        Properties properties = new Properties();
-        Connection connection = null;
-        Statement statement = null;
+        if(startDate.getValue() == null || endDate.getValue() == null)
+        {
+            dateDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
+            dateDialog.show((Pane) context.getRegisteredObject("ContentPane"));
+        }
+        else
+        {
+            data = rosterView.getItems();
+            Properties properties = new Properties();
+            Connection connection = null;
+            Statement statement = null;
 
-        int courseID = 0;
-        int studentID = 0;
+            int courseID = 0;
 
-        try {
-            properties.load(new FileInputStream(".//src//database.properties"));
-            String url = properties.getProperty("jdbc.url");
-            Class.forName(properties.getProperty("jdbc.driver"));
-            connection = DriverManager.getConnection(url, properties.getProperty("jdbc.username"), properties.getProperty("jdbc.password"));
-
-            statement = connection.createStatement();
-
-            statement.executeUpdate("INSERT INTO courses(courseName, userID) values ('" + className.getText() + "', " + 1001 + ")");
-
-            ResultSet resultSet = statement.executeQuery("select courseID from courses where courseName = '" + className.getText() + "'");
-
-            while (resultSet.next())
+            try
             {
-                courseID = resultSet.getInt(1);
-            }
+                properties.load(new FileInputStream(".//src//database.properties"));
+                String url = properties.getProperty("jdbc.url");
+                Class.forName(properties.getProperty("jdbc.driver"));
+                connection = DriverManager.getConnection(url, properties.getProperty("jdbc.username"), properties.getProperty("jdbc.password"));
 
-            for (Student aData : data)
+                statement = connection.createStatement();
+
+                statement.executeUpdate("INSERT INTO courses(courseName, userID) values ('" + className.getText() + "', " + 1001 + ")");
+
+                ResultSet resultSet = statement.executeQuery("select courseID from courses where courseName = '" + className.getText() + "'");
+
+                while (resultSet.next())
+                {
+                    courseID = resultSet.getInt(1);
+                }
+
+                for (Student aData : data)
+                {
+                    statement.executeUpdate("INSERT INTO students(studentID, studentFN, StudentLN, studentGen) values("
+                            + aData.getStudentID() + ", '" + aData.getFirstName() + "', '" + aData.getLastName() +
+                            "', '"
+                            + aData.getGender() + "')");
+
+                    statement.executeUpdate("INSERT INTO rosters(courseID, studentID) values (" + courseID + ", " + aData.getStudentID() + ")");
+                }
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+                String start = startDate.getValue().format(formatter);
+
+                statement.executeUpdate("CREATE TABLE " + className.getText() + "Attendance (`" + start + "` varchar(1))");
+
+                List<String> dates = datesBetween(startDate.getValue(), endDate.getValue());
+
+                for(int i = 1; i < dates.size(); i++)
+                {
+                    statement.executeUpdate("ALTER TABLE " + className.getText() + "Attendance ADD `" + dates.get(i) + "` VARCHAR(1)");
+                }
+
+                clearForm();
+            }
+            catch (IOException ioException)
             {
-                statement.executeUpdate("INSERT INTO students(studentID, studentFN, StudentLN, studentGen) values("
-                        + aData.getStudentID() + ", '" + aData.getFirstName() + "', '" + aData.getLastName() + "', '"
-                        + aData.getGender() + "')");
-
-                statement.executeUpdate("INSERT INTO rosters(courseID, studentID) values (" + courseID + ", " + aData.getStudentID() + ")");
+                String msg = ioException.getMessage();
+                System.err.printf("problem with properties file: %s\n", msg);
             }
-
-            className.setText("");
-
-            filePath.setText("");
-            uploadSubmitButton.setDisable(true);
-
-            studentIdTF.setText("");
-            firstNameTF.setText("");
-            lastNameTF.setText("");
-            genderTF.setText("");
-
-            filePath.setDisable(false);
-            browseButton.setDisable(false);
-            studentIdTF.setDisable(true);
-            firstNameTF.setDisable(true);
-            lastNameTF.setDisable(true);
-            genderTF.setDisable(true);
-            manualSubmitButton.setDisable(true);
-
-            radioButton1.setSelected(true);
-
-            data.clear();
-
-            finishButton.setDisable(true);
-            addRosterButton.setDisable(true);
-        }
-        catch (IOException ioException)
-        {
-            String msg = ioException.getMessage();
-            System.err.printf("problem with properties file: %s\n", msg);
-        }
-        catch (SQLException sqlException)
-        {
-            String msg = sqlException.getMessage();
-            System.err.printf("problem with db connection: %s\n", msg);
-        }
-        catch (ClassNotFoundException e)
-        {
-            String msg = e.getMessage();
-            System.err.printf("problem with driver: %s\n", msg);
+            catch (SQLException sqlException)
+            {
+                String msg = sqlException.getMessage();
+                System.err.printf("problem with db connection: %s\n", msg);
+            }
+            catch (ClassNotFoundException e)
+            {
+                String msg = e.getMessage();
+                System.err.printf("problem with driver: %s\n", msg);
+            }
         }
     }
 
     @ActionMethod("addRosterAction")
     public void addRosterButton_onAction() throws Exception
     {
+        clearForm();
+    }
+
+    private static List<String> datesBetween(LocalDate start, LocalDate end)
+    {
+        List<String> ret = new ArrayList<>();
+        List<String> days = Arrays.asList("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+
+        for (LocalDate date = start; !date.isAfter(end); date = date.plusDays(1))
+        {
+            if(days.contains(date.getDayOfWeek().toString()))
+            {
+                String date1 = date.format(formatter);
+                ret.add(date1);
+            }
+        }
+
+        return ret;
+    }
+
+    private void clearForm()
+    {
+        data.clear();
+
         className.setText("");
 
         filePath.setText("");
@@ -525,10 +561,12 @@ public class AddRosterController
 
         radioButton1.setSelected(true);
 
-        ObservableList<Student> data = rosterView.getItems();
-        data.clear();
-
         finishButton.setDisable(true);
         addRosterButton.setDisable(true);
+
+        startDate.setValue(null);
+        startDate.setPromptText("Start Date");
+        endDate.setValue(null);
+        endDate.setPromptText("End Date");
     }
 }
