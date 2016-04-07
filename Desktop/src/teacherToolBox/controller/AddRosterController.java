@@ -26,8 +26,6 @@ import teacherToolBox.components.Student;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -335,7 +333,6 @@ public class AddRosterController
                     int cols = 0;
                     int temp = 0;
 
-                    // This trick ensures that we get the data properly even if it doesn't start from first few rows
                     for(int i = 0; i < 10 || i < rows; i++)
                     {
                         row = sheet.getRow(i);
@@ -470,6 +467,8 @@ public class AddRosterController
                     courseID = resultSet.getInt(1);
                 }
 
+                statement.executeUpdate("CREATE TABLE " + className.getText() + "Attendance (`studentID` int(4), FOREIGN KEY (studentID) REFERENCES students (studentID))");
+
                 for (Student aData : data)
                 {
                     statement.executeUpdate("INSERT INTO students(studentID, studentFN, StudentLN, studentGen) values("
@@ -478,18 +477,15 @@ public class AddRosterController
                             + aData.getGender() + "')");
 
                     statement.executeUpdate("INSERT INTO rosters(courseID, studentID) values (" + courseID + ", " + aData.getStudentID() + ")");
+
+                    statement.executeUpdate("INSERT INTO " + className.getText() + "Attendance(studentID) values (" + aData.getStudentID() + ")");
                 }
-
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-                String start = startDate.getValue().format(formatter);
-
-                statement.executeUpdate("CREATE TABLE " + className.getText() + "Attendance (`" + start + "` varchar(1))");
 
                 List<String> dates = datesBetween(startDate.getValue(), endDate.getValue());
 
-                for(int i = 1; i < dates.size(); i++)
+                for (String date : dates)
                 {
-                    statement.executeUpdate("ALTER TABLE " + className.getText() + "Attendance ADD `" + dates.get(i) + "` VARCHAR(1)");
+                    statement.executeUpdate("ALTER TABLE " + className.getText() + "Attendance ADD `" + date + "` VARCHAR(1)");
                 }
 
                 clearForm();
@@ -523,7 +519,7 @@ public class AddRosterController
         List<String> ret = new ArrayList<>();
         List<String> days = Arrays.asList("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY");
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
         for (LocalDate date = start; !date.isAfter(end); date = date.plusDays(1))
         {
