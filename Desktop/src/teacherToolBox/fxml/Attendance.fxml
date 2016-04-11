@@ -13,7 +13,7 @@
       prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <JFXComboBox fx:id="classCB" layoutX="25.0" layoutY="21.0"/>
-        <JFXButton fx:id="selectionButton" buttonType="RAISED" layoutX="120.0" layoutY="21.0"
+        <JFXButton fx:id="selectionButton" buttonType="RAISED" layoutX="135.0" layoutY="21.0"
                    style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Select"
                    textAlignment="CENTER"/>
         <TableView fx:id="rosterView" editable="true" layoutX="25.0" layoutY="80.0" prefHeight="350.0"
