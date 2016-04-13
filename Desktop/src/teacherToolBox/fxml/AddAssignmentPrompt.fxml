@@ -12,7 +12,7 @@
         <JFXTextField labelFloat="true" layoutX="50.0" layoutY="28.0" maxHeight="-Infinity" maxWidth="348.0"
                       minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="348.0"
                       promptText="Assignment Name"/>
-        <JFXComboBox layoutX="58.0" layoutY="83.0" maxWidth="333.0" prefHeight="31.0" prefWidth="333.0"
+        <JFXComboBox fx:id="assignmentCB" layoutX="58.0" layoutY="83.0" maxWidth="333.0" prefHeight="31.0" prefWidth="333.0"
                      promptText="Assignment Category" visibleRowCount="4">
             <items>
                 <FXCollections fx:factory="observableArrayList">
@@ -28,19 +28,19 @@
                 </FXCollections>
             </items>
         </JFXComboBox>
-        <JFXComboBox layoutX="55.0" layoutY="143.0" prefHeight="31.0" prefWidth="105.0" promptText="Month"
+        <JFXComboBox fx:id="monthCB" layoutX="55.0" layoutY="143.0" prefHeight="31.0" prefWidth="105.0" promptText="Month"
                      visibleRowCount="4"/>
-        <JFXComboBox layoutX="170.0" layoutY="143.0" prefHeight="31.0" prefWidth="105.0" promptText="Day"
+        <JFXComboBox fx:id="dayCB" layoutX="170.0" layoutY="143.0" prefHeight="31.0" prefWidth="105.0" promptText="Day"
                      visibleRowCount="4"/>
         <JFXTextField fx:id="yearTF" labelFloat="true" layoutX="282.0" layoutY="149.0" maxWidth="118.0" minWidth="105.0"
                       prefHeight="31.0" prefWidth="118.0" promptText="Year"/>
-        <JFXButton fx:id="loginButton" alignment="CENTER" buttonType="RAISED" layoutX="83.0" layoutY="223.0"
+        <JFXButton fx:id="submitButton" alignment="CENTER" buttonType="RAISED" layoutX="83.0" layoutY="223.0"
                    prefHeight="31.0" prefWidth="79.0"
                    style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit"/>
-        <JFXButton fx:id="loginButton1" alignment="CENTER" buttonType="RAISED" layoutX="176.0" layoutY="223.0"
+        <JFXButton fx:id="resetButton" alignment="CENTER" buttonType="RAISED" layoutX="176.0" layoutY="223.0"
                    prefHeight="31.0" prefWidth="98.0"
                    style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Reset Fields"/>
-        <JFXButton fx:id="loginButton2" alignment="CENTER" buttonType="RAISED" layoutX="289.0" layoutY="223.0"
+        <JFXButton fx:id="cancelButton" alignment="CENTER" buttonType="RAISED" layoutX="289.0" layoutY="223.0"
                    prefHeight="31.0" prefWidth="79.0"
                    style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Cancel"/>
     </children>
