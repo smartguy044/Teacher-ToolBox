@@ -12,11 +12,11 @@
    <children>
       <TabPane layoutY="-3.0" prefHeight="900.0" prefWidth="659.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab closable="false" style="-fx-font-weight: bold; -fx-font-size: 20.0px;" text="Customized Reports">
+          <Tab closable="false" style="-fx-font-weight: bold; -fx-font-size: 18.0px;" text="Customized Reports">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="620.0">
       <children>
-      <TableView fx:id="rosterView" layoutX="63.0" layoutY="194.0" prefHeight="420.0" prefWidth="497.0">
+      <TableView fx:id="rosterView" layoutX="62.0" layoutY="226.0" prefHeight="420.0" prefWidth="497.0">
          <columns>
             <TableColumn fx:id="idColumn" prefWidth="125.0" resizable="false" text="Student ID">
                <cellValueFactory>
@@ -33,42 +33,42 @@
                   <PropertyValueFactory property="lastName" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="125.0" resizable="false" text="Gender">
+            <TableColumn prefWidth="125.0" resizable="false" text="Activity">
                <cellValueFactory>
                   <PropertyValueFactory property="gender" />
                </cellValueFactory>
             </TableColumn>
          </columns>
       </TableView>
-      <JFXButton fx:id="deleteButton" alignment="CENTER" buttonType="RAISED" layoutX="264.0" layoutY="809.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" />
-      <JFXButton fx:id="addButton" alignment="CENTER" buttonType="RAISED" layoutX="63.0" layoutY="809.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Reset" />
-      <JFXButton fx:id="editButton" alignment="CENTER" buttonType="RAISED" layoutX="481.0" layoutY="809.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Cancel" />
-      <JFXComboBox layoutX="444.0" layoutY="70.0" prefHeight="31.0" prefWidth="116.0" promptText="Activity" />
-      <JFXComboBox layoutX="246.0" layoutY="70.0" prefHeight="31.0" prefWidth="116.0" promptText="Roster" />
-      <DatePicker layoutX="245.0" layoutY="130.0" prefHeight="31.0" prefWidth="133.0" promptText="Start Date" />
-      <DatePicker layoutX="427.0" layoutY="130.0" prefHeight="31.0" prefWidth="133.0" promptText="End Date" />
-      <Label alignment="CENTER" layoutX="112.0" layoutY="21.0" prefHeight="35.0" prefWidth="397.0" style="-fx-font-weight: bold; -fx-font-size: 24.0px" text="Select Preferred Input For Reports" underline="true" />
-      <Label alignment="CENTER" layoutX="172.0" layoutY="645.0" prefHeight="35.0" prefWidth="277.0" style="-fx-font-weight: bold; -fx-font-size: 24.0px" text="Select Preferred Output" underline="true" />
-      <JFXComboBox layoutX="63.0" layoutY="70.0" prefHeight="31.0" prefWidth="116.0" promptText="Class" />
-      <Label alignment="CENTER" layoutX="63.0" layoutY="135.0" prefHeight="27.0" prefWidth="117.0" style="-fx-font-weight: bold; -fx-font-size: 18.0px" text="Date Range :" />
-      <JFXRadioButton layoutX="258.0" layoutY="697.0" styleClass="custom-jfx-radio-button" text="Excel">
+      <JFXButton fx:id="deleteButton" alignment="CENTER" buttonType="RAISED" layoutX="264.0" layoutY="817.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" />
+      <JFXButton fx:id="addButton" alignment="CENTER" buttonType="RAISED" layoutX="63.0" layoutY="817.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Reset" />
+      <JFXButton fx:id="editButton" alignment="CENTER" buttonType="RAISED" layoutX="481.0" layoutY="817.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Cancel" />
+      <JFXComboBox layoutX="343.0" layoutY="85.0" prefHeight="31.0" prefWidth="116.0" promptText="Activity" />
+      <DatePicker layoutX="174.0" layoutY="152.0" prefHeight="31.0" prefWidth="133.0" promptText="Start Date" />
+      <DatePicker layoutX="326.0" layoutY="152.0" prefHeight="31.0" prefWidth="133.0" promptText="End Date" />
+      <Label alignment="CENTER" layoutX="137.0" layoutY="21.0" prefHeight="35.0" prefWidth="334.0" style="-fx-font-weight: bold; -fx-font-size: 20.0px;" text="Select Preferred Input For Reports" underline="true" />
+      <Label alignment="CENTER" layoutX="188.0" layoutY="660.0" prefHeight="35.0" prefWidth="231.0" style="-fx-font-weight: bold; -fx-font-size: 20.0px;" text="Select Preferred Output" underline="true" />
+      <JFXComboBox layoutX="165.0" layoutY="85.0" prefHeight="31.0" prefWidth="116.0" promptText="Roster" />
+      <Label alignment="CENTER" layoutX="63.0" layoutY="154.0" prefHeight="27.0" prefWidth="103.0" style="-fx-font-weight: bold; -fx-font-size: 16.0px;" text="Date Range :" />
+      <JFXRadioButton layoutX="258.0" layoutY="712.0" styleClass="custom-jfx-radio-button" text="Excel">
           <toggleGroup>
               <ToggleGroup fx:id="toggleGroup1" />
           </toggleGroup>
       </JFXRadioButton>
-      <JFXRadioButton layoutX="258.0" layoutY="738.0" styleClass="custom-jfx-radio-button" text="CSV" toggleGroup="$toggleGroup1" />
-      <Label alignment="CENTER" layoutX="63.0" layoutY="697.0" prefHeight="27.0" prefWidth="116.0" style="-fx-font-weight: bold; -fx-font-size: 18.0px" text="File Format :" />
+      <JFXRadioButton layoutX="258.0" layoutY="753.0" styleClass="custom-jfx-radio-button" text="CSV" toggleGroup="$toggleGroup1" />
+      <Label alignment="CENTER" layoutX="63.0" layoutY="712.0" prefHeight="27.0" prefWidth="116.0" style="-fx-font-weight: bold; -fx-font-size: 16.0px;" text="File Format :" />
+                        <JFXButton fx:id="editButton1" alignment="CENTER" buttonType="RAISED" layoutX="470.0" layoutY="152.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Select" />
    </children>
               </AnchorPane>
             </content>
           </Tab>
-          <Tab closable="false" style="-fx-font-weight: bold; -fx-font-size: 20.0px;" text="Summary Reports">
+          <Tab closable="false" style="-fx-font-weight: bold; -fx-font-size: 18.0px;" text="Summary Reports">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" layoutX="103.0" layoutY="48.0" prefHeight="44.0" prefWidth="401.0" style="-fx-font-weight: bold; -fx-font-size: 24.0px" text="Select Preferred Input For Reports" underline="true" />
-                        <Label alignment="CENTER" layoutX="46.0" layoutY="168.0" prefHeight="28.0" prefWidth="223.0" style="-fx-font-weight: bold; -fx-font-size: 18.0px" text="Aggregate &amp; Descriptive" />
-                        <Label alignment="CENTER" layoutX="369.0" layoutY="168.0" prefHeight="28.0" prefWidth="184.0" style="-fx-font-weight: bold; -fx-font-size: 18.0px" text="Overall Performance" />
+                        <Label alignment="CENTER" layoutX="139.0" layoutY="50.0" prefHeight="44.0" prefWidth="331.0" style="-fx-font-weight: bold; -fx-font-size: 20.0px;" text="Select Preferred Input For Reports" underline="true" />
+                        <Label alignment="CENTER" layoutX="46.0" layoutY="168.0" prefHeight="28.0" prefWidth="223.0" style="-fx-font-weight: bold; -fx-font-size: 16.0px;" text="Aggregate &amp; Descriptive" />
+                        <Label alignment="CENTER" layoutX="369.0" layoutY="168.0" prefHeight="28.0" prefWidth="184.0" style="-fx-font-weight: bold; -fx-font-size: 16.0px;" text="Overall Performance" />
                         <JFXRadioButton layoutX="46.0" layoutY="223.0" styleClass="custom-jfx-radio-button">
                              <toggleGroup>
                                  <ToggleGroup fx:id="toggleGroup2" />
@@ -87,17 +87,17 @@
                         <Label layoutX="107.0" layoutY="223.0" text="Summary, entire&#10;class, all assignments" />
                         <Label layoutX="107.0" layoutY="298.0" text="Summary, entire&#10;class, final grade" />
                         <Label layoutX="107.0" layoutY="378.0" text="Descriptive Statistics" />
-                        <Label alignment="CENTER" layoutX="154.0" layoutY="523.0" prefHeight="46.0" prefWidth="299.0" style="-fx-font-weight: bold; -fx-font-size: 24.0px" text="Select Preferred Output" underline="true" />
-                        <Label alignment="CENTER" layoutX="55.0" layoutY="638.0" prefHeight="28.0" prefWidth="109.0" style="-fx-font-weight: bold; -fx-font-size: 18.0px" text="File Format :" />
+                        <Label alignment="CENTER" layoutX="182.0" layoutY="525.0" prefHeight="46.0" prefWidth="244.0" style="-fx-font-weight: bold; -fx-font-size: 20.0px;" text="Select Preferred Output" underline="true" />
+                        <Label alignment="CENTER" layoutX="55.0" layoutY="638.0" prefHeight="28.0" prefWidth="109.0" style="-fx-font-weight: bold; -fx-font-size: 16.0px;" text="File Format :" />
                         <JFXRadioButton layoutX="242.0" layoutY="642.0" styleClass="custom-jfx-radio-button" text="Excel">
                             <toggleGroup>
                                 <ToggleGroup fx:id="toggleGroup4" />
                             </toggleGroup>
                         </JFXRadioButton>
                         <JFXRadioButton layoutX="242.0" layoutY="692.0" styleClass="custom-jfx-radio-button" text="CSV" toggleGroup="$toggleGroup4" />
-                         <JFXButton fx:id="deleteButton2" alignment="CENTER" buttonType="RAISED" layoutX="264.0" layoutY="809.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" />
-                         <JFXButton fx:id="addButton2" alignment="CENTER" buttonType="RAISED" layoutX="63.0" layoutY="809.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Reset" />
-                         <JFXButton fx:id="editButton2" alignment="CENTER" buttonType="RAISED" layoutX="481.0" layoutY="809.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Cancel" />
+                         <JFXButton fx:id="deleteButton2" alignment="CENTER" buttonType="RAISED" layoutX="264.0" layoutY="817.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" />
+                         <JFXButton fx:id="addButton2" alignment="CENTER" buttonType="RAISED" layoutX="63.0" layoutY="817.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Reset" />
+                         <JFXButton fx:id="editButton2" alignment="CENTER" buttonType="RAISED" layoutX="481.0" layoutY="817.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Cancel" />
                      </children></AnchorPane>
             </content>
           </Tab>
