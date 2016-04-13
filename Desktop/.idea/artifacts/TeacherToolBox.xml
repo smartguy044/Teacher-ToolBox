@@ -3,9 +3,12 @@
     <output-path>$PROJECT_DIR$/out/artifacts/TeacherToolBox</output-path>
     <properties id="javafx-properties">
       <options>
+        <option name="alias" value="" />
         <option name="appClass" value="teacherToolBox.Main" />
         <option name="description" value="" />
         <option name="htmlParamFile" value="" />
+        <option name="keystore" value="" />
+        <option name="nativeBundle" value="all" />
         <option name="paramFile" value="" />
         <option name="title" value="Teacher ToolBox" />
         <option name="vendor" value="me" />
@@ -18,6 +21,13 @@
           <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
         </element>
       </element>
+      <element id="library" level="application" name="de.jensd:fontawesomefx:8.8" />
+      <element id="library" level="application" name="javax.inject:javax.inject:1" />
+      <element id="library" level="application" name="net.orfjackal.retrolambda:retrolambda:2.1.0" />
+      <element id="library" level="application" name="mysql-connector-java-5.0.8-bin" />
+      <element id="library" level="application" name="jfoenix" />
+      <element id="library" level="application" name="javassist:javassist:3.12.1.GA" />
+      <element id="library" level="application" name="org.apache.poi:poi-examples:3.10-FINAL" />
     </root>
   </artifact>
 </component>
