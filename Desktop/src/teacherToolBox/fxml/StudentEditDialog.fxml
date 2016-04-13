@@ -14,7 +14,7 @@
                 <Label text="First Name" GridPane.rowIndex="2"/>
                 <Label text="Last Name" GridPane.rowIndex="3"/>
                 <Label text="Gender" GridPane.rowIndex="4"/>
-                <TextField fx:id="studentIDField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField fx:id="studentIDField" GridPane.columnIndex="1" GridPane.rowIndex="1" disable="true"/>
                 <TextField fx:id="firstNameField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                 <TextField fx:id="lastNameField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                 <TextField fx:id="genderField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
