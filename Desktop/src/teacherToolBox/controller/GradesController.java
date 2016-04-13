@@ -3,6 +3,7 @@ package teacherToolBox.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDecorator;
+import com.jfoenix.controls.JFXDecoratorSmall;
 import io.datafx.controller.FXMLController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.action.ActionMethod;
@@ -156,13 +157,10 @@ public class GradesController
         flowContext.register("Stage", primaryStage);
         flow.createHandler(flowContext).start(container);
 
-        Scene scene = new Scene(new JFXDecorator(primaryStage, container.getView()), 590, 500);
+        Scene scene = new Scene(new JFXDecoratorSmall(primaryStage, container.getView()), 450, 350);
         scene.getStylesheets().add(Main.class.getResource("/resources/css/teacherToolBox-main.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        Stage st = (Stage) addAssignment.getScene().getWindow();
-        st.hide();
     }
 
 }
