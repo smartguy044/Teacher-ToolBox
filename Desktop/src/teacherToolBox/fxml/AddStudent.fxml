@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.layout.*?>
@@ -10,16 +11,17 @@
 <!--<?import com.jfoenix.validation.RequiredFieldValidator?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0"
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0"
       prefWidth="662.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <JFXComboBox fx:id="classCB" layoutX="200.0" layoutY="17.0" prefHeight="39.0" prefWidth="170.0"
-                     promptText="Select Roster"/>
-        <JFXButton fx:id="selectionButton" buttonType="RAISED" layoutX="401.0" layoutY="22.0" disable="true"
+                     promptText="Select Roster" value="Select Roster"/>
+        <JFXButton fx:id="selectionButton" buttonType="RAISED" disable="true" layoutX="401.0" layoutY="22.0"
                    style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Select"
                    textAlignment="CENTER"/>
-        <JFXButton fx:id="submitButton" layoutX="286.0" layoutY="243.0" prefHeight="39.0" prefWidth="91.0" disable="true"
-                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit"/>
+        <JFXButton fx:id="submitButton" disable="true" layoutX="286.0" layoutY="243.0" prefHeight="39.0"
+                   prefWidth="91.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;"
+                   text="Submit"/>
         <JFXTextField fx:id="studentIdTF" disable="true" labelFloat="true" layoutX="14.0" layoutY="75.0"
                       maxWidth="300.0" minWidth="300.0" prefHeight="37.0" prefWidth="300.0" promptText="Student ID">
             <!--<validators>
@@ -53,8 +55,8 @@
                 </RequiredFieldValidator>
             </validators>-->
         </JFXTextField>
-        <JFXTextField fx:id="genderTF" disable="true" labelFloat="true" layoutX="354.0" layoutY="141.0"
-                      maxWidth="300.0" minWidth="300.0" prefHeight="37.0" prefWidth="300.0" promptText="Gender">
+        <JFXTextField fx:id="genderTF" disable="true" labelFloat="true" layoutX="354.0" layoutY="141.0" maxWidth="300.0"
+                      minWidth="300.0" prefHeight="37.0" prefWidth="300.0" promptText="Gender">
             <padding>
                 <Insets top="20"/>
             </padding>
@@ -88,40 +90,36 @@
                 </TableColumn>
             </columns>
         </TableView>
-        <JFXButton layoutX="140.0" layoutY="705.0" prefHeight="39.0" prefWidth="100.0"
-                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Add Another"/>
-        <JFXButton layoutX="285.0" layoutY="705.0" prefHeight="39.0" prefWidth="91.0"
-                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Finish"/>
-        <JFXButton layoutX="422.0" layoutY="705.0" prefHeight="39.0" prefWidth="100.0"
-                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Cancel"/>
     </children>
+    <children>
 
-    <JFXDialog fx:id="studentExistsDialog" maxWidth="300.0" maxHeight="100.0">
-        <JFXDialogLayout>
-            <heading>
-                <Label>Warning</Label>
-            </heading>
-            <body>
-                <Label text="Student already exist"/>
-            </body>
-            <actions>
-                <JFXButton fx:id="acceptButtonSE" styleClass="dialog-accept" text="Accept"/>
-            </actions>
-        </JFXDialogLayout>
-    </JFXDialog>
+        <JFXDialog fx:id="studentExistsDialog" maxHeight="100.0" maxWidth="300.0">
+            <JFXDialogLayout>
+                <heading>
+                    <Label>Warning</Label>
+                </heading>
+                <body>
+                    <Label text="Student already exist"/>
+                </body>
+                <actions>
+                    <JFXButton fx:id="acceptButtonSE" styleClass="dialog-accept" text="Accept"/>
+                </actions>
+            </JFXDialogLayout>
+        </JFXDialog>
 
-    <JFXDialog fx:id="studentIDExistsDialog" maxWidth="300.0" maxHeight="100.0">
-        <JFXDialogLayout>
-            <heading>
-                <Label>Warning</Label>
-            </heading>
-            <body>
-                <Label text="Student ID already exist"/>
-            </body>
-            <actions>
-                <JFXButton fx:id="acceptButtonID" styleClass="dialog-accept" text="Accept"/>
-            </actions>
-        </JFXDialogLayout>
-    </JFXDialog>
+        <JFXDialog fx:id="studentIDExistsDialog" maxHeight="100.0" maxWidth="300.0">
+            <JFXDialogLayout>
+                <heading>
+                    <Label>Warning</Label>
+                </heading>
+                <body>
+                    <Label text="Student ID already exist"/>
+                </body>
+                <actions>
+                    <JFXButton fx:id="acceptButtonID" styleClass="dialog-accept" text="Accept"/>
+                </actions>
+            </JFXDialogLayout>
+        </JFXDialog>
+    </children>
 
 </Pane>
