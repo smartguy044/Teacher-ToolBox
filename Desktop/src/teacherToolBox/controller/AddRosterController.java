@@ -16,6 +16,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -438,7 +439,7 @@ public class AddRosterController
         if(startDate.getValue() == null || endDate.getValue() == null)
         {
             dateDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
-            dateDialog.show((Pane) context.getRegisteredObject("ContentPane"));
+            dateDialog.show((StackPane) context.getRegisteredObject("ContentPane"));
         }
         else
         {
@@ -468,6 +469,7 @@ public class AddRosterController
                 }
 
                 statement.executeUpdate("CREATE TABLE " + className.getText() + "Attendance (`studentID` int(4), FOREIGN KEY (studentID) REFERENCES students (studentID))");
+                statement.executeUpdate("CREATE TABLE " + className.getText() + "Grades (`studentID` int(4), `finalGrade` int(3))");
 
                 for (Student aData : data)
                 {
@@ -476,16 +478,18 @@ public class AddRosterController
                             "', '"
                             + aData.getGender() + "')");
 
-                    statement.executeUpdate("INSERT INTO rosters(courseID, studentID) values (" + courseID + ", " + aData.getStudentID() + ")");
+                    statement.executeUpdate("INSERT INTO rosters(courseID, studentID) values(" + courseID + ", " + aData.getStudentID() + ")");
 
-                    statement.executeUpdate("INSERT INTO " + className.getText() + "Attendance(studentID) values (" + aData.getStudentID() + ")");
+                    statement.executeUpdate("INSERT INTO " + className.getText() + "Attendance(studentID) values(" + aData.getStudentID() + ")");
+
+                    statement.executeUpdate("INSERT INTO " + className.getText() + "Grades(studentID) values(" + aData.getStudentID() + ")");
                 }
 
                 List<String> dates = datesBetween(startDate.getValue(), endDate.getValue());
 
                 for (String date : dates)
                 {
-                    statement.executeUpdate("ALTER TABLE " + className.getText() + "Attendance ADD `" + date + "` VARCHAR(1)");
+                    statement.executeUpdate("ALTER TABLE " + className.getText() + "Attendance ADD `" + date + "` VARCHAR(1) DEFAULT 'N'");
                 }
 
                 clearForm();
