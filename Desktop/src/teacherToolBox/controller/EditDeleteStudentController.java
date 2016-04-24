@@ -15,9 +15,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import teacherToolBox.Main;
 import teacherToolBox.components.Student;
 
 import javax.annotation.PostConstruct;
+import javax.swing.text.Style;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
@@ -39,6 +42,7 @@ public class EditDeleteStudentController
 
     private ObservableList<Student> data;
     private Statement statement;
+    private String selection;
 
     @PostConstruct
     public void init()
@@ -84,11 +88,15 @@ public class EditDeleteStudentController
                         FXMLLoader loader = new FXMLLoader(EditDeleteStudentController.class.getResource("../fxml/StudentEditDialog.fxml"));
                         AnchorPane page = loader.load();
                         Stage dialogStage = new Stage();
+
                         dialogStage.setTitle("Edit Person");
                         dialogStage.initModality(Modality.WINDOW_MODAL);
+
+                        page.setStyle("-fx-background-color: white; -fx-border-color: black;");
+                        dialogStage.initStyle(StageStyle.UNDECORATED);
+
                         dialogStage.initOwner(primaryStage);
-                        flowContext = new ViewFlowContext();
-                        flowContext.register("Stage", dialogStage);
+
                         Scene scene = new Scene(page);
                         dialogStage.setScene(scene);
 
@@ -106,6 +114,7 @@ public class EditDeleteStudentController
                                 statement.executeUpdate("UPDATE students SET studentID = " + data.get(value).getStudentID() + ", studentFN = '" + data.get(value).getFirstName() +
 
                                         "', studentLN = '" + data.get(value).getLastName() + "', studentGen = '" + data.get(value).getGender() + "' WHERE studentFN = '" + fname + "'");
+
                                 rosterView.refresh();
                             }
                         }
@@ -114,6 +123,8 @@ public class EditDeleteStudentController
                         {
                             statement.executeUpdate("DELETE FROM rosters WHERE studentID = " + studentID);
                             statement.executeUpdate("DELETE FROM students WHERE studentID = " + studentID);
+                            statement.executeUpdate("DELETE FROM " + selection + "Attendance WHERE studentID = " + studentID);
+                            statement.executeUpdate("DELETE FROM " + selection + "Grades WHERE studentID = " + studentID);
 
                             getStudents();
 
@@ -155,7 +166,7 @@ public class EditDeleteStudentController
         data.clear();
 
         ArrayList<Integer> ids = new ArrayList<>();
-        String selection = classCB.getSelectionModel().getSelectedItem();
+        selection = classCB.getSelectionModel().getSelectedItem();
 
 
         ResultSet resultSet = statement.executeQuery("select studentID from rosters where courseID in (select " +
