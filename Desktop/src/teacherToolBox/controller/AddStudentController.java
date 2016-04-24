@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import teacherToolBox.components.Student;
 
 import javax.annotation.PostConstruct;
@@ -255,12 +256,12 @@ public class AddStudentController
                 if(aData.getFirstName().equals(firstNameTF.getText()) && aData.getLastName().equals(lastNameTF.getText()))
                 {
                     studentExistsDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
-                    studentExistsDialog.show((Pane) flowContext.getRegisteredObject("ContentPane"));
+                    studentExistsDialog.show((StackPane) flowContext.getRegisteredObject("ContentPane"));
                 }
                 else
                 {
                     studentIDExistsDialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
-                    studentIDExistsDialog.show((Pane) flowContext.getRegisteredObject("ContentPane"));
+                    studentIDExistsDialog.show((StackPane) flowContext.getRegisteredObject("ContentPane"));
                 }
 
                 break;
@@ -287,6 +288,10 @@ public class AddStudentController
                     + genderTF.getText() + "')");
 
             statement.executeUpdate("INSERT INTO rosters(courseID, studentID) values (" + courseID + ", " + Integer.valueOf(studentIdTF.getText()) + ")");
+
+            statement.executeUpdate("INSERT INTO " + selection + "Attendance(studentID) values(" + Integer.valueOf(studentIdTF.getText()) + ")");
+
+            statement.executeUpdate("INSERT INTO " + selection + "Grades(studentID) values(" + Integer.valueOf(studentIdTF.getText()) + ")");
 
             studentIdTF.setText("");
             firstNameTF.setText("");
