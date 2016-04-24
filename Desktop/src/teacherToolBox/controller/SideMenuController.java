@@ -37,8 +37,12 @@ public class SideMenuController
 	private Label attendance;
 
 	@FXML
-	@ActionTrigger("rosterMenu")
-	private Label rosterMenu;
+	@ActionTrigger("addStudent")
+	private Label addStudent;
+
+	@FXML
+	@ActionTrigger("editDeleteStudent")
+	private Label editDeleteStudent;
 
 	@FXML
 	@ActionTrigger("grades")
@@ -58,7 +62,8 @@ public class SideMenuController
 		FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
 		Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
 		bindNodeToController(addRoster, MainAddRosterController.class, contentFlow, contentFlowHandler);
-		bindNodeToController(rosterMenu, MainRosterMenuController.class, contentFlow, contentFlowHandler);
+		bindNodeToController(addStudent, MainAddStudentController.class, contentFlow, contentFlowHandler);
+		bindNodeToController(editDeleteStudent, MainEditDeleteStudentController.class, contentFlow, contentFlowHandler);
 		bindNodeToController(attendance, MainAttendanceController.class, contentFlow, contentFlowHandler);
 		bindNodeToController(grades, MainGradesController.class, contentFlow, contentFlowHandler);
 		bindNodeToController(reports, MainReportsController.class, contentFlow, contentFlowHandler);
@@ -90,9 +95,13 @@ public class SideMenuController
 						height = 1000;
 						width = 750;
 						break;
-					case "Roster Menu" :
-						height = 425;
-						width = 350;
+					case "Add Student" :
+						height = 900;
+						width = 762;
+						break;
+					case "Edit/Delete Student" :
+						height = 850;
+						width = 650;
 						break;
 					case "Attendance" :
 						height = 660;
