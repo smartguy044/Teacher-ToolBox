@@ -32,8 +32,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-@FXMLController("../fxml/AddRoster.fxml")
+/*
+ * The AddRosterController class is responsible for managing the rosters of TeacherToolBox application
+ * Specifically, adding a roster can be done through manual upload by the user or by uploading a pre-generated roster from a csv file.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
 
+@FXMLController("../fxml/AddRoster.fxml")
 public class AddRosterController
 {
     @FXMLViewFlowContext
