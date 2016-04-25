@@ -25,8 +25,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Properties;
 
-@FXMLController("../fxml/AddStudent.fxml")
+/*
+ * The AddStudentController class allows the user to add student's information in the roster of TeacherToolBox
+ *
+ * Student information include: student id, first name, last name, and gender.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
 
+@FXMLController("../fxml/AddStudent.fxml")
 public class AddStudentController
 {
     @FXMLViewFlowContext
