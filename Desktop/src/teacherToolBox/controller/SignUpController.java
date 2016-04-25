@@ -28,8 +28,21 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.Properties;
 
-@FXMLController("../fxml/SignUp.fxml")
+/*
+ * The SignUpController class is the class that handles the first process of the first time user of TeacherToolbox.
+ * The user needs to fill up the sign up window with the following information:
+ * >Full Name
+ * >Email
+ * >Password
+ * >Security Question and Answer
+ * Note that there are special restrictions in filling up the sign up windows, such as special character requirements, and email format requirements.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
 
+@FXMLController("../fxml/SignUp.fxml")
 public class SignUpController
 {
     @FXMLViewFlowContext
