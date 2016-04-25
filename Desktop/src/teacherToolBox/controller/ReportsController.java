@@ -2,23 +2,16 @@ package teacherToolBox.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXRadioButton;
 import io.datafx.controller.FXMLController;
 import io.datafx.controller.flow.action.ActionMethod;
 import io.datafx.controller.flow.action.ActionTrigger;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -27,19 +20,10 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import teacherToolBox.components.Student;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-
 import javax.annotation.PostConstruct;
-import javax.jnlp.FileContents;
-import javax.jnlp.FileSaveService;
 import java.io.*;
 import java.sql.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
 
 /*
  * The ReportsController class allows the user to generate various reports depending on what columns or rows the user selected.
@@ -67,7 +51,16 @@ public class ReportsController
     private JFXComboBox<String> classCB2;
 
     @FXML
-    private JFXComboBox<String> classCB3;
+    private JFXRadioButton topRB;
+
+    @FXML
+    private JFXRadioButton bottomRB;
+
+    @FXML
+    private JFXRadioButton allRB;
+
+    @FXML
+    private JFXRadioButton finalRB;
 
     @FXML
     private TableView<Student> rosterView;
@@ -85,19 +78,12 @@ public class ReportsController
     private JFXButton browseButton2;
 
     @FXML
-    @ActionTrigger("uploadSubmitAction")
-    private JFXButton uploadSubmitButton;
+    @ActionTrigger("resetAction")
+    private JFXButton resetButton;
 
     @FXML
-    @ActionTrigger("uploadSubmitAction")
-    private JFXButton uploadSubmitButton2;
-
-    @FXML
-    @ActionTrigger("finishAction")
-    private JFXButton finishButton;
-
-    @FXML
-    private JFXTextField filePath;
+    @ActionTrigger("resetAction")
+    private JFXButton resetButton2;
 
     @FXML
     private DatePicker startDate, endDate;
@@ -135,9 +121,8 @@ public class ReportsController
 
             classCB.getItems().addAll(classes);
             classCB2.getItems().addAll(classes);
-            classCB3.getItems().addAll(classes);
 
-            activityCB.getItems().add(0, "no");
+            activityCB.getItems().add(0, "no"); /////////////Need to populate activities///////////////////
         }
         catch (IOException ioException)
         {
@@ -176,26 +161,9 @@ public class ReportsController
             updateButton();
         });
 
-        filePath.focusedProperty().addListener((o, oldVal, newVal) -> //////////////////needs work//////////
-        {
-            if (!newVal)
-            {
-                filePath.validate();
-            }
-
-            filePath.addEventFilter(KeyEvent.KEY_RELEASED, arg0 ->
-            {
-                if (!newVal)
-                {
-                    filePath.validate();
-                }
-
-                updateButton();
-            });
-        });
-
-        // Validations for 2nd tab in Reports.fxml
-
+        //Reset report filters
+        resetButton.setOnAction(event -> clearForm());
+        resetButton2.setOnAction(event -> clearForm());
     }
 
     @ActionMethod("selectionAction")
@@ -208,7 +176,8 @@ public class ReportsController
 
         String selection = classCB.getSelectionModel().getSelectedItem();
 
-        try {
+        try
+        {
             ResultSet resultSet = statement.executeQuery("select studentID from rosters where courseID in (select " +
                     "courseID from courses where courseName = '" + selection + "')");
 
@@ -222,7 +191,9 @@ public class ReportsController
                 resultSet = statement.executeQuery("select studentID, studentFN, studentLN, studentGen from students " +
                         "where studentID = " + id);
 
-                while (resultSet.next()) {
+                while (resultSet.next())
+                {
+                    String name = resultSet.getString(2) + " " + resultSet.getString(3);
                     data.add(new Student(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet
                             .getString(4)));
                 }
@@ -235,190 +206,113 @@ public class ReportsController
         }
     }
 
-    /*
     @ActionMethod("browseAction")
     public void browseButton_onAction() throws Exception
     {
         Stage st = (Stage) browseButton.getScene().getWindow();
 
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose Roster File");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Excel Documents", "*.xlsx", "*.csv"));
 
-        File selectedFile = fileChooser.showOpenDialog(st);
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel Documents", "*.xlsx");
+        fileChooser.getExtensionFilters().add(extFilter);
 
-        if (selectedFile != null)
+        //Show save file dialog
+        File file = fileChooser.showSaveDialog(st);
+
+        data = rosterView.getItems();
+
+        if(file != null)
         {
-            filePath.setText(selectedFile.getAbsolutePath());
+            SaveFile(file);
         }
-    }*/
+    }
 
     @ActionMethod("browseAction")
-    public void browseButton_onAction() throws Exception
+    public void browseButton2_onAction() throws Exception
     {
-        Stage st = (Stage) browseButton.getScene().getWindow();
+        Stage st = (Stage) browseButton2.getScene().getWindow();
 
-        browseButton.setOnAction(event ->
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel Documents", "*.xlsx");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        //Show save file dialog
+        File file = fileChooser.showSaveDialog(st);
+
+        data = rosterView.getItems();
+
+        if(file != null)
         {
-            FileChooser fileChooser = new FileChooser();
-
-            //Set extension filter
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel Documents", "*.xlsx", "*.csv");
-            fileChooser.getExtensionFilters().add(extFilter);
-
-            //Show save file dialog
-            File file = fileChooser.showSaveDialog(st);
-
-            if(file != null)
-            {
-                SaveFile(data.toString(), file);
-            }
-        });
+            SaveFile(file);
+        }
     }
 
-    private void SaveFile(String content, File file)
+    private void SaveFile(File file)
     {
+        //Blank workbook
+        XSSFWorkbook workbook = new XSSFWorkbook();
+
+        //Create a blank sheet
+        XSSFSheet sheet = workbook.createSheet("Employee Data");
+
+        data = rosterView.getItems();
+
+        //This data needs to be written (Object[])
+        Map<String, Object[]> data1 = new TreeMap<>();
+
+        for(int i = 0; i < data.size(); i++)
+        {
+            data1.put(i + "", new Object[]{data.get(i).getStudentID(), data.get(i).getFirstName(),
+                    data.get(i).getLastName(), data.get(i).getGender()});
+        }
+
+        //Iterate over data and write to sheet
+        Set<String> keySet = data1.keySet();
+
+        int rowNum = 0;
+        for (String key : keySet)
+        {
+            //create a row on excel sheet
+            XSSFRow row = sheet.createRow(rowNum++);
+
+            //get object array of particular key
+            Object[] objArr = data1.get(key);
+
+            int cellNum = 0;
+
+            for (Object obj : objArr)
+            {
+                XSSFCell cell = row.createCell(cellNum++);
+                if (obj instanceof String)
+                {
+                    cell.setCellValue((String) obj);
+                }
+                else if (obj instanceof Integer)
+                {
+                    cell.setCellValue((Integer) obj);
+                }
+            }
+        }
         try
         {
-            FileWriter fileWriter = null;
-
-            fileWriter = new FileWriter(file);
-            for (Student std : data)
-            {
-                String txt = std.getFirstName() + ",";
-            }
-            fileWriter.write(content);
-            fileWriter.close();
+            //Write the workbook in file system
+            FileOutputStream out = new FileOutputStream(file);
+            workbook.write(out);
+            out.close();
+            System.out.println("Successfully wrote to disk.");
         }
-        catch (IOException ex)
-        {
-            Logger.getLogger(ReportsController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @ActionMethod("uploadSubmitAction")
-    public void uploadSubmitButton_onAction() throws Exception
-    {
-        String csvFile = filePath.getText();
-        BufferedReader br = null;
-        String line = "";
-        String csvSplitBy = ",";
-        String extension = csvFile.substring(csvFile.lastIndexOf('.'), csvFile.length());
-
-        try {
-            if (extension.equals(".csv"))
-            {
-                br = new BufferedReader(new FileReader(csvFile));
-
-                while ((line = br.readLine()) != null)
-                {
-                    // use comma as separator
-                    String[] student = line.split(csvSplitBy);
-
-                    data = rosterView.getItems();
-                    data.add(new Student(Integer.valueOf(student[0]), student[1], student[2], student[3]));
-                }
-            }
-            else if (extension.equals(".xlsx"))
-            {
-                try {
-                    FileInputStream fs = new FileInputStream(csvFile);
-                    XSSFWorkbook wb = new XSSFWorkbook(fs);
-                    XSSFSheet sheet = wb.getSheetAt(0);
-                    XSSFRow row;
-                    XSSFCell cell;
-
-                    Student student = new Student();
-
-                    int rows;
-                    rows = sheet.getPhysicalNumberOfRows();
-
-                    int cols = 0;
-                    int temp = 0;
-
-                    for (int i = 0; i < 10 || i < rows; i++)
-                    {
-                        row = sheet.getRow(i);
-
-                        if (row != null)
-                        {
-                            temp = sheet.getRow(i).getPhysicalNumberOfCells();
-
-                            if (temp > cols)
-                            {
-                                cols = temp;
-                            }
-                        }
-                    }
-
-                    for (int r = 0; r < rows; r++)
-                    {
-                        row = sheet.getRow(r);
-
-                        if (row != null)
-                        {
-                            for (int i = 0; i < cols; i++)
-                            {
-                                cell = row.getCell((short) i);
-
-                                if (cell != null)
-                                {
-                                    if (cell.getColumnIndex() == 0)
-                                    {
-                                        student.setStudentID((int) cell.getNumericCellValue());
-                                    }
-                                    else if (cell.getColumnIndex() == 1)
-                                    {
-                                        student.setFirstName(String.valueOf(cell.getStringCellValue()));
-                                    }
-                                    else if (cell.getColumnIndex() == 2)
-                                    {
-                                        student.setLastName(String.valueOf(cell.getStringCellValue()));
-                                    }
-                                    else if (cell.getColumnIndex() == 3)
-                                    {
-                                        student.setGender(String.valueOf(cell.getStringCellValue()));
-                                    }
-                                    if (i % 3 == 0 && i != 0)
-                                    {
-                                        data = rosterView.getItems();
-                                        data.add(new Student(student.getStudentID(), student.getFirstName(), student.getLastName(), student.getGender()));
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                catch (Exception ioe)
-                {
-                    ioe.printStackTrace();
-                }
-            }
-
-            finishButton.setDisable(false);
-        }
-        catch (FileNotFoundException e)
+        catch (Exception e)
         {
             e.printStackTrace();
-        }
-        finally
-        {
-            if (br != null)
-            {
-                try {
-                    br.close();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 
     private void updateButton()
     {
-        if (!classCB.getValue().equals("Roster"))
+        if (!classCB.getValue().equals("Roster")) /////////////////throws errors but still works///////////////
         {
             if (!activityCB.getValue().equals("Activity"))
             {
@@ -434,20 +328,24 @@ public class ReportsController
             {
                 selectBtn.setDisable(true);
             }
+        }
+    }
 
+    private void clearForm()
+    {
+        classCB.getSelectionModel().clearSelection();
+        classCB.setPromptText("Roster");
+        activityCB.getSelectionModel().clearSelection();
+        activityCB.setPromptText("Activity");
+        startDate.setValue(null);
+        startDate.setPromptText("Start Date");
+        endDate.setValue(null);
+        endDate.setPromptText("End Date");
 
-        }/*
-        else if(radioButton2.isSelected())
-        {
-            if (!className.getText().equals("") && !studentIdTF.getText().equals("") && !firstNameTF.getText().equals("") && !lastNameTF.getText().equals("") && !genderTF.getText().equals(""))
-
-            {
-                manualSubmitButton.setDisable(false);
-            }
-            else
-            {
-                manualSubmitButton.setDisable(true);
-            }
-        }*/
+        classCB2.getSelectionModel().clearSelection();
+        allRB.selectedProperty().setValue(false);
+        finalRB.selectedProperty().setValue(false);
+        topRB.selectedProperty().setValue(false);
+        bottomRB.selectedProperty().setValue(false);
     }
 }
