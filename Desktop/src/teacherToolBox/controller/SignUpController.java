@@ -275,16 +275,9 @@ public class SignUpController
             });
         });
 
-        secCB.focusedProperty().addListener((o, oldVal, newVal) ->
+        secCB.valueProperty().addListener((ov, t, t1) ->
         {
-            secCB.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()
-            {
-                @Override
-                public void handle(MouseEvent arg0)
-                {
-                    updateButton();
-                }
-            });
+            updateButton();
         });
 
         secAnsTF.focusedProperty().addListener((o, oldVal, newVal) ->
