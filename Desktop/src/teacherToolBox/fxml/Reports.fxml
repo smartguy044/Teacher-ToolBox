@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.geometry.Insets?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0"
       prefWidth="659.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
@@ -21,7 +18,7 @@
                             <children>
                                 <Label alignment="CENTER" layoutX="190.0" layoutY="34.0" prefHeight="35.0"
                                        prefWidth="236.0" style="-fx-font-weight: bold; -fx-font-size: 20.0px;"
-                                       text="Select Input For Report" underline="true"/>
+                                       text="Select Input For Report"/>
                                 <JFXComboBox fx:id="classCB" layoutX="174.0" layoutY="85.0" prefHeight="31.0"
                                              prefWidth="116.0">
                                     <value>
@@ -45,66 +42,48 @@
                                            layoutX="470.0" layoutY="152.0" prefHeight="31.0" prefWidth="79.0"
                                            style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;"
                                            text="Select"/>
-                                <TableView fx:id="rosterView" layoutX="62.0" layoutY="226.0" prefHeight="420.0"
-                                           prefWidth="497.0">
+                                <TableView fx:id="rosterView" layoutX="63.0" layoutY="288.0" prefHeight="458.0"
+                                           prefWidth="503.0">
                                     <columns>
-                                        <TableColumn fx:id="idColumn" prefWidth="125.0" resizable="false"
+                                        <TableColumn fx:id="idColumn" prefWidth="85.0" resizable="false"
                                                      text="Student ID">
                                             <cellValueFactory>
                                                 <PropertyValueFactory property="studentID"/>
                                             </cellValueFactory>
                                         </TableColumn>
-                                        <TableColumn prefWidth="125.0" resizable="false" text="First Name">
+                                        <TableColumn prefWidth="145.0" resizable="false" text="Full Name">
                                             <cellValueFactory>
-                                                <PropertyValueFactory property="firstName"/>
+                                                <PropertyValueFactory property="fullName"/>
                                             </cellValueFactory>
                                         </TableColumn>
-                                        <TableColumn prefWidth="125.0" resizable="false" text="Last Name">
+                                        <TableColumn prefWidth="203.0" resizable="false" text="Activity">
                                             <cellValueFactory>
-                                                <PropertyValueFactory property="lastName"/>
+                                                <PropertyValueFactory property="activity"/>
                                             </cellValueFactory>
                                         </TableColumn>
-                                        <TableColumn prefWidth="125.0" resizable="false" text="Gender">
+                                        <TableColumn prefWidth="67.0" resizable="false" text="Grade">
                                             <cellValueFactory>
-                                                <PropertyValueFactory property="gender"/>
+                                                <PropertyValueFactory property="grade"/>
                                             </cellValueFactory>
                                         </TableColumn>
                                     </columns>
                                 </TableView>
-                                <Label alignment="CENTER" layoutX="250.0" layoutY="668.0" prefHeight="35.0"
+                                <Label alignment="CENTER" layoutX="257.0" layoutY="765.0" prefHeight="35.0"
                                        prefWidth="115.0" style="-fx-font-weight: bold; -fx-font-size: 20.0px;"
-                                       text="Save File" underline="true"/>
-                                <JFXTextField fx:id="filePath" layoutX="58.0" layoutY="719.0" maxWidth="399.0"
-                                              minWidth="348.0" prefHeight="47.0" prefWidth="348.0"
-                                              promptText="Enter Complete File Path">
-                                    <padding>
-                                        <Insets top="20"/>
-                                    </padding>
-                                    <!--<validators>
-                                        <RequiredFieldValidator message="Input Required!">
-                                            <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;"/>
-                                        </RequiredFieldValidator>
-                                    </validators>-->
-                                </JFXTextField>
-                                <JFXButton fx:id="browseButton" buttonType="RAISED" layoutX="427.0" layoutY="728.0"
+                                       text="Save File"/>
+                                <JFXButton fx:id="browseButton" buttonType="RAISED" layoutX="400.0" layoutY="824.0"
                                            style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;"
                                            text="Browse" textAlignment="CENTER"/>
-                                <JFXButton fx:id="uploadSubmitButton" buttonType="RAISED" disable="true" layoutX="510.0"
-                                           layoutY="728.0"
+                                <JFXButton fx:id="resetButton" alignment="CENTER" buttonType="RAISED" layoutX="275.0"
+                                           layoutY="231.0" prefHeight="31.0" prefWidth="79.0"
                                            style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;"
-                                           text="Submit" textAlignment="CENTER"/>
-                                <JFXButton fx:id="resetButton" alignment="CENTER" buttonType="RAISED" layoutX="63.0"
-                                           layoutY="817.0" prefHeight="31.0" prefWidth="79.0"
-                                           style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;"
-                                           text="Reset"/>
-                                <JFXButton fx:id="FinishButton" alignment="CENTER" buttonType="RAISED" layoutX="264.0"
-                                           layoutY="817.0" prefHeight="31.0" prefWidth="79.0"
-                                           style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;"
-                                           text="Finish"/>
-                                <JFXButton fx:id="cancelButton" alignment="CENTER" buttonType="RAISED" layoutX="481.0"
-                                           layoutY="817.0" prefHeight="31.0" prefWidth="79.0"
-                                           style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;"
-                                           text="Cancel"/>
+                                           text="Reset "/>
+                                <Label layoutX="155.0" layoutY="826.0" prefHeight="26.0" prefWidth="226.0"
+                                       text="Select location for saved file :">
+                                    <font>
+                                        <Font size="17.0"/>
+                                    </font>
+                                </Label>
                             </children>
                         </AnchorPane>
                     </content>
@@ -113,70 +92,50 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <Label alignment="CENTER" layoutX="187.0" layoutY="56.0" prefHeight="44.0"
+                                <Label alignment="CENTER" layoutX="192.0" layoutY="81.0" prefHeight="44.0"
                                        prefWidth="233.0" style="-fx-font-weight: bold; -fx-font-size: 20.0px;"
-                                       text="Select Input For Report" underline="true"/>
-                                <Label alignment="CENTER" layoutX="46.0" layoutY="168.0" prefHeight="28.0"
+                                       text="Select Input For Report"/>
+                                <Label alignment="CENTER" layoutX="46.0" layoutY="239.0" prefHeight="28.0"
                                        prefWidth="223.0" style="-fx-font-weight: bold; -fx-font-size: 16.0px;"
                                        text="Aggregate &amp; Descriptive"/>
-                                <Label alignment="CENTER" layoutX="369.0" layoutY="168.0" prefHeight="28.0"
+                                <Label alignment="CENTER" layoutX="369.0" layoutY="239.0" prefHeight="28.0"
                                        prefWidth="184.0" style="-fx-font-weight: bold; -fx-font-size: 16.0px;"
                                        text="Overall Performance"/>
-                                <JFXRadioButton layoutX="46.0" layoutY="223.0" styleClass="custom-jfx-radio-button">
+                                <JFXRadioButton fx:id="allRB" layoutX="46.0" layoutY="294.0"
+                                                styleClass="custom-jfx-radio-button">
                                     <toggleGroup>
-                                        <ToggleGroup fx:id="toggleGroup2"/>
+                                        <ToggleGroup fx:id="toggleGroup1"/>
                                     </toggleGroup>
                                 </JFXRadioButton>
-                                <Label layoutX="107.0" layoutY="223.0"
-                                       text="Summary, entire&#10;class, all assignments"/>
-                                <JFXRadioButton layoutX="46.0" layoutY="298.0" styleClass="custom-jfx-radio-button"
-                                                toggleGroup="$toggleGroup2"/>
-                                <Label layoutX="107.0" layoutY="298.0" text="Summary, entire&#10;class, final grade"/>
-                                <JFXRadioButton layoutX="46.0" layoutY="378.0" styleClass="custom-jfx-radio-button"
-                                                toggleGroup="$toggleGroup2"/>
-                                <Label layoutX="107.0" layoutY="378.0" text="Descriptive Statistics"/>
-                                <JFXRadioButton layoutX="362.0" layoutY="223.0" styleClass="custom-jfx-radio-button"
-                                                text="Top % of Students" toggleGroup="$toggleGroup2"/>
-                                <JFXRadioButton layoutX="362.0" layoutY="343.0" styleClass="custom-jfx-radio-button"
-                                                text="Bottom % of Students" toggleGroup="$toggleGroup2"/>
-                                <JFXComboBox fx:id="classCB2" layoutX="370.0" layoutY="267.0" prefHeight="31.0"
+                                <Label layoutX="107.0" layoutY="294.0"
+                                       text="Summary, entire class, &#10;All Assignments"/>
+                                <JFXRadioButton fx:id="finalRB" layoutX="46.0" layoutY="369.0"
+                                                styleClass="custom-jfx-radio-button" toggleGroup="$toggleGroup1"/>
+                                <Label layoutX="107.0" layoutY="369.0" text="Summary, entire class, &#10;Final Grade"/>
+                                <JFXRadioButton fx:id="topRB" layoutX="368.0" layoutY="294.0"
+                                                styleClass="custom-jfx-radio-button" text="Top % of Students"
+                                                toggleGroup="$toggleGroup1"/>
+                                <JFXComboBox fx:id="classCB2" layoutX="227.0" layoutY="179.0" prefHeight="31.0"
                                              prefWidth="167.0" promptText="Select Roster"/>
-                                <JFXComboBox fx:id="classCB3" layoutX="368.0" layoutY="378.0" prefHeight="31.0"
-                                             prefWidth="167.0" promptText="Select Roster"/>
-                                <JFXButton fx:id="submitButton2" alignment="CENTER" buttonType="RAISED" layoutX="264.0"
-                                           layoutY="817.0" prefHeight="31.0" prefWidth="79.0"
-                                           style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;"
-                                           text="Finish"/>
-                                <JFXButton fx:id="resetButton2" alignment="CENTER" buttonType="RAISED" layoutX="63.0"
-                                           layoutY="817.0" prefHeight="31.0" prefWidth="79.0"
+                                <JFXRadioButton fx:id="bottomRB" layoutX="368.0" layoutY="369.0" prefHeight="21.0"
+                                                prefWidth="206.0" styleClass="custom-jfx-radio-button"
+                                                text="Bottom % of Students" toggleGroup="$toggleGroup1"/>
+                                <JFXButton fx:id="resetButton2" alignment="CENTER" buttonType="RAISED" layoutX="271.0"
+                                           layoutY="464.0" prefHeight="31.0" prefWidth="79.0"
                                            style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;"
                                            text="Reset"/>
-                                <JFXButton fx:id="cancelButton2" alignment="CENTER" buttonType="RAISED" layoutX="481.0"
-                                           layoutY="817.0" prefHeight="31.0" prefWidth="79.0"
-                                           style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;"
-                                           text="Cancel"/>
-                                <Label alignment="CENTER" layoutX="246.0" layoutY="543.0" prefHeight="35.0"
+                                <Label alignment="CENTER" layoutX="253.0" layoutY="717.0" prefHeight="35.0"
                                        prefWidth="115.0" style="-fx-font-weight: bold; -fx-font-size: 20.0px;"
-                                       text="Save File" underline="true"/>
-                                <JFXTextField fx:id="filePath2" layoutX="54.0" layoutY="651.0" maxWidth="399.0"
-                                              minWidth="320.0" prefHeight="47.0" prefWidth="335.0"
-                                              promptText="Enter Complete File Path">
-                                    <padding>
-                                        <Insets top="20"/>
-                                    </padding>
-                                    <!--<validators>
-                                        <RequiredFieldValidator message="Input Required!">
-                                            <FontAwesomeIconView glyphName="WARNING" style="-fx-font-family: FontAwesome;"/>
-                                        </RequiredFieldValidator>
-                                    </validators>-->
-                                </JFXTextField>
-                                <JFXButton fx:id="browseButton2" buttonType="RAISED" layoutX="412.0" layoutY="660.0"
+                                       text="Save File"/>
+                                <JFXButton fx:id="browseButton2" buttonType="RAISED" layoutX="398.0" layoutY="801.0"
                                            style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;"
                                            text="Browse" textAlignment="CENTER"/>
-                                <JFXButton fx:id="uploadSubmitButton2" buttonType="RAISED" disable="true"
-                                           layoutX="496.0" layoutY="660.0"
-                                           style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;"
-                                           text="Submit" textAlignment="CENTER"/>
+                                <Label layoutX="154.0" layoutY="803.0" prefHeight="26.0" prefWidth="226.0"
+                                       text="Select location for saved file :">
+                                    <font>
+                                        <Font size="17.0"/>
+                                    </font>
+                                </Label>
                             </children>
                         </AnchorPane>
                     </content>
