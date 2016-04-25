@@ -21,8 +21,17 @@ import teacherToolBox.maincontroller.*;
 
 import javax.annotation.PostConstruct;
 
-@FXMLController("../fxml/SideMenu.fxml")
+/*
+ * The SideMenuController class is the main menu of the TeacherToolbox
+ * This menu can be access in the upper left of the user interface of TeacherToolBox.
+ * This menu includes: Add Roster, Roster Menu, Attendance, Grades, and Reports functionality.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
 
+@FXMLController("../fxml/SideMenu.fxml")
 public class SideMenuController
 {
 	@FXMLViewFlowContext
