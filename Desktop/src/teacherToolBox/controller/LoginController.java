@@ -20,8 +20,16 @@ import teacherToolBox.maincontroller.MainSignUpController;
 
 import java.awt.*;
 
-@FXMLController("../fxml/Login.fxml")
+/*
+ * The LoginController class requires the user to enter his/her credentials for verification.	 *
+ * The user needs to input his/her username and password in order to access the other TeacherToolbox functionality.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
 
+@FXMLController("../fxml/Login.fxml")
 public class LoginController
 {
     @FXMLViewFlowContext
