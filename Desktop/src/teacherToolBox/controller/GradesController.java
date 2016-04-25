@@ -28,6 +28,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Properties;
 
+/*
+ * The GradesController class is responsible for tracking the record of the students grades from every class activity.
+ * Basically the user needs to add an assignment and set the assignment category for the class. Once the assignment is added, the user can manage the grades to that specific assignment for every student in the roster.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
+
 @FXMLController("../fxml/Grades.fxml")
 public class GradesController
 {
