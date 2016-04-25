@@ -18,8 +18,16 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@FXMLController("../fxml/Attendance.fxml")
+/*
+ * The AttendanceController class permits the user to mark the students attendance.
+ * Specifically, the user needs to manually update the attendance of every student inside the roster.
+ * The user must also select the roster which he/she needs to manage the attendance.
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
 
+@FXMLController("../fxml/Attendance.fxml")
 public class AttendanceController
 {
     @FXML
