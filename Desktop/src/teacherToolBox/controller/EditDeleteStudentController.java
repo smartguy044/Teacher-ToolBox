@@ -27,6 +27,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Properties;
 
+/*
+ * The EditDeleteStudentController class allows the user to edit the student information as well as delete the student from the roster.
+ * The user can process the adding, editing, and deleting in this class. Once the process is selected, the user needs to select the roster where he/she wants to manage the student.
+ * After selecting the roster, the TeacherToolBox will pull out the record of the Roster included the student information.
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
+
 @FXMLController("../fxml/EditDeleteStudent.fxml")
 public class EditDeleteStudentController
 {
