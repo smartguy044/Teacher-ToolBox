@@ -41,6 +41,16 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/*
+ * The ReportsController class allows the user to generate various reports depending on what columns or rows the user selected.
+ * The user will also be able to select the class, enter the report name, filter the dates, and customize the output.
+ * The reports can be generate in an excel, png, or jpeg format.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
+
 @FXMLController("../fxml/Reports.fxml")
 public class ReportsController
 {
