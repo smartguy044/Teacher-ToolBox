@@ -113,8 +113,8 @@ public class SideMenuController
 						width = 650;
 						break;
 					case "Attendance" :
-						height = 660;
-						width = 650;
+						height = 760;
+						width = 750;
 						break;
 					case "Grades" :
 						height = 864;
