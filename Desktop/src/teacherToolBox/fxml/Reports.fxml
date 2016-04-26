@@ -63,7 +63,7 @@
                                         </TableColumn>
                                         <TableColumn prefWidth="67.0" resizable="false" text="Grade">
                                             <cellValueFactory>
-                                                <PropertyValueFactory property="grade"/>
+                                                <PropertyValueFactory property="avgGrade"/>
                                             </cellValueFactory>
                                         </TableColumn>
                                     </columns>
