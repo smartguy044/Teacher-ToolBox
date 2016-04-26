@@ -1,18 +1,9 @@
 package teacherToolBox.components;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
 
 public class Student
 {
@@ -28,6 +19,10 @@ public class Student
     private SimpleBooleanProperty thursdayChecked = new SimpleBooleanProperty(false);
     private SimpleBooleanProperty fridayChecked = new SimpleBooleanProperty(false);
 
+    private SimpleStringProperty grades = new SimpleStringProperty("");
+    private SimpleStringProperty activity = new SimpleStringProperty("");
+    private SimpleDoubleProperty avgGrade = new SimpleDoubleProperty();
+
     public Student()
     {
         this(0, "", "", "");
@@ -42,15 +37,33 @@ public class Student
         setFullName(firstName + " " + lastName);
     }
 
-    public Student(int studentID, String name)
+    public Student(int studentID, String name, String activity, double avgGrade)
     {
         setStudentID(studentID);
         setFullName(name);
+        setActivity(activity);
+        setAvgGrade(avgGrade);
     }
 
     public Student(String name)
     {
         setFullName(name);
+        setGrades(name);
+    }
+
+    public Student(int studentID, String name)
+    {
+        setFullName(name);
+        setGrades(name);
+    }
+
+    public String getGrades() {
+        return grades.get();
+    }
+
+    public void setGrades(String grade)
+    {
+        grades.set(grade);
     }
 
     public int getStudentID()
@@ -91,6 +104,26 @@ public class Student
     public void setGender(String gen)
     {
         gender.set(gen);
+    }
+
+    public String getActivity()
+    {
+        return activity.get();
+    }
+
+    private void setActivity(String act)
+    {
+        activity.set(act);
+    }
+
+    public double getAvgGrade()
+    {
+        return avgGrade.get();
+    }
+
+    private void setAvgGrade(double avg)
+    {
+        avgGrade.set(avg);
     }
 
     public String getFullName()
