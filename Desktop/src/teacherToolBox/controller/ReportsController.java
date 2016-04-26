@@ -94,6 +94,8 @@ public class ReportsController
 
     private ObservableList<Student> data;
 
+    private static final String[] CATEGORIES = {"Daily Assignment", "Homework", "Test"};
+
     @PostConstruct
     public void init()
     {
@@ -122,7 +124,7 @@ public class ReportsController
             classCB.getItems().addAll(classes);
             classCB2.getItems().addAll(classes);
 
-            activityCB.getItems().add(0, "no"); /////////////Need to populate activities///////////////////
+            activityCB.getItems().addAll(CATEGORIES);
         }
         catch (IOException ioException)
         {
@@ -173,6 +175,9 @@ public class ReportsController
         data.clear();
 
         ArrayList<Integer> ids = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<Double> grades = new ArrayList<>();
+        ArrayList<Double> avg = new ArrayList<>();
 
         String selection = classCB.getSelectionModel().getSelectedItem();
 
@@ -186,16 +191,44 @@ public class ReportsController
                 ids.add(resultSet.getInt(1));
             }
 
-            for (Integer id : ids)
+            resultSet = statement.executeQuery("select assignmentName from assignments where assignmentCat = '" + activityCB.getSelectionModel().getSelectedItem() + "' " +
+                    "and gradesName = '" + selection + "grades' between '" + startDate.getValue() + "' and '" + endDate.getValue() + "'");
+
+            while (resultSet.next())
             {
-                resultSet = statement.executeQuery("select studentID, studentFN, studentLN, studentGen from students " +
-                        "where studentID = " + id);
+                names.add(resultSet.getString(1));
+            }
+
+            for (String name1 : names)
+            {
+                resultSet = statement.executeQuery("select `" + name1 + "` from " + selection + "grades");
 
                 while (resultSet.next())
                 {
-                    String name = resultSet.getString(2) + " " + resultSet.getString(3);
-                    data.add(new Student(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet
-                            .getString(4)));
+                    grades.add(resultSet.getDouble(1));
+                }
+            }
+
+            for(int i = 0; i < grades.size(); i++)
+            {
+                if(i >= ids.size())
+                {
+                    avg.set(i - ids.size(), (grades.get(i) + avg.get(i - ids.size())) / 2);
+                }
+                else
+                {
+                    avg.add(grades.get(i));
+                }
+            }
+
+            for (int i = 0; i < ids.size(); i++)
+            {
+                resultSet = statement.executeQuery("select studentFN, studentLN from students where studentID = " + ids.get(i));
+
+                while (resultSet.next())
+                {
+                    String name = resultSet.getString(1) + " " + resultSet.getString(2);
+                    data.add(new Student(ids.get(i), name, activityCB.getSelectionModel().getSelectedItem(), avg.get(i)));
                 }
             }
         }
@@ -214,7 +247,7 @@ public class ReportsController
         FileChooser fileChooser = new FileChooser();
 
         //Set extension filter
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel Documents", "*.xlsx");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel Document", "*.xlsx");
         fileChooser.getExtensionFilters().add(extFilter);
 
         //Show save file dialog
@@ -256,17 +289,18 @@ public class ReportsController
         XSSFWorkbook workbook = new XSSFWorkbook();
 
         //Create a blank sheet
-        XSSFSheet sheet = workbook.createSheet("Employee Data");
+        XSSFSheet sheet = workbook.createSheet("Report Data");
 
         data = rosterView.getItems();
 
         //This data needs to be written (Object[])
         Map<String, Object[]> data1 = new TreeMap<>();
 
+        data1.put(0 + "", new Object[]{"Student ID", "Student Name", "Activity", "Average Grade"});
+
         for(int i = 0; i < data.size(); i++)
         {
-            data1.put(i + "", new Object[]{data.get(i).getStudentID(), data.get(i).getFirstName(),
-                    data.get(i).getLastName(), data.get(i).getGender()});
+            data1.put(i + 1 + "", new Object[]{data.get(i).getStudentID(), data.get(i).getFullName(), data.get(i).getActivity(), data.get(i).getAvgGrade()});
         }
 
         //Iterate over data and write to sheet
@@ -294,6 +328,10 @@ public class ReportsController
                 {
                     cell.setCellValue((Integer) obj);
                 }
+                else if (obj instanceof Double)
+                {
+                    cell.setCellValue((Double) obj);
+                }
             }
         }
         try
@@ -302,7 +340,6 @@ public class ReportsController
             FileOutputStream out = new FileOutputStream(file);
             workbook.write(out);
             out.close();
-            System.out.println("Successfully wrote to disk.");
         }
         catch (Exception e)
         {
