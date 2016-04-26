@@ -23,6 +23,7 @@ import teacherToolBox.components.Student;
 import javax.annotation.PostConstruct;
 import java.io.*;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.*;
 
 /*
@@ -142,7 +143,6 @@ public class ReportsController
             System.err.printf("problem with driver: %s\n", msg);
         }
 
-        // Validations for 1st tab in Reports.fxml
         classCB.valueProperty().addListener((ov, t, t1) ->
         {
             updateButton();
@@ -163,7 +163,6 @@ public class ReportsController
             updateButton();
         });
 
-        //Reset report filters
         resetButton.setOnAction(event -> clearForm());
         resetButton2.setOnAction(event -> clearForm());
     }
@@ -191,8 +190,10 @@ public class ReportsController
                 ids.add(resultSet.getInt(1));
             }
 
-            resultSet = statement.executeQuery("select assignmentName from assignments where assignmentCat = '" + activityCB.getSelectionModel().getSelectedItem() + "' " +
-                    "and gradesName = '" + selection + "grades' between '" + startDate.getValue() + "' and '" + endDate.getValue() + "'");
+            resultSet = statement.executeQuery("select assignmentName from assignments where assignmentCat = '"
+                    + activityCB.getSelectionModel().getSelectedItem() + "' " +
+                    "and gradesName = '" + selection + "grades' and assignmentDate " +
+                    "between '" + startDate.getValue() + "' and '" + endDate.getValue() + "'");
 
             while (resultSet.next())
             {
@@ -209,16 +210,35 @@ public class ReportsController
                 }
             }
 
+            int j = 0;
+
             for(int i = 0; i < grades.size(); i++)
             {
                 if(i >= ids.size())
                 {
-                    avg.set(i - ids.size(), (grades.get(i) + avg.get(i - ids.size())) / 2);
+                    if(j < ids.size())
+                    {
+                        avg.set(j, grades.get(i) + avg.get(j));
+                    }
+                    else
+                    {
+                        j = 0;
+                        avg.set(j, grades.get(i) + avg.get(j));
+                    }
+
+                    j++;
                 }
                 else
                 {
                     avg.add(grades.get(i));
                 }
+            }
+
+            DecimalFormat oneDeci = new DecimalFormat("###.#");
+
+            for(int i = 0; i < avg.size(); i++)
+            {
+                avg.set(i, Double.valueOf(oneDeci.format(avg.get(i) / names.size())));
             }
 
             for (int i = 0; i < ids.size(); i++)
@@ -246,11 +266,9 @@ public class ReportsController
 
         FileChooser fileChooser = new FileChooser();
 
-        //Set extension filter
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel Document", "*.xlsx");
         fileChooser.getExtensionFilters().add(extFilter);
 
-        //Show save file dialog
         File file = fileChooser.showSaveDialog(st);
 
         data = rosterView.getItems();
@@ -268,11 +286,9 @@ public class ReportsController
 
         FileChooser fileChooser = new FileChooser();
 
-        //Set extension filter
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel Documents", "*.xlsx");
         fileChooser.getExtensionFilters().add(extFilter);
 
-        //Show save file dialog
         File file = fileChooser.showSaveDialog(st);
 
         data = rosterView.getItems();
@@ -285,15 +301,12 @@ public class ReportsController
 
     private void SaveFile(File file)
     {
-        //Blank workbook
         XSSFWorkbook workbook = new XSSFWorkbook();
 
-        //Create a blank sheet
         XSSFSheet sheet = workbook.createSheet("Report Data");
 
         data = rosterView.getItems();
 
-        //This data needs to be written (Object[])
         Map<String, Object[]> data1 = new TreeMap<>();
 
         data1.put(0 + "", new Object[]{"Student ID", "Student Name", "Activity", "Average Grade"});
@@ -303,16 +316,13 @@ public class ReportsController
             data1.put(i + 1 + "", new Object[]{data.get(i).getStudentID(), data.get(i).getFullName(), data.get(i).getActivity(), data.get(i).getAvgGrade()});
         }
 
-        //Iterate over data and write to sheet
         Set<String> keySet = data1.keySet();
 
         int rowNum = 0;
         for (String key : keySet)
         {
-            //create a row on excel sheet
             XSSFRow row = sheet.createRow(rowNum++);
 
-            //get object array of particular key
             Object[] objArr = data1.get(key);
 
             int cellNum = 0;
@@ -336,7 +346,6 @@ public class ReportsController
         }
         try
         {
-            //Write the workbook in file system
             FileOutputStream out = new FileOutputStream(file);
             workbook.write(out);
             out.close();
