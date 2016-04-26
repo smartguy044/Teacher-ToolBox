@@ -3,32 +3,30 @@
 <?import java.lang.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Label?>
-<?import javafx.collections.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0"
+      prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="teacherToolBox.controller.AddAssignmentController">
     <children>
-        <JFXTextField labelFloat="true" layoutX="50.0" layoutY="28.0" maxHeight="-Infinity" maxWidth="348.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="348.0" promptText="Assignment Name" />
-        <JFXComboBox fx:id="assignmentCB" layoutX="58.0" layoutY="83.0" maxWidth="333.0" prefHeight="31.0" prefWidth="333.0" promptText="Assignment Category" visibleRowCount="4">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <Label>
-                        Daily Assignment
-                    </Label>
-                    <Label>
-                        Homework
-                    </Label>
-                    <Label>
-                        Test
-                    </Label>
-                </FXCollections>
-            </items>
-        </JFXComboBox>
-        <JFXComboBox fx:id="monthCB" layoutX="55.0" layoutY="143.0" prefHeight="31.0" prefWidth="105.0" promptText="Month" visibleRowCount="4" />
-        <JFXComboBox fx:id="dayCB" layoutX="170.0" layoutY="143.0" prefHeight="31.0" prefWidth="105.0" promptText="Day" visibleRowCount="4" />
-        <JFXTextField fx:id="yearTF" labelFloat="true" layoutX="275.0" layoutY="143.0" maxWidth="118.0" minWidth="105.0" prefHeight="31.0" prefWidth="118.0" promptText="Year" />
-        <JFXButton fx:id="submitButton" alignment="CENTER" buttonType="RAISED" layoutX="83.0" layoutY="223.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit" />
-        <JFXButton fx:id="resetButton" alignment="CENTER" buttonType="RAISED" layoutX="176.0" layoutY="223.0" prefHeight="31.0" prefWidth="98.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Reset Fields" />
-        <JFXButton fx:id="cancelButton" alignment="CENTER" buttonType="RAISED" layoutX="289.0" layoutY="223.0" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Cancel" />
+        <JFXTextField fx:id="assignmentName" layoutX="50.0" layoutY="28.0" maxHeight="-Infinity" maxWidth="348.0"
+                      minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="348.0"
+                      promptText="Assignment Name"/>
+        <JFXComboBox fx:id="assignmentCB" layoutX="58.0" layoutY="83.0" maxWidth="333.0" prefHeight="31.0"
+                     prefWidth="333.0" promptText="Assignment Category" visibleRowCount="4"/>
+        <JFXComboBox fx:id="monthCB" layoutX="55.0" layoutY="143.0" prefHeight="31.0" prefWidth="105.0"
+                     promptText="Month" visibleRowCount="4"/>
+        <JFXComboBox fx:id="dayCB" layoutX="170.0" layoutY="143.0" prefHeight="31.0" prefWidth="105.0" promptText="Day"
+                     visibleRowCount="4"/>
+        <JFXTextField fx:id="yearTF" layoutX="275.0" layoutY="148.0" maxWidth="118.0" minWidth="105.0" prefHeight="31.0"
+                      prefWidth="118.0" promptText="Year"/>
+        <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="83.0" layoutY="223.0" onAction="#submitButton"
+                   prefHeight="31.0" prefWidth="79.0"
+                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Submit"/>
+        <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="176.0" layoutY="223.0" onAction="#resetButton"
+                   prefHeight="31.0" prefWidth="98.0"
+                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Reset Fields"/>
+        <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="289.0" layoutY="223.0" onAction="#cancelButton"
+                   prefHeight="31.0" prefWidth="79.0"
+                   style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="Cancel"/>
     </children>
 </Pane>
