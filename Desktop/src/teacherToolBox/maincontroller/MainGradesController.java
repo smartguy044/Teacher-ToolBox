@@ -15,13 +15,20 @@ import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javax.annotation.PostConstruct;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import teacherToolBox.controller.GradesController;
 import teacherToolBox.controller.SideMenuController;
 
-import javax.annotation.PostConstruct;
+/*
+ * The MainGradesController class is responsible for handling the graphical theme for its related controller.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
 
 @FXMLController("../fxml/Main2.fxml")
 public class MainGradesController
@@ -64,7 +71,6 @@ public class MainGradesController
     @PostConstruct
     public void init() throws FlowException, VetoException
     {
-        // init the title hamburger icon
         drawer.setOnDrawingAction((e) -> {
             titleBurger.getAnimation().setRate(1);
             titleBurger.getAnimation().setOnFinished((event) -> counter = 1);
@@ -87,19 +93,15 @@ public class MainGradesController
             counter = -1;
         });
 
-        // init Popup
         toolbarPopup.setPopupContainer(root);
         toolbarPopup.setSource(optionsRippler);
 
         optionsBurger.setOnMouseClicked((e) -> toolbarPopup.show(JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT, -12, 15));
 
-        // close application
         exit.setOnMouseClicked((e) -> Platform.exit());
 
-        // create the inner flow and content
         context = new ViewFlowContext();
 
-        // set the default controller
         Flow innerFlow = new Flow(GradesController.class);
 
         flowHandler = innerFlow.createHandler(context);
@@ -108,7 +110,6 @@ public class MainGradesController
         context.register("ContentPane", content);
         content.getChildren().add(flowHandler.start(new AnimatedFlowContainer(Duration.millis(320), ContainerAnimations.SWIPE_LEFT)));
 
-        // side controller will add links to the content flow
         Flow sideMenuFlow = new Flow(SideMenuController.class);
         sideMenuFlowHandler = sideMenuFlow.createHandler(context);
         sideContent.getChildren().add(sideMenuFlowHandler.start(new AnimatedFlowContainer(Duration.millis(320), ContainerAnimations.SWIPE_LEFT)));

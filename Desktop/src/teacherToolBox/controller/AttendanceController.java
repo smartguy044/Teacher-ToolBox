@@ -107,7 +107,7 @@ public class AttendanceController
 
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
-        int delta = -now.get(GregorianCalendar.DAY_OF_WEEK) + 2; //add 2 if your week start on monday
+        int delta = -now.get(GregorianCalendar.DAY_OF_WEEK) + 2;
         now.add(Calendar.DAY_OF_MONTH, delta);
 
         days = new String[5];

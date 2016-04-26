@@ -17,11 +17,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import teacherToolBox.controller.SignUpController;
-
 import javax.annotation.PostConstruct;
 
-@FXMLController("../fxml/Main.fxml")
+/*
+ * The MainSignUpController class is responsible for handling the graphical theme for its related controller.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
 
+@FXMLController("../fxml/Main.fxml")
 public class MainSignUpController
 {
     @FXMLViewFlowContext
@@ -50,19 +56,15 @@ public class MainSignUpController
     @PostConstruct
     public void init() throws FlowException, VetoException
     {
-        // init Popup
         toolbarPopup.setPopupContainer(root);
         toolbarPopup.setSource(optionsRippler);
 
         optionsBurger.setOnMouseClicked((e) -> toolbarPopup.show(JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT, -12, 15));
 
-        // close application
         exit.setOnMouseClicked((e) -> Platform.exit());
 
-        // create the inner flow and content
         context = new ViewFlowContext();
 
-        // set the default controller
         Flow innerFlow = new Flow(SignUpController.class);
 
         flowHandler = innerFlow.createHandler(context);

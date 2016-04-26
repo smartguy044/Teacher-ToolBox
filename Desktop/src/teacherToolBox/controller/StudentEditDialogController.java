@@ -5,6 +5,15 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import teacherToolBox.components.Student;
 
+/*
+ * The StudentEditDialogController class is responsible for presenting a dialog window for the selected student that needs to be edited.
+ * Specifically, just editing a student from a class roster.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
+
 public class StudentEditDialogController
 {
 

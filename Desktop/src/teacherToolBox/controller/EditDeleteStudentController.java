@@ -16,11 +16,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import teacherToolBox.Main;
 import teacherToolBox.components.Student;
 
 import javax.annotation.PostConstruct;
-import javax.swing.text.Style;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;

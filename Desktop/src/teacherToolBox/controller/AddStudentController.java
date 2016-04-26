@@ -14,7 +14,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import teacherToolBox.components.Student;
 
@@ -129,18 +128,13 @@ public class AddStudentController
                 studentIdTF.validate();
             }
 
-            studentIdTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
+            studentIdTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> {
+                if (!newVal)
                 {
-                    if (!newVal)
-                    {
-                        studentIdTF.validate();
-                    }
-
-                    updateButton();
+                    studentIdTF.validate();
                 }
+
+                updateButton();
             });
         });
 
@@ -151,18 +145,13 @@ public class AddStudentController
                 firstNameTF.validate();
             }
 
-            firstNameTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
+            firstNameTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> {
+                if (!newVal)
                 {
-                    if (!newVal)
-                    {
-                        firstNameTF.validate();
-                    }
-
-                    updateButton();
+                    firstNameTF.validate();
                 }
+
+                updateButton();
             });
         });
 
@@ -173,18 +162,13 @@ public class AddStudentController
                 lastNameTF.validate();
             }
 
-            lastNameTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
+            lastNameTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> {
+                if (!newVal)
                 {
-                    if (!newVal)
-                    {
-                        lastNameTF.validate();
-                    }
-
-                    updateButton();
+                    lastNameTF.validate();
                 }
+
+                updateButton();
             });
         });
 
@@ -195,18 +179,13 @@ public class AddStudentController
                 genderTF.validate();
             }
 
-            genderTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
+            genderTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> {
+                if (!newVal)
                 {
-                    if (!newVal)
-                    {
-                        genderTF.validate();
-                    }
-
-                    updateButton();
+                    genderTF.validate();
                 }
+
+                updateButton();
             });
         });
     }

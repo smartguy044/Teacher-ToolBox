@@ -18,8 +18,6 @@ import teacherToolBox.Main;
 import teacherToolBox.maincontroller.MainAddRosterController;
 import teacherToolBox.maincontroller.MainSignUpController;
 
-import java.awt.*;
-
 /*
  * The LoginController class requires the user to enter his/her credentials for verification.	 *
  * The user needs to input his/her username and password in order to access the other TeacherToolbox functionality.

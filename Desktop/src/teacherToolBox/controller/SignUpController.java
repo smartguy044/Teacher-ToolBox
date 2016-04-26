@@ -8,13 +8,11 @@ import io.datafx.controller.flow.action.ActionTrigger;
 import io.datafx.controller.flow.container.DefaultFlowContainer;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import teacherToolBox.Main;
@@ -126,20 +124,14 @@ public class SignUpController
                 {
                     try
                     {
-                        // Create MessageDigest instance for SHA-512
                         MessageDigest md = MessageDigest.getInstance("SHA-512");
-                        //Add password bytes to digest
                         md.update(passwordTF.getText().getBytes());
-                        //Get the hash's bytes
                         byte[] bytes = md.digest();
-                        //This bytes[] has bytes in decimal format;
-                        //Convert it to hexadecimal format
                         StringBuilder sb = new StringBuilder();
                         for (byte aByte : bytes)
                         {
                             sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
                         }
-                        //Get complete hashed password in hex format
                         generatedPassword = sb.toString();
 
                         statement.executeUpdate("INSERT INTO users(fname, lname, uname, pword, secques, secans, logins) values('"
@@ -214,14 +206,7 @@ public class SignUpController
                 nameTF.validate();
             }
 
-            nameTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
-                {
-                    updateButton();
-                }
-            });
+            nameTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> updateButton());
         });
 
         emailTF.focusedProperty().addListener((o, oldVal, newVal) ->
@@ -231,14 +216,7 @@ public class SignUpController
                 emailTF.validate();
             }
 
-            emailTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
-                {
-                    updateButton();
-                }
-            });
+            emailTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> updateButton());
         });
 
         passwordTF.focusedProperty().addListener((o, oldVal, newVal) ->
@@ -248,14 +226,7 @@ public class SignUpController
                 passwordTF.validate();
             }
 
-            passwordTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
-                {
-                    updateButton();
-                }
-            });
+            passwordTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> updateButton());
         });
 
         confirmPassTF.focusedProperty().addListener((o, oldVal, newVal) ->
@@ -265,14 +236,7 @@ public class SignUpController
                 confirmPassTF.validate();
             }
 
-            confirmPassTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
-                {
-                    updateButton();
-                }
-            });
+            confirmPassTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> updateButton());
         });
 
         secCB.valueProperty().addListener((ov, t, t1) ->
@@ -287,14 +251,7 @@ public class SignUpController
                 secAnsTF.validate();
             }
 
-            secAnsTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
-                {
-                    updateButton();
-                }
-            });
+            secAnsTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> updateButton());
         });
 
         acceptButton.setOnMouseClicked((e)->{

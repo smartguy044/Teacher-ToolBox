@@ -18,14 +18,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import teacherToolBox.components.EditingCell;
-import teacherToolBox.components.Student;
 
 import javax.annotation.PostConstruct;
 import java.io.FileInputStream;
@@ -33,6 +31,15 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Properties;
+
+/*
+ * The GradesController class is responsible for managing the grades for each assignment within the TeacherToolBox application
+ * Specifically, adding grades for each activity that has been created.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
 
 @FXMLController("../fxml/Grades.fxml")
 public class GradesController
@@ -230,8 +237,7 @@ public class GradesController
                 System.err.printf("problem with db connection: %s\n", msg);
             }
 
-            column.setCellValueFactory((Callback<TableColumn.CellDataFeatures<ObservableList, String>,
-                    ObservableValue<String>>) param -> new SimpleStringProperty("0"));
+            column.setCellValueFactory(param -> new SimpleStringProperty("0"));
 
             column.setCellFactory(cellFactory);
 

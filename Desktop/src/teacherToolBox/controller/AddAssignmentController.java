@@ -5,7 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javax.annotation.PostConstruct;
+/*
+ * The AddAssignmentController class is responsible for managing the assignments within the TeacherToolBox application
+ * Specifically, adding a assignment name, category, and date.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
 
 public class AddAssignmentController
 {

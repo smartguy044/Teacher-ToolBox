@@ -15,7 +15,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -126,18 +125,13 @@ public class AddRosterController
                 className.validate();
             }
 
-            className.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
+            className.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> {
+                if (!newVal)
                 {
-                    if (!newVal)
-                    {
-                        className.validate();
-                    }
-
-                    updateButton();
+                    className.validate();
                 }
+
+                updateButton();
             });
         });
 
@@ -148,18 +142,13 @@ public class AddRosterController
                 filePath.validate();
             }
 
-            filePath.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
+            filePath.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> {
+                if (!newVal)
                 {
-                    if (!newVal)
-                    {
-                        filePath.validate();
-                    }
-
-                    updateButton();
+                    filePath.validate();
                 }
+
+                updateButton();
             });
         });
 
@@ -170,18 +159,13 @@ public class AddRosterController
                 studentIdTF.validate();
             }
 
-            studentIdTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
+            studentIdTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> {
+                if (!newVal)
                 {
-                    if (!newVal)
-                    {
-                        studentIdTF.validate();
-                    }
-
-                    updateButton();
+                    studentIdTF.validate();
                 }
+
+                updateButton();
             });
         });
 
@@ -192,18 +176,13 @@ public class AddRosterController
                 firstNameTF.validate();
             }
 
-            firstNameTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
+            firstNameTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> {
+                if (!newVal)
                 {
-                    if (!newVal)
-                    {
-                        firstNameTF.validate();
-                    }
-
-                    updateButton();
+                    firstNameTF.validate();
                 }
+
+                updateButton();
             });
         });
 
@@ -214,18 +193,13 @@ public class AddRosterController
                 lastNameTF.validate();
             }
 
-            lastNameTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
+            lastNameTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> {
+                if (!newVal)
                 {
-                    if (!newVal)
-                    {
-                        lastNameTF.validate();
-                    }
-
-                    updateButton();
+                    lastNameTF.validate();
                 }
+
+                updateButton();
             });
         });
 
@@ -236,18 +210,13 @@ public class AddRosterController
                 genderTF.validate();
             }
 
-            genderTF.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>()
-            {
-                @Override
-                public void handle(KeyEvent arg0)
+            genderTF.addEventFilter(KeyEvent.KEY_RELEASED, arg0 -> {
+                if (!newVal)
                 {
-                    if (!newVal)
-                    {
-                        genderTF.validate();
-                    }
-
-                    updateButton();
+                    genderTF.validate();
                 }
+
+                updateButton();
             });
         });
 
@@ -318,7 +287,6 @@ public class AddRosterController
 
                 while ((line = br.readLine()) != null)
                 {
-                    // use comma as separator
                     String[] student = line.split(csvSplitBy);
 
                     data = rosterView.getItems();

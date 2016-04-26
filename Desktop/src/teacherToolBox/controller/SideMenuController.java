@@ -18,7 +18,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import teacherToolBox.Main;
 import teacherToolBox.maincontroller.*;
-
 import javax.annotation.PostConstruct;
 
 /*

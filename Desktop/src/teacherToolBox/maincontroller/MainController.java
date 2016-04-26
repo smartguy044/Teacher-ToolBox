@@ -13,15 +13,21 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-
 import javax.annotation.PostConstruct;
-
 import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXPopup.PopupHPosition;
 import com.jfoenix.controls.JFXPopup.PopupVPosition;
 import com.jfoenix.controls.JFXRippler;
 import javafx.util.Duration;
 import teacherToolBox.controller.LoginController;
+
+/*
+ * The MainController class is responsible for starting the application.
+ *
+ * <p/> Bugs: None
+ *
+ * @author  Michael Stevens, Josh Torrans, Matthew Fondevilla, Joanna Ho, Tom Warren, and Greg Grimsley
+ */
 
 @FXMLController("../fxml/Main.fxml")
 public class MainController
@@ -52,19 +58,15 @@ public class MainController
     @PostConstruct
     public void init() throws FlowException, VetoException
     {
-        // init Popup
         toolbarPopup.setPopupContainer(root);
         toolbarPopup.setSource(optionsRippler);
 
         optionsBurger.setOnMouseClicked((e) -> toolbarPopup.show(PopupVPosition.TOP, PopupHPosition.RIGHT, -12, 15));
 
-        // close application
         exit.setOnMouseClicked((e) -> Platform.exit());
 
-        // create the inner flow and content
         context = new ViewFlowContext();
 
-        // set the default controller
         Flow innerFlow = new Flow(LoginController.class);
 
         flowHandler = innerFlow.createHandler(context);
