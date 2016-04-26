@@ -7,6 +7,9 @@ import io.datafx.controller.flow.action.ActionMethod;
 import io.datafx.controller.flow.action.ActionTrigger;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -41,10 +44,7 @@ public class GradesController
     private JFXComboBox<String> classCB;
 
     @FXML
-    private TableView<Student> rosterView;
-
-    @FXML
-    private TableColumn finalGrade;
+    private TableView rosterView;
 
     @FXML
     @ActionTrigger("selectionAction")
@@ -108,7 +108,7 @@ public class GradesController
     @ActionMethod("selectionAction")
     public void selectBtn_onAction() throws Exception
     {
-        ObservableList<Student> data = rosterView.getItems();
+        ObservableList<ObservableList> data = rosterView.getItems();
         data.clear();
 
         ArrayList<Integer> ids = new ArrayList<>();
@@ -118,7 +118,8 @@ public class GradesController
 
         selection = classCB.getSelectionModel().getSelectedItem();
 
-        try {
+        try
+        {
             statement = connection.createStatement();
 
             ResultSet resultSet = statement.executeQuery("SELECT COLUMN_NAME\n" +
@@ -128,67 +129,61 @@ public class GradesController
 
             while (resultSet.next())
             {
-                columnNames.add(resultSet.getString(1));
+                columnNames.add("`" + resultSet.getString(1) + "`");
             }
 
-            for (int i = 2; i < columnNames.size(); i++)
-            {
-                column = new TableColumn(columnNames.get(i));
+            String SQL = "SELECT * from " + selection + "grades";
 
-                column.setCellValueFactory(new PropertyValueFactory("grades"));
+            resultSet = connection.createStatement().executeQuery(SQL);
+
+            for (int i = 0; i < columnNames.size(); i++)
+            {
+                column = new TableColumn(columnNames.get(i).replace("`", ""));
+
+                final int j = i;
+
+                column.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>()
+
+                {
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param)
+                    {
+                        return new SimpleStringProperty((String) param.getValue().get(j));
+                    }
+                });
+
                 column.setCellFactory(cellFactory);
                 rosterView.getColumns().add(column);
                 rosterView.setEditable(true);
 
                 TableColumn finalColumn = column;
-                column.setOnEditCommit(new EventHandler<CellEditEvent<Student, String>>()
+                column.setOnEditCommit(new EventHandler<CellEditEvent<ObservableList, String>>()
                 {
                     @Override
-                    public void handle(CellEditEvent<Student, String> t)
+                    public void handle(CellEditEvent<ObservableList, String> t)
                     {
-                        t.getTableView().getItems().get(t.getTablePosition().getRow()).setGrade(t.getNewValue());
+                        t.getTableView().getItems().get(t.getTablePosition().getRow()).add(t.getNewValue());
 
-                        updateGrade(finalColumn.getText(), t.getTableView().getItems().get(t.getTablePosition().getRow()).getStudentID(), t.getNewValue());
+                        updateGrade(finalColumn.getText(), Integer.valueOf(t.getTableView().getItems().get(t.getTablePosition().getRow()).get(0).toString()), t.getNewValue());
                     }
                 });
-
-                resultSet = statement.executeQuery("select " + columnNames.get(i) + " from " + selection + "grades");
-
-                while (resultSet.next())
-                {
-                    grades.add(resultSet.getString(1));
-                }
             }
-
-            resultSet = statement.executeQuery("select studentID from rosters where courseID in (select courseID from courses where courseName = '" + selection + "')");
 
             while (resultSet.next())
             {
-                ids.add(resultSet.getInt(1));
-            }
-
-            for (int i = 0; i < ids.size(); i++)
-            {
-                Integer id = ids.get(i);
-                resultSet = statement.executeQuery("select studentFN, studentLN from students where studentID = " + id);
-
-                while (resultSet.next())
+                ObservableList<String> row = FXCollections.observableArrayList();
+                for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++)
                 {
-                    String name = resultSet.getString(1) + " " + resultSet.getString(2);
-                    Student newStu = new Student(id, name, grades.get(i));
-                    data.add(newStu);
-
-                    if(grades.size() > 0)
-                    {
-
-                    }
+                    row.add(resultSet.getString(i));
                 }
+                data.add(row);
             }
+
+
         }
-        catch (SQLException sqlException)
+        catch (Exception e)
         {
-            String msg = sqlException.getMessage();
-            System.err.printf("problem with db connection: %s\n", msg);
+            e.printStackTrace();
+            System.out.println("Error on Building Data");
         }
     }
 
@@ -224,7 +219,7 @@ public class GradesController
             try {
                 statement = connection.createStatement();
 
-                statement.executeUpdate("INSERT INTO assignments(assignmentName, assignmentCat, date, gradesName) values('" + controller.getName() + "', '" + controller.getCategory()
+                statement.executeUpdate("INSERT INTO assignments(assignmentName, assignmentCat, assignmentDate, gradesName) values('" + controller.getName() + "', '" + controller.getCategory()
                 + "', '" + controller.getDate() + "'" + ", '" + selection + "Grades')");
 
                 statement.executeUpdate("ALTER TABLE " + selection + "Grades ADD `" + controller.getName() + "` VARCHAR(35)");
@@ -235,19 +230,22 @@ public class GradesController
                 System.err.printf("problem with db connection: %s\n", msg);
             }
 
-            column.setCellValueFactory(new PropertyValueFactory<Student, String>("grades"));
+            column.setCellValueFactory((Callback<TableColumn.CellDataFeatures<ObservableList, String>,
+                    ObservableValue<String>>) param -> new SimpleStringProperty("0"));
+
             column.setCellFactory(cellFactory);
 
             rosterView.getColumns().add(column);
-            rosterView.setEditable(true);
 
-            column.setOnEditCommit(new EventHandler<CellEditEvent<Student, String>>()
+            TableColumn finalColumn = column;
+            column.setOnEditCommit(new EventHandler<CellEditEvent<ObservableList, String>>()
             {
                 @Override
-                public void handle(CellEditEvent<Student, String> t)
+                public void handle(CellEditEvent<ObservableList, String> t)
                 {
-                    t.getTableView().getItems().get(t.getTablePosition().getRow()).setGrade(t.getNewValue());
-                    updateGrade(column.getText(), t.getTableView().getItems().get(t.getTablePosition().getRow()).getStudentID(), t.getNewValue());
+                    t.getTableView().getItems().get(t.getTablePosition().getRow()).add(t.getNewValue());
+
+                    updateGrade(finalColumn.getText(), Integer.valueOf(t.getTableView().getItems().get(t.getTablePosition().getRow()).get(0).toString()), t.getNewValue());
                 }
             });
         }
@@ -255,10 +253,9 @@ public class GradesController
 
     private void updateGrade(String column, int studentID, String grade)
     {
-        try {
-            statement = connection.createStatement();
-
-            statement.executeUpdate("UPDATE " + selection + "Grades SET " + column + " = " + Integer.valueOf(grade) + " where studentID = " + studentID);
+        try
+        {
+            statement.executeUpdate("UPDATE " + selection + "Grades SET `" + column + "` = " + Integer.valueOf(grade) + " where studentID = " + studentID);
         }
         catch (SQLException sqlException)
         {
